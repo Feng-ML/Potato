@@ -1,0 +1,4 @@
+repository "Potato@qq1125335956@cloud.cn"
+  path "/"
+    br "/main"
+    co "/main"
