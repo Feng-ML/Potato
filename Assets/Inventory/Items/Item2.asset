@@ -15,7 +15,12 @@ MonoBehaviour:
   id: 2
   itemName: "\u7CD6\u679C"
   itemImg: {fileID: 2800000, guid: 2fa6b7afcc3f4b8429f4b59f8c85cc95, type: 3}
-  itemInfo: "\u751F\u547D\u503C\u4E0A\u9650+5"
+  itemInfo: "\u6700\u5927\u751F\u547D\u503C+5\n\u79FB\u52A8\u901F\u5EA6+5"
   cost: 5
   quality: 0
   isEquip: 0
+  effectList:
+  - Attr: 0
+    value: 5
+  - Attr: 9
+    value: 5

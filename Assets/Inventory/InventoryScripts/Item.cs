@@ -13,6 +13,7 @@ public class Item : ScriptableObject
     public int cost;                //价格
     public QualityLevel quality;    //品质
     public bool isEquip;            //是否为装备
+    public List<AttrObj> effectList; //宝物效果
 
     // 品质
     public enum QualityLevel
@@ -23,4 +24,11 @@ public class Item : ScriptableObject
         legendary,
         mythic
     }
+}
+
+[System.Serializable]
+public class AttrObj
+{
+    public Enums.character Attr;
+    public int value;
 }

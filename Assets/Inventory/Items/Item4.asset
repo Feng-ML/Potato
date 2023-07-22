@@ -15,7 +15,10 @@ MonoBehaviour:
   id: 4
   itemName: "\u624B\u5957"
   itemImg: {fileID: 2800000, guid: 3d1d2bba40019564596fe480175fb91f, type: 3}
-  itemInfo: "\u4F24\u5BB3+6"
+  itemInfo: "\u4F24\u5BB3+8"
   cost: 15
   quality: 0
   isEquip: 0
+  effectList:
+  - Attr: 2
+    value: 8

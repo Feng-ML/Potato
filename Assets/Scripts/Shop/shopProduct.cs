@@ -97,9 +97,16 @@ public class shopProduct : MonoBehaviour
     private void SetPlayerStatus()
     {
         shopUI.Q<Label>("maxHealthValue").text = playerStatus.maxHealth.ToString();
+        shopUI.Q<Label>("healthRecoverValue").text = playerStatus.healthRecover.ToString();
         shopUI.Q<Label>("attackValue").text = playerStatus.attack.ToString();
         shopUI.Q<Label>("attackSpeedValue").text = playerStatus.attackSpeed.ToString();
+        shopUI.Q<Label>("criticalRateValue").text = playerStatus.criticalRate.ToString();
+        shopUI.Q<Label>("criticalDamageValue").text = playerStatus.criticalDamage.ToString();
+        shopUI.Q<Label>("attackRangeValue").text = playerStatus.attackRange.ToString();
+        shopUI.Q<Label>("armorValue").text = playerStatus.armor.ToString();
+        shopUI.Q<Label>("dodgeRateValue").text = playerStatus.dodgeRate.ToString();
         shopUI.Q<Label>("speedValue").text = playerStatus.speed.ToString();
+        shopUI.Q<Label>("pickUpRangeValue").text = playerStatus.pickUpRange.ToString();
         shopUI.Q<Label>("gold").text = playerStatus.gold.ToString();
     }
 
