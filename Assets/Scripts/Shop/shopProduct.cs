@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class shopProduct : MonoBehaviour
@@ -23,6 +24,7 @@ public class shopProduct : MonoBehaviour
         RefreshShop();
         SetPlayerStatus();
         LoadPlayerBag();
+        LoadPlayerWeapon();
 
         // 刷新商店点击事件
         shopUI.Q<Button>("refreshButton").clicked += RefreshShop;
@@ -33,6 +35,12 @@ public class shopProduct : MonoBehaviour
             int index = int.Parse(item.Q<Button>().name.Split("-")[1]);
             item.Q<Button>().clicked += () => BuyProduct(index);
         });
+
+        // 出发
+        shopUI.Q<Button>("fightButton").clicked += () =>
+        {
+            SceneManager.LoadScene("fight");
+        };
     }
 
 
@@ -80,6 +88,8 @@ public class shopProduct : MonoBehaviour
             item.Q<Label>("productName").text = currentProductList[i].itemName;
             item.Q<Label>("productInfo").text = currentProductList[i].itemInfo;
             item.Q<Label>("productCost").text = currentProductList[i].cost.ToString();
+            item.style.backgroundColor = MyDictionary.qualityColor[currentProductList[i].quality];
+
             if (playerStatus.gold < currentProductList[i].cost)
             {
                 item.Q<Label>("productCost").style.color = Color.red;
@@ -114,23 +124,43 @@ public class shopProduct : MonoBehaviour
     private void BuyProduct(int productIndex)
     {
         var item = currentProductList[productIndex];
+        if (item.isEquip && CanBuyWeapon(item) < 0) return;
         if (!Pay(item.cost)) return;
 
-
-        var itemInx = playerBag.itemsList.FindIndex((i) => i.id == item.id);
-        if (itemInx < 0)
+        if (item.isEquip)
         {
-            // 不存在宝物
-            playerBag.itemsList.Add(item);
-            playerBag.countList.Add(1);
+            //武器
+            if (playerBag.weaponList.Count < 2)
+            {
+                playerBag.weaponList.Add(item);
+                playerBag.weaponQualityList.Add(item.quality);
+            }
+            else
+            {
+                int sameIndex = CanBuyWeapon(item);
+                playerBag.weaponQualityList[sameIndex]++;
+            }
+            LoadPlayerWeapon();
         }
         else
         {
-            //存在宝物
-            playerBag.countList[itemInx]++;
+            var itemInx = playerBag.itemsList.FindIndex((i) => i.id == item.id);
+            if (itemInx < 0)
+            {
+                // 不存在宝物
+                playerBag.itemsList.Add(item);
+                playerBag.countList.Add(1);
+            }
+            else
+            {
+                //存在宝物
+                playerBag.countList[itemInx]++;
+            }
+            LoadPlayerBag();
         }
         shopUI.Query("productItem").AtIndex(productIndex).style.visibility = Visibility.Hidden;
-        LoadPlayerBag();
+
+        playerStatus.AttrsChange(item.effectList);
         surplusProductNum--;
         if (surplusProductNum < 1)
         {
@@ -138,6 +168,44 @@ public class shopProduct : MonoBehaviour
             refreshPriceNum = 0;
         }
         SetProduct();
+        SetPlayerStatus();
+    }
+
+    //能否购买武器
+    private int CanBuyWeapon(Item item)
+    {
+        if (playerBag.weaponList.Count < 2)
+        {
+            return 1;
+        }
+        int sameWeaponIndex = -1;
+        for (int i = 0; i < playerBag.weaponList.Count; i++)
+        {
+            var quality = playerBag.weaponQualityList[i];
+
+            if (quality < Enums.QualityLevel.mythic)
+            {
+                if (playerBag.weaponList[i].id == item.id && quality == item.quality)
+                {
+                    sameWeaponIndex = i;
+                    break;
+                }
+            }
+        }
+
+        return sameWeaponIndex;
+    }
+
+    // 付款
+    private bool Pay(int price)
+    {
+        if (playerStatus.gold >= price)
+        {
+            playerStatus.gold -= price;
+            shopUI.Q<Label>("gold").text = playerStatus.gold.ToString();
+            return true;
+        }
+        return false;
     }
 
     // 加载背包物品
@@ -151,6 +219,7 @@ public class shopProduct : MonoBehaviour
         {
             var itemTemplate = Resources.Load<VisualTreeAsset>("bagItem").Instantiate();
             itemTemplate.Q("item").style.backgroundImage = playerBag.itemsList[i].itemImg;
+            itemTemplate.Q("itemBox").style.backgroundColor = MyDictionary.qualityColor[playerBag.itemsList[i].quality];
             if (playerBag.countList[i] > 1)
             {
                 itemTemplate.Q<Label>().text = playerBag.countList[i].ToString();
@@ -164,15 +233,15 @@ public class shopProduct : MonoBehaviour
 
     }
 
-    // 付款
-    private bool Pay(int price)
+    // 加载武器列表
+    private void LoadPlayerWeapon()
     {
-        if (playerStatus.gold >= price)
+        for (int i = 0; i < playerBag.weaponList.Count; i++)
         {
-            playerStatus.gold -= price;
-            shopUI.Q<Label>("gold").text = playerStatus.gold.ToString();
-            return true;
+            var weaponBoxUI = shopUI.Query("weapon").AtIndex(i);
+            var weaponUI = shopUI.Query("weaponImg").AtIndex(i);
+            weaponUI.style.backgroundImage = playerBag.weaponList[i].itemImg;
+            weaponBoxUI.style.backgroundColor = MyDictionary.qualityColor[playerBag.weaponQualityList[i]];
         }
-        return false;
     }
 }

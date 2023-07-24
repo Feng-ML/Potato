@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,4 +31,31 @@ public class PlayerStatus : ScriptableObject
     public float speed;                 //移动速度%
     public int pickUpRange;             //拾取范围%
     public int gold;                    //金币
+
+
+    // 修改属性
+    public void AttrsChange(List<AttrObj> attrList)
+    {
+        foreach (var item in attrList)
+        {
+            var value = item.value;
+
+            Dictionary<string, Action> setArrt = new Dictionary<string, Action>()
+            {
+                { Enums.character.maxHealth.ToString(), ()=> maxHealth += value  },
+                { Enums.character.healthRecover.ToString(), ()=> healthRecover += value  },
+                { Enums.character.attack.ToString(), ()=> attack += value  },
+                { Enums.character.attackSpeed.ToString(), ()=> attackSpeed += value  },
+                { Enums.character.criticalRate.ToString(), ()=> criticalRate += value  },
+                { Enums.character.criticalDamage.ToString(), ()=> criticalDamage += value  },
+                { Enums.character.attackRange.ToString(), ()=> attackRange += value  },
+                { Enums.character.armor.ToString(), ()=> armor += value  },
+                { Enums.character.dodgeRate.ToString(), ()=> dodgeRate += value  },
+                { Enums.character.speed.ToString(), ()=> speed += value  },
+                { Enums.character.pickUpRange.ToString(), ()=> pickUpRange += value  },
+            };
+
+            setArrt[item.Attr.ToString()].Invoke();
+        }
+    }
 }

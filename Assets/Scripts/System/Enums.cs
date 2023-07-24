@@ -19,4 +19,14 @@ public class Enums
         speed,
         pickUpRange
     }
+
+    // Æ·ÖÊ
+    public enum QualityLevel
+    {
+        common,
+        rare,
+        epic,
+        legendary,
+        mythic
+    }
 }

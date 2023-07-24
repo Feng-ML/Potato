@@ -17,7 +17,7 @@ MonoBehaviour:
   itemImg: {fileID: 2800000, guid: c96911748e1338549b1c24eac90e4cb8, type: 3}
   itemInfo: "\u6700\u5927\u751F\u547D\u503C+2\n\u653B\u51FB\u4F24\u5BB3+5"
   cost: 20
-  quality: 0
+  quality: 2
   isEquip: 0
   effectList:
   - Attr: 0

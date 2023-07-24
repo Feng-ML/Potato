@@ -38,7 +38,8 @@ public class PlayerControl : MonoBehaviour
                 transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
                 go = new Vector3(-h, v, 0);
             }
-            transform.Translate(go * playerStatus.speed * Time.fixedDeltaTime);
+            var speed = (1 + playerStatus.speed / 100) * 4;
+            transform.Translate(go * speed * Time.fixedDeltaTime);
         }
         else
         {

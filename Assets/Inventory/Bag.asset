@@ -19,3 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b028e9440f11194429debaa16e39aabc, type: 2}
   - {fileID: 11400000, guid: 2b2be7acb1f13544ea575bff3c162d4d, type: 2}
   countList: 0200000003000000030000000200000001000000
+  weaponList:
+  - {fileID: 11400000, guid: af61bd8897b58534fa2dfd7d518fffbd, type: 2}
+  - {fileID: 11400000, guid: af61bd8897b58534fa2dfd7d518fffbd, type: 2}
+  weaponQualityList: 0100000000000000

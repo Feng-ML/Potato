@@ -10,17 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 092a6579b27784547b7f0ab806468b20, type: 3}
-  m_Name: Item2
+  m_Name: weapon1
   m_EditorClassIdentifier: 
-  id: 2
-  itemName: "\u7CD6\u679C"
-  itemImg: {fileID: 2800000, guid: 2fa6b7afcc3f4b8429f4b59f8c85cc95, type: 3}
-  itemInfo: "\u6700\u5927\u751F\u547D\u503C+5\n\u79FB\u52A8\u901F\u5EA6+5"
-  cost: 5
-  quality: 1
-  isEquip: 0
-  effectList:
-  - Attr: 0
-    value: 5
-  - Attr: 9
-    value: 5
+  id: w1
+  itemName: "\u624B\u67AA"
+  itemImg: {fileID: 2800000, guid: 00016535d44529946bd9ac2bbf68bda6, type: 3}
+  itemInfo: "\u653B\u51FB\u529B  10\n\u653B\u51FB\u901F\u5EA6  1s\n\u653B\u51FB\u8303\u56F4 
+    100\n\u66B4\u51FB\u7387  0%"
+  cost: 30
+  quality: 0
+  isEquip: 1
+  effectList: []

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -29,6 +30,7 @@ public class PlayerManager : MonoBehaviour
         expBar.SetLevel(playerStatus.level);
         expBar.SetMaxExp(playerStatus.maxExp);
         expBar.SetExp(playerStatus.currentExp);
+        goldText.SetText(playerStatus.gold.ToString());
     }
 
     // ‹…À
@@ -72,5 +74,32 @@ public class PlayerManager : MonoBehaviour
             expBar.SetMaxExp(playerStatus.maxExp);
         }
         expBar.SetExp(playerStatus.currentExp);
+    }
+
+
+    // –ﬁ∏ƒ Ù–‘
+    public void AttrsChange(List<AttrObj> attrList)
+    {
+        foreach (var item in attrList)
+        {
+            var value = item.value;
+
+            Dictionary<string, Action> setArrt = new Dictionary<string, Action>()
+            {
+                { Enums.character.maxHealth.ToString(), ()=> playerStatus.maxHealth += value  },
+                { Enums.character.healthRecover.ToString(), ()=> playerStatus.healthRecover += value  },
+                { Enums.character.attack.ToString(), ()=> playerStatus.attack += value  },
+                { Enums.character.attackSpeed.ToString(), ()=> playerStatus.attackSpeed += value  },
+                { Enums.character.criticalRate.ToString(), ()=> playerStatus.criticalRate += value  },
+                { Enums.character.criticalDamage.ToString(), ()=> playerStatus.criticalDamage += value  },
+                { Enums.character.attackRange.ToString(), ()=> playerStatus.attackRange += value  },
+                { Enums.character.armor.ToString(), ()=> playerStatus.armor += value  },
+                { Enums.character.dodgeRate.ToString(), ()=> playerStatus.dodgeRate += value  },
+                { Enums.character.speed.ToString(), ()=> playerStatus.speed += value  },
+                { Enums.character.pickUpRange.ToString(), ()=> playerStatus.pickUpRange += value  },
+            };
+
+            setArrt[item.Attr.ToString()].Invoke();
+        }
     }
 }

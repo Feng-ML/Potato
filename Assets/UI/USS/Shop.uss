@@ -1,3 +1,9 @@
+.text {
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    white-space: normal;
+}
+
 .player-status-item {
     flex-direction: row;
     color: rgb(255, 255, 255);
@@ -41,6 +47,8 @@
     width: 120px;
     height: 120px;
     flex-shrink: 0;
+    flex-grow: 0;
+    background-color: rgba(0, 0, 0, 0.42);
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border-top-right-radius: 10px;
