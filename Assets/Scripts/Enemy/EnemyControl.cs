@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,12 +6,16 @@ using UnityEngine;
 
 public class EnemyControl : MonoBehaviour
 {
+    public int level;
     public float moveSpeed = 2;     //移动速度
     public int attack = 1;    //攻击力
-    public float health = 100;      //生命值
+    public float maxHealth;          //最大生命值
+    public float currenthealth;      //当前生命值
     public GameObject diamond;      //掉落宝石
     private float stayTime;     //攻击触发频率
 
+    protected Action releaseAction;   //回收到对象池方法
+    protected Func<EnemyControl> getAction;       //从对象池获取对象方法
 
     private Animator animator;
     private GameObject player;
@@ -20,11 +25,17 @@ public class EnemyControl : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         animator = GetComponent<Animator>();
+        currenthealth = maxHealth;
     }
 
     void Update()
     {
         Move();
+    }
+
+    private void OnEnable()
+    {
+        currenthealth = maxHealth;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -102,8 +113,8 @@ public class EnemyControl : MonoBehaviour
     //受伤
     public void TakeDamage(float damage)
     {
-        health -= damage;
-        if (health <= 0)
+        currenthealth -= damage;
+        if (currenthealth <= 0)
         {
             Die();
         }
@@ -116,9 +127,21 @@ public class EnemyControl : MonoBehaviour
     }
 
     // 死亡
-    private void Die()
+    protected virtual void Die()
     {
-        Destroy(gameObject);
-        Instantiate(diamond, transform.position, Quaternion.identity);  //掉落
+        releaseAction.Invoke();
+        //掉落
+        var gold = GoldPool.Instance.Get();
+        gold.transform.position = transform.position;
+    }
+
+    public void SetDeactiveAction(Action releaseObj)
+    {
+        releaseAction = releaseObj;
+    }
+
+    public void SetActiveAction(Func<EnemyControl> getObj)
+    {
+        getAction = getObj;
     }
 }

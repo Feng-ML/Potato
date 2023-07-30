@@ -2,25 +2,37 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine.SceneManagement;
-using System.Threading;
 
 public class MapManager : MonoBehaviour
 {
     public GameObject bornAnimation;    //出生动画
 
-    public GameObject[] EnemyList;
+    public EnemyControl[] enemyList;      //敌人列表
+    private List<EnemyPool> enemyPool = new List<EnemyPool>();       //敌人对象池列表
+
     private float bornTimer;        //生成敌人间隔
-    private int bornNum = 3;        //生成敌人数量
+    public int bornNum = 10;        //生成敌人数量
 
     public float gameTime = 30;
     public TMP_Text gameTimeText;
 
     void Start()
     {
+        foreach (var enemy in enemyList)
+        {
+            var poolHolder = new GameObject($"pool: {enemy.name}");
+            poolHolder.transform.parent = transform;
+            poolHolder.transform.position = transform.position;
+            poolHolder.SetActive(false);
 
+            var pool = poolHolder.AddComponent<EnemyPool>();
+            pool.SetPrefab(enemy);
+            poolHolder.SetActive(true);
+            enemyPool.Add(pool);
+        }
+        bornTimer = 3;
     }
 
     void Update()
@@ -30,9 +42,10 @@ public class MapManager : MonoBehaviour
         {
             for (int i = 0; i < bornNum; i++)
             {
-                float x = UnityEngine.Random.Range(-7, 7);
-                float y = UnityEngine.Random.Range(-4, 4);
-                Born(EnemyList[0], new Vector2(x, y));
+                float x = UnityEngine.Random.Range(-16, 16);
+                float y = UnityEngine.Random.Range(-7, 7);
+                var enemyIndex = UnityEngine.Random.Range(0, 2);
+                StartCoroutine(Born(enemyIndex, new Vector2(x, y)));
             }
             bornTimer = 0;
         }
@@ -52,18 +65,20 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    async void Born(GameObject enemy, Vector2 position)
+    private IEnumerator Born(int enemyIndex, Vector2 position)
     {
         GameObject fork = Instantiate(bornAnimation, position, Quaternion.identity);
-        var ctsInfo = TaskPool.CreatCts();
-        await Task.Delay(TimeSpan.FromSeconds(3), ctsInfo.cts.Token);
+
+        yield return new WaitForSeconds(3);
 
         if (fork) Destroy(fork);
-        Instantiate(enemy, position, Quaternion.identity);
-    }
-
-    private void OnDestroy()
-    {
-        TaskPool.CancelAllTask();
+        var enemyInstance = enemyPool[enemyIndex].Get();
+        enemyInstance.transform.position = position;
+        if (enemyIndex == 1)
+        {
+            //史莱姆
+            enemyInstance.level = 0;
+            enemyInstance.transform.localScale = new Vector2(10, 10);
+        }
     }
 }

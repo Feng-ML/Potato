@@ -84,7 +84,8 @@ public class shopProduct : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             var item = shopUI.Query("productItem").AtIndex(i);
-            item.Q("productImg").style.backgroundImage = currentProductList[i].itemImg;
+            var background = new StyleBackground(currentProductList[i].itemImg);
+            item.Q("productImg").style.backgroundImage = background;
             item.Q<Label>("productName").text = currentProductList[i].itemName;
             item.Q<Label>("productInfo").text = currentProductList[i].itemInfo;
             item.Q<Label>("productCost").text = currentProductList[i].cost.ToString();
@@ -124,10 +125,10 @@ public class shopProduct : MonoBehaviour
     private void BuyProduct(int productIndex)
     {
         var item = currentProductList[productIndex];
-        if (item.isEquip && CanBuyWeapon(item) < 0) return;
+        if (item.isWeapon && CanBuyWeapon(item) < 0) return;
         if (!Pay(item.cost)) return;
 
-        if (item.isEquip)
+        if (item.isWeapon)
         {
             //ÎäÆ÷
             if (playerBag.weaponList.Count < 2)
@@ -218,7 +219,8 @@ public class shopProduct : MonoBehaviour
         for (int i = playerBag.itemsList.Count - 1; i >= 0; i--)
         {
             var itemTemplate = Resources.Load<VisualTreeAsset>("bagItem").Instantiate();
-            itemTemplate.Q("item").style.backgroundImage = playerBag.itemsList[i].itemImg;
+            var background = new StyleBackground(playerBag.itemsList[i].itemImg);
+            itemTemplate.Q("item").style.backgroundImage = background;
             itemTemplate.Q("itemBox").style.backgroundColor = MyDictionary.qualityColor[playerBag.itemsList[i].quality];
             if (playerBag.countList[i] > 1)
             {
@@ -240,7 +242,8 @@ public class shopProduct : MonoBehaviour
         {
             var weaponBoxUI = shopUI.Query("weapon").AtIndex(i);
             var weaponUI = shopUI.Query("weaponImg").AtIndex(i);
-            weaponUI.style.backgroundImage = playerBag.weaponList[i].itemImg;
+            var background = new StyleBackground(playerBag.weaponList[i].itemImg);
+            weaponUI.style.backgroundImage = background;
             weaponBoxUI.style.backgroundColor = MyDictionary.qualityColor[playerBag.weaponQualityList[i]];
         }
     }

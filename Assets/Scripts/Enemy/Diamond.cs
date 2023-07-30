@@ -17,7 +17,6 @@ public class Diamond : MonoBehaviour
         playerStatus = PlayerManager.Instance;
     }
 
-    // Update is called once per frame
     void Update()
     {
         playerDirection = player.transform.position - transform.position;
@@ -33,9 +32,12 @@ public class Diamond : MonoBehaviour
             transform.position += playerDirection * speed * Time.deltaTime;
             speed += Time.deltaTime;
         }
-
     }
 
+    private void OnDisable()
+    {
+        isGoing = false;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -43,7 +45,7 @@ public class Diamond : MonoBehaviour
         {
             playerStatus.AddGold(1);
             playerStatus.AddExp(20);
-            Destroy(gameObject);
+            GoldPool.Instance.Release(this);
         }
     }
 }

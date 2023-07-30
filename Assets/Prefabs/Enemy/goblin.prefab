@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8827406329138269431}
   - component: {fileID: 2024586417583950855}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: goblin
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,9 +120,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343454dde114ebb4194593a3a3df4b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
   moveSpeed: 2
   attack: 1
-  health: 10
+  maxHealth: 10
+  currenthealth: 0
   diamond: {fileID: 3507093881226194057, guid: 68b980a2e4f2c5241a2a94fb2b237d03, type: 3}
 --- !u!70 &2024586417583950855
 CapsuleCollider2D:

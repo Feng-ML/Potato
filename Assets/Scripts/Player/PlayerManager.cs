@@ -7,10 +7,13 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public PlayerStatus playerStatus;       //玩家属性
+    public Bag playerBag;
 
     public HealthBar healthBar;   //血条
     public ExpBar expBar;       //经验条
     public TMP_Text goldText;   //金币文本
+
+    public List<Vector2> weaponPsList;  //武器位置
 
     //单例
     private static PlayerManager instance;
@@ -31,6 +34,17 @@ public class PlayerManager : MonoBehaviour
         expBar.SetMaxExp(playerStatus.maxExp);
         expBar.SetExp(playerStatus.currentExp);
         goldText.SetText(playerStatus.gold.ToString());
+
+        LoadPlayerWeapon();
+    }
+
+    //加载武器
+    private void LoadPlayerWeapon()
+    {
+        for (int i = 0; i < playerBag.weaponList.Count; i++)
+        {
+            Instantiate(playerBag.weaponList[i].weaponPrefab, weaponPsList[i], Quaternion.identity, transform);
+        }
     }
 
     //受伤
@@ -101,5 +115,13 @@ public class PlayerManager : MonoBehaviour
 
             setArrt[item.Attr.ToString()].Invoke();
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        weaponPsList.ForEach(item =>
+        {
+            Gizmos.DrawSphere(item, 0.1f);
+        });
     }
 }
