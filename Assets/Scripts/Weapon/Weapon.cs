@@ -6,7 +6,8 @@ using UnityEngine.UIElements;
 
 public class Weapon : MonoBehaviour
 {
-    public GameObject bullent;  //×Óµ¯
+    public GameObject bullent;
+    private List<BulletPool> bulletPoolList;    //×Óµ¯³ØÁÐ±í
     private Animator weaponAnimator;
 
     private float attackRange = 6f;     //¹¥»÷·¶Î§
@@ -22,6 +23,7 @@ public class Weapon : MonoBehaviour
         flipY = transform.localScale.y;
         rotaY = transform.localEulerAngles.y;
         weaponAnimator = GetComponent<Animator>();
+        bulletPoolList = PoolControl.Instance.bulletPool;
     }
 
     private void Update()
@@ -97,7 +99,10 @@ public class Weapon : MonoBehaviour
     {
         Transform Muzzle = transform.Find("Muzzle");    //Ç¹¿Ú
         weaponAnimator.SetTrigger("fire");
-        GameObject bullentIns = Instantiate(bullent, Muzzle.position, transform.rotation);
+
+        var bullentIns = bulletPoolList[0].Get();
+        bullentIns.transform.position = Muzzle.position;
+        bullentIns.transform.rotation = transform.rotation;
         bullentIns.GetComponent<Bullet>().attack = 5;
     }
 }

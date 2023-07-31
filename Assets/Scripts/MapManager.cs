@@ -9,8 +9,7 @@ public class MapManager : MonoBehaviour
 {
     public GameObject bornAnimation;    //出生动画
 
-    public EnemyControl[] enemyList;      //敌人列表
-    private List<EnemyPool> enemyPool = new List<EnemyPool>();       //敌人对象池列表
+    private List<EnemyPool> enemyPool;    //敌人对象池列表
 
     private float bornTimer;        //生成敌人间隔
     public int bornNum = 10;        //生成敌人数量
@@ -20,18 +19,7 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
-        foreach (var enemy in enemyList)
-        {
-            var poolHolder = new GameObject($"pool: {enemy.name}");
-            poolHolder.transform.parent = transform;
-            poolHolder.transform.position = transform.position;
-            poolHolder.SetActive(false);
-
-            var pool = poolHolder.AddComponent<EnemyPool>();
-            pool.SetPrefab(enemy);
-            poolHolder.SetActive(true);
-            enemyPool.Add(pool);
-        }
+        enemyPool = PoolControl.Instance.enemyPool;
         bornTimer = 3;
     }
 
@@ -44,8 +32,8 @@ public class MapManager : MonoBehaviour
             {
                 float x = UnityEngine.Random.Range(-16, 16);
                 float y = UnityEngine.Random.Range(-7, 7);
-                var enemyIndex = UnityEngine.Random.Range(0, 2);
-                StartCoroutine(Born(enemyIndex, new Vector2(x, y)));
+                var enemyIndex = UnityEngine.Random.Range(0, 3);
+                StartCoroutine(Born(2, new Vector2(x, y)));
             }
             bornTimer = 0;
         }

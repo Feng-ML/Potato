@@ -7,21 +7,20 @@ using UnityEngine;
 public class EnemyControl : MonoBehaviour
 {
     public int level;
-    public float moveSpeed = 2;     //移动速度
-    public int attack = 1;    //攻击力
-    public float maxHealth;          //最大生命值
-    public float currenthealth;      //当前生命值
-    public GameObject diamond;      //掉落宝石
-    private float stayTime;     //攻击触发频率
+    public float moveSpeed = 2;                   //移动速度
+    public int attack = 1;                        //攻击力
+    public float maxHealth;                       //最大生命值
+    public float currenthealth;                   //当前生命值
+    private float stayTime;                       //攻击触发频率
 
-    protected Action releaseAction;   //回收到对象池方法
+    protected Action releaseAction;               //回收到对象池方法
     protected Func<EnemyControl> getAction;       //从对象池获取对象方法
 
     private Animator animator;
     private GameObject player;
-    private Vector3 playerDirection;  //敌人与玩家的向量
+    private Vector3 playerDirection;              //敌人与玩家的向量
 
-    void Start()
+    protected virtual void Start()
     {
         player = GameObject.FindWithTag("Player");
         animator = GetComponent<Animator>();
@@ -33,17 +32,17 @@ public class EnemyControl : MonoBehaviour
         Move();
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         currenthealth = maxHealth;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         Crash(collision);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    protected virtual void OnTriggerStay2D(Collider2D collision)
     {
         if (stayTime > 1)
         {
@@ -56,7 +55,7 @@ public class EnemyControl : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         stayTime = 0;
     }
@@ -81,7 +80,7 @@ public class EnemyControl : MonoBehaviour
     }
 
     //移动
-    private void Move()
+    protected virtual void Move()
     {
         playerDirection = player.transform.position - transform.position;
 
@@ -113,10 +112,14 @@ public class EnemyControl : MonoBehaviour
     //受伤
     public void TakeDamage(float damage)
     {
-        currenthealth -= damage;
-        if (currenthealth <= 0)
+        if (currenthealth < damage)
         {
+            currenthealth = 0;
             Die();
+        }
+        else
+        {
+            currenthealth -= damage;
         }
     }
 

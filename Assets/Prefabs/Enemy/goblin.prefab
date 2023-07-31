@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1133150881688797177}
   - component: {fileID: 5056077591446083371}
+  - component: {fileID: 2024586417583950855}
   - component: {fileID: 7536685192767651088}
   - component: {fileID: 8827406329138269431}
-  - component: {fileID: 2024586417583950855}
   m_Layer: 7
   m_Name: goblin
   m_TagString: Enemy
@@ -87,6 +87,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &2024586417583950855
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2484787440208300950}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.005205739, y: -0.0023662746}
+  m_Size: {x: 0.088065974, y: 0.115514554}
+  m_Direction: 0
 --- !u!95 &7536685192767651088
 Animator:
   serializedVersion: 5
@@ -125,39 +160,3 @@ MonoBehaviour:
   attack: 1
   maxHealth: 10
   currenthealth: 0
-  diamond: {fileID: 3507093881226194057, guid: 68b980a2e4f2c5241a2a94fb2b237d03, type: 3}
---- !u!70 &2024586417583950855
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2484787440208300950}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.005205739, y: -0.0023662746}
-  m_Size: {x: 0.088065974, y: 0.115514554}
-  m_Direction: 0

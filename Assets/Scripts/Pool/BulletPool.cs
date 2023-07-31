@@ -3,18 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPool : Pool<EnemyControl>
+public class BulletPool : Pool<Bullet>
 {
+
     private void Awake()
     {
-        InitPool();
+        InitPool(30);
     }
 
-    protected override EnemyControl OnCreateObj()
+    protected override Bullet OnCreateObj()
     {
         var ins = Instantiate(prefab, transform);
         ins.SetDeactiveAction(delegate { Release(ins); });
-        ins.SetActiveAction(new Func<EnemyControl>(Get));
 
         return ins;
     }

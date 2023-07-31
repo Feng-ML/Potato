@@ -26,4 +26,6 @@ public class Pool<T> : MonoBehaviour where T : Component
     public T Get() => pool.Get();
     public void Release(T obj) => pool.Release(obj);
     public void Clear() => pool.Clear();
+    public void SetPrefab(T obj) => prefab = obj;
+
 }
