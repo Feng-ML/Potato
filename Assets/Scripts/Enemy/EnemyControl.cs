@@ -17,8 +17,8 @@ public class EnemyControl : MonoBehaviour
     protected Func<EnemyControl> getAction;       //从对象池获取对象方法
 
     private Animator animator;
-    private GameObject player;
-    private Vector3 playerDirection;              //敌人与玩家的向量
+    protected GameObject player;
+    protected Vector3 playerDirection;              //敌人与玩家的向量
 
     protected virtual void Start()
     {
@@ -27,8 +27,9 @@ public class EnemyControl : MonoBehaviour
         currenthealth = maxHealth;
     }
 
-    void Update()
+    protected virtual void Update()
     {
+        playerDirection = player.transform.position - transform.position;
         Move();
     }
 
@@ -82,8 +83,6 @@ public class EnemyControl : MonoBehaviour
     //移动
     protected virtual void Move()
     {
-        playerDirection = player.transform.position - transform.position;
-
         if (playerDirection.magnitude > 0.5f)
         {
             animator.SetBool("isMoving", true);

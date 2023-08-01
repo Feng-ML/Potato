@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 
 public class Weapon : MonoBehaviour
 {
-    public GameObject bullent;
     private List<BulletPool> bulletPoolList;    //×Óµ¯³ØÁÐ±í
     private Animator weaponAnimator;
 
@@ -103,6 +102,7 @@ public class Weapon : MonoBehaviour
         var bullentIns = bulletPoolList[0].Get();
         bullentIns.transform.position = Muzzle.position;
         bullentIns.transform.rotation = transform.rotation;
+        bullentIns.forward = bullentIns.transform.right.normalized;
         bullentIns.GetComponent<Bullet>().attack = 5;
     }
 }

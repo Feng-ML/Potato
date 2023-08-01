@@ -427,6 +427,7 @@ MonoBehaviour:
   enemyPool: []
   bulletList:
   - {fileID: 8052045944708328303, guid: 892f9294003f0754d9eabab940e760fc, type: 3}
+  - {fileID: -3393995242984327406, guid: 4023e7359843ea2408fbc65e7c784376, type: 3}
   bulletPool: []
 --- !u!4 &129788859
 Transform:
