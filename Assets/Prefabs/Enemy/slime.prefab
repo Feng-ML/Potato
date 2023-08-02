@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4878698740289188880}
   - component: {fileID: 7823928441744190750}
   - component: {fileID: 3446933438002501408}
+  - component: {fileID: -7959072884717155744}
   - component: {fileID: 3689800055370245940}
   - component: {fileID: 6124542955526807386}
   m_Layer: 7
@@ -122,6 +123,33 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.11, y: 0.11}
   m_Direction: 0
+--- !u!50 &-7959072884717155744
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381997553609394852}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!95 &3689800055370245940
 Animator:
   serializedVersion: 5
@@ -160,4 +188,5 @@ MonoBehaviour:
   attack: 1
   maxHealth: 10
   currenthealth: 0
-  diamond: {fileID: 3507093881226194057, guid: 68b980a2e4f2c5241a2a94fb2b237d03, type: 3}
+  stayTime: 0
+  forward: {x: 0, y: 0}

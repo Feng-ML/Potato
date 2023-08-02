@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class Bird : EnemyControl
 {
-    public Vector2 forward;
-    private Rigidbody2D rb;
     private float attackTime;
-    private bool isFlee;
+    private bool isFlee;            // «∑Ò‘∂¿Î¥•∑¢
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         forward = GetForwardV2();
-        rb = GetComponent<Rigidbody2D>();
     }
 
     protected override void Update()
     {
-        base.Update();
+        playerDirection = player.transform.position - transform.position;
         //π•ª˜
         if (attackTime > 3)
         {
@@ -30,7 +28,7 @@ public class Bird : EnemyControl
             attackTime += Time.deltaTime;
         }
         //‘∂¿Î
-        if (playerDirection.magnitude < 6 && isFlee == false)
+        if (playerDirection.magnitude < 5 && isFlee == false)
         {
             isFlee = true;
             forward = (transform.position - player.transform.position).normalized;

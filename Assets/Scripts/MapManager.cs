@@ -16,6 +16,7 @@ public class MapManager : MonoBehaviour
 
     public float gameTime = 30;
     public TMP_Text gameTimeText;
+    public TMP_Text waveText;
 
     void Start()
     {
@@ -33,7 +34,7 @@ public class MapManager : MonoBehaviour
                 float x = UnityEngine.Random.Range(-16, 16);
                 float y = UnityEngine.Random.Range(-7, 7);
                 var enemyIndex = UnityEngine.Random.Range(0, 3);
-                StartCoroutine(Born(2, new Vector2(x, y)));
+                StartCoroutine(Born(enemyIndex, new Vector2(x, y)));
             }
             bornTimer = 0;
         }

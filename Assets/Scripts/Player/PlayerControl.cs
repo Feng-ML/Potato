@@ -11,7 +11,6 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        Transform arm = transform.Find("Body/Arm Right");
     }
 
     private void FixedUpdate()

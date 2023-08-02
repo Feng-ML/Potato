@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     public Vector2 forward;
     public int speed;
     public int attack;
+    public float repelPower;          //击退效果
     private Action releaseAction;   //回收到对象池方法
     private Rigidbody2D rb;
 
@@ -28,7 +29,9 @@ public class Bullet : MonoBehaviour
         releaseAction.Invoke();
         if (collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<EnemyControl>().TakeDamage(attack);
+            var enemy = collision.gameObject.GetComponent<EnemyControl>();
+            enemy.TakeDamage(attack);
+            enemy.ApplyKnockback(transform, repelPower);
         }
         if (collision.gameObject.tag == "Player")
         {

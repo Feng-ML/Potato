@@ -11,26 +11,35 @@ public class EnemyControl : MonoBehaviour
     public int attack = 1;                        //攻击力
     public float maxHealth;                       //最大生命值
     public float currenthealth;                   //当前生命值
-    private float stayTime;                       //攻击触发频率
+    public float stayTime;                        //攻击触发频率
+    private bool isHurt;
 
+    public Vector3 forward;                       //前进方向
     protected Action releaseAction;               //回收到对象池方法
     protected Func<EnemyControl> getAction;       //从对象池获取对象方法
 
-    private Animator animator;
+    protected Rigidbody2D rb;
+    protected Animator animator;
     protected GameObject player;
     protected Vector3 playerDirection;              //敌人与玩家的向量
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         player = GameObject.FindWithTag("Player");
         animator = GetComponent<Animator>();
         currenthealth = maxHealth;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     protected virtual void Update()
     {
         playerDirection = player.transform.position - transform.position;
-        Move();
+        forward = playerDirection.normalized;
+    }
+
+    private void FixedUpdate()
+    {
+        if (!isHurt) Move();
     }
 
     protected virtual void OnEnable()
@@ -99,7 +108,8 @@ public class EnemyControl : MonoBehaviour
 
             }
             //移动
-            transform.position += playerDirection * moveSpeed * Time.deltaTime;
+            rb.velocity = forward * moveSpeed;
+            //transform.position += playerDirection * moveSpeed * Time.deltaTime;
         }
         else
         {
@@ -111,7 +121,7 @@ public class EnemyControl : MonoBehaviour
     //受伤
     public void TakeDamage(float damage)
     {
-        if (currenthealth < damage)
+        if (currenthealth <= damage)
         {
             currenthealth = 0;
             Die();
@@ -123,10 +133,22 @@ public class EnemyControl : MonoBehaviour
     }
 
     //击退
-    public void ApplyKnockback(float backPower)
+    public void ApplyKnockback(Transform attackTrans, float backPower)
     {
-        transform.position -= playerDirection.normalized * backPower;
+        //transform.position -= playerDirection.normalized * backPower;
+        if (currenthealth <= 0) return;
+        var dir = (transform.position - attackTrans.position).normalized;
+        StartCoroutine(Knockback(dir * backPower));
     }
+
+    private IEnumerator Knockback(Vector3 power)
+    {
+        isHurt = true;
+        rb.AddForce(power, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.1f);
+        isHurt = false;
+    }
+
 
     // 死亡
     protected virtual void Die()

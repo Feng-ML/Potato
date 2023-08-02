@@ -134,8 +134,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c86b64aefe312f349b37626af6a8d2d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forward: {x: 0, y: 0}
   speed: 20
   attack: 5
+  repelPower: 0.001
 --- !u!50 &655646291481571434
 Rigidbody2D:
   serializedVersion: 4

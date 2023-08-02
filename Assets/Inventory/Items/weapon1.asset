@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: weapon1
   m_EditorClassIdentifier: 
   id: w1
-  itemName: "\u624B\u67AA"
-  itemImg: {fileID: -2067830191, guid: 63f3235ea3498c44687244f79ff824c6, type: 3}
+  itemName: AK-47
+  itemImg: {fileID: 21300000, guid: 6735b30ce729bdc4b9d775368cbecd62, type: 3}
   itemInfo: "\u653B\u51FB\u529B  10\n\u653B\u51FB\u901F\u5EA6  1s\n\u653B\u51FB\u8303\u56F4 
     100\n\u66B4\u51FB\u7387  0%"
   cost: 30
