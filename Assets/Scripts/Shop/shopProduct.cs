@@ -13,7 +13,7 @@ public class shopProduct : MonoBehaviour
     public PlayerStatus playerStatus;
     public Bag playerBag;
 
-    public List<Item> currentProductList;     //当前商品列表
+    private List<Item> currentProductList = new List<Item>();     //当前商品列表
     private int surplusProductNum;      //剩余商品数
     private int refreshNum;     //刷新商店次数
     private int refreshPriceNum;     //刷新价格
