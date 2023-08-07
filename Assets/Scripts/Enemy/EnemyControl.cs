@@ -119,7 +119,7 @@ public class EnemyControl : MonoBehaviour
     }
 
     // ‹…À
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         if (currenthealth <= damage)
         {
@@ -130,6 +130,8 @@ public class EnemyControl : MonoBehaviour
         {
             currenthealth -= damage;
         }
+
+        var hurtText = TextPool.Instance.GetText(transform.position, damage);
     }
 
     //ª˜ÕÀ

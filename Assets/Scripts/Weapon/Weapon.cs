@@ -9,10 +9,11 @@ public class Weapon : MonoBehaviour
     private List<BulletPool> bulletPoolList;    //×Óµ¯³ØÁÐ±í
     private Animator weaponAnimator;
 
-    private float attackRange = 6f;     //¹¥»÷·¶Î§
+    public float attackRange = 6;               //¹¥»÷·¶Î§
+    public int penetration = 1;                 //¹áÍ¨¸öÊý
+
     private bool hasEnemy;
     public LayerMask enemyLayer;
-
     private float timer;
     private float flipY;
     private float rotaY;
@@ -103,6 +104,7 @@ public class Weapon : MonoBehaviour
         bullentIns.transform.position = Muzzle.position;
         bullentIns.transform.rotation = transform.rotation;
         bullentIns.forward = bullentIns.transform.right.normalized;
+        bullentIns.penetration = penetration;
         bullentIns.GetComponent<Bullet>().attack = 5;
     }
 }

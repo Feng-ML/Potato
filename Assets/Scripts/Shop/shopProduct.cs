@@ -39,7 +39,7 @@ public class shopProduct : MonoBehaviour
         // ³ö·¢
         shopUI.Q<Button>("fightButton").clicked += () =>
         {
-            SceneManager.LoadScene("fight");
+            SceneManager.LoadScene("Fight");
         };
     }
 
