@@ -60,6 +60,8 @@ public class PlayerManager : MonoBehaviour
             playerStatus.health -= damage;
         }
         healthBar.SetHealth(playerStatus.health);
+
+        TextPool.Instance.GetText(transform.position, damage, new Color(146, 0, 0));
     }
 
     // Íæ¼ÒËÀÍö

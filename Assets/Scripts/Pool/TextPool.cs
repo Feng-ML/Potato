@@ -24,14 +24,16 @@ public class TextPool : Pool<HurtText>
         return ins;
     }
 
-    public HurtText GetText(Vector3 pos, int num)
+    public HurtText GetText(Vector3 pos, int num, Color color)
     {
         var obj = base.Get();
         //Ëæ»úÎ»ÖÃ
         var x = UnityEngine.Random.Range(-0.5f, 0.5f);
         var y = UnityEngine.Random.Range(-0.5f, 0.5f);
         obj.transform.position = pos + new Vector3(x, y, 0);
-        obj.GetComponent<TextMeshPro>().text = num.ToString();
+        var textComponent = obj.GetComponent<TextMeshPro>();
+        textComponent.text = num.ToString();
+        textComponent.color = color;
         return obj;
     }
 }

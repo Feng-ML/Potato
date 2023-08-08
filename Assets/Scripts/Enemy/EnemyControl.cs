@@ -131,7 +131,7 @@ public class EnemyControl : MonoBehaviour
             currenthealth -= damage;
         }
 
-        var hurtText = TextPool.Instance.GetText(transform.position, damage);
+        TextPool.Instance.GetText(transform.position, damage, Color.white);
     }
 
     //»÷ÍË
