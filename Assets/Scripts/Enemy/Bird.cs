@@ -65,7 +65,7 @@ public class Bird : EnemyControl
         //transform.position += (Vector3)forward * moveSpeed * Time.deltaTime;
     }
 
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerStay2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
         if (collision.gameObject.tag == "Wall")

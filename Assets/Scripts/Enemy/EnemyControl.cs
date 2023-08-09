@@ -11,10 +11,11 @@ public class EnemyControl : MonoBehaviour
     public int attack = 1;                        //攻击力
     public float maxHealth;                       //最大生命值
     public float currenthealth;                   //当前生命值
-    public float stayTime;                        //攻击触发频率
+    private float stayTime;                        //攻击触发频率
     private bool isHurt;
 
-    public Vector3 forward;                       //前进方向
+    //[HideInInspector]
+    public Vector2 forward;                       //前进方向
     protected Action releaseAction;               //回收到对象池方法
     protected Func<EnemyControl> getAction;       //从对象池获取对象方法
 
