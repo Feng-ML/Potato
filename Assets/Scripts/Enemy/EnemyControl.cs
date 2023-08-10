@@ -120,7 +120,7 @@ public class EnemyControl : MonoBehaviour
     }
 
     // ‹…À
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         if (currenthealth <= damage)
         {
@@ -156,7 +156,7 @@ public class EnemyControl : MonoBehaviour
     // À¿Õˆ
     protected virtual void Die()
     {
-        releaseAction.Invoke();
+        releaseAction?.Invoke();
         //µÙ¬‰
         var gold = GoldPool.Instance.Get();
         gold.transform.position = transform.position;
