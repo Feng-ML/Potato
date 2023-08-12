@@ -68,7 +68,10 @@ public class EnemyControl : MonoBehaviour
 
     protected virtual void OnTriggerExit2D(Collider2D collision)
     {
-        stayTime = 0;
+        if (collision.gameObject.tag == "Player")
+        {
+            stayTime = 0;
+        }
     }
 
     //碰撞
@@ -170,5 +173,17 @@ public class EnemyControl : MonoBehaviour
     public void SetActiveAction(Func<EnemyControl> getObj)
     {
         getAction = getObj;
+    }
+
+    //获取随机方向
+    protected Vector2 GetRandomV2()
+    {
+        int x = 0, y = 0;
+        while (x == 0 && y == 0)
+        {
+            x = UnityEngine.Random.Range(-1, 2);
+            y = UnityEngine.Random.Range(-1, 2);
+        }
+        return new Vector2(x, y);
     }
 }

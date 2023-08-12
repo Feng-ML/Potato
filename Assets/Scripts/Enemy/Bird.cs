@@ -10,7 +10,7 @@ public class Bird : EnemyControl
     protected override void Awake()
     {
         base.Awake();
-        forward = GetForwardV2();
+        forward = GetRandomV2();
     }
 
     protected override void Update()
@@ -45,18 +45,7 @@ public class Bird : EnemyControl
     protected override void OnEnable()
     {
         base.OnEnable();
-        forward = GetForwardV2();
-    }
-
-    private Vector2 GetForwardV2()
-    {
-        int x = 0, y = 0;
-        while (x == 0 && y == 0)
-        {
-            x = Random.Range(-1, 2);
-            y = Random.Range(-1, 2);
-        }
-        return new Vector2(x, y);
+        forward = GetRandomV2();
     }
 
     protected override void Move()
@@ -67,10 +56,19 @@ public class Bird : EnemyControl
 
     protected override void OnTriggerStay2D(Collider2D collision)
     {
+        // 撞墙反弹
         base.OnTriggerStay2D(collision);
         if (collision.gameObject.tag == "Wall")
         {
-            forward = new Vector2(-forward.x, -forward.y);
+            //竖面与横面反弹角度不同
+            if (collision.name == "airWallX")
+            {
+                forward = new Vector2(forward.x, -forward.y);
+            }
+            else
+            {
+                forward = new Vector2(-forward.x, forward.y);
+            }
         }
     }
 }

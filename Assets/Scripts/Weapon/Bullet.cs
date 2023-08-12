@@ -10,16 +10,16 @@ public class Bullet : MonoBehaviour
     public int attack;
     public int penetration = 1;     //贯通个数
     public float repelPower;        //击退程度
-    private Action releaseAction;   //回收到对象池方法
-    private Rigidbody2D rb;
+    public Action releaseAction;   //回收到对象池方法
+    protected Rigidbody2D rb;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         forward = transform.right.normalized;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         rb.velocity = forward * speed;
         //transform.Translate(transform.right * speed * Time.deltaTime, Space.World);
