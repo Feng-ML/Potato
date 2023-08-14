@@ -654,8 +654,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0b1954d6b4d355b4e84478d09c745647, type: 2}
+  m_sharedMaterial: {fileID: 7040934742321020466, guid: 0b1954d6b4d355b4e84478d09c745647, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3538,8 +3538,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0b1954d6b4d355b4e84478d09c745647, type: 2}
+  m_sharedMaterial: {fileID: 7040934742321020466, guid: 0b1954d6b4d355b4e84478d09c745647, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12324,6 +12324,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 519420032}
+    - target: {fileID: 7256277938650988430, guid: 7e9e716b097403d4fbe9af8e2e790683, type: 3}
+      propertyPath: maxHealth
+      value: 1500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

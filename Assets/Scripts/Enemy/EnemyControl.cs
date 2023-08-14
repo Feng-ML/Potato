@@ -12,7 +12,8 @@ public class EnemyControl : MonoBehaviour
     public float maxHealth;                       //最大生命值
     public float currenthealth;                   //当前生命值
     private float stayTime;                        //攻击触发频率
-    private bool isHurt;
+    protected bool isHurt;
+    protected bool isDeath;
 
     //[HideInInspector]
     public Vector2 forward;                       //前进方向
@@ -35,12 +36,16 @@ public class EnemyControl : MonoBehaviour
     protected virtual void Update()
     {
         playerDirection = player.transform.position - transform.position;
-        forward = playerDirection.normalized;
-    }
 
-    private void FixedUpdate()
-    {
-        if (!isHurt) Move();
+        if (isDeath)
+        {
+            rb.velocity = Vector2.zero;
+        }
+        else
+        {
+            forward = playerDirection.normalized;
+            Move();
+        }
     }
 
     protected virtual void OnEnable()

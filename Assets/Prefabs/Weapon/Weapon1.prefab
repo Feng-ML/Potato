@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 11
   m_Sprite: {fileID: -1218606166, guid: 63f3235ea3498c44687244f79ff824c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662d634007031304ea1aeddb569ebefb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBag: {fileID: 11400000, guid: fee333de76a755c4080e531e25629a02, type: 2}
   attackRange: 6
   penetration: 1
   enemyLayer:

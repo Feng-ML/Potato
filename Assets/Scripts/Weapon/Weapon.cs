@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Weapon : MonoBehaviour
 {
     private List<BulletPool> bulletPoolList;    //子弹池列表
+    public Bag playerBag;
     private Animator weaponAnimator;
 
     public float attackRange = 6;               //攻击范围
-    public int penetration = 1;                 //贯通个数
 
     private bool hasEnemy;
     public LayerMask enemyLayer;
@@ -103,8 +101,10 @@ public class Weapon : MonoBehaviour
         var bullentIns = bulletPoolList[0].Get();
         bullentIns.transform.position = Muzzle.position;
         bullentIns.transform.rotation = transform.rotation;
-        bullentIns.forward = bullentIns.transform.right.normalized;
-        bullentIns.penetration = penetration;
-        bullentIns.GetComponent<Bullet>().attack = 5;
+
+        playerBag.relicsList.ForEach(item =>
+        {
+            item.relicPrefab.GetComponent<Relic>().OnAttack(transform.rotation, Muzzle.position, 0);
+        });
     }
 }

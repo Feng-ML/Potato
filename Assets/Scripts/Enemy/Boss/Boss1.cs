@@ -8,7 +8,6 @@ public class Boos1 : EnemyControl
     private float attackTime;
     public Transform healthBar;     //血条
     private Slider healthSlider;    //当前血量显示
-    public GameObject bullet;
 
     protected override void Awake()
     {
@@ -24,14 +23,17 @@ public class Boos1 : EnemyControl
     {
         base.Update();
         //攻击
-        if (attackTime > 3)
+        if (!isDeath)
         {
-            Attack();
-            attackTime -= 3;
-        }
-        else
-        {
-            attackTime += Time.deltaTime;
+            if (attackTime > 3)
+            {
+                Attack();
+                attackTime -= 3;
+            }
+            else
+            {
+                attackTime += Time.deltaTime;
+            }
         }
     }
 
@@ -51,24 +53,14 @@ public class Boos1 : EnemyControl
 
     protected override void Die()
     {
-        Debug.Log("Boss die");
+        gameObject.layer = 0;
+        gameObject.tag = "Untagged";
+        animator.SetBool("isDeath", true);
+        isDeath = true;
     }
 
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    private void DieAnimationOver()
     {
-        base.OnTriggerEnter2D(collision);
-        // 撞墙反弹
-        if (collision.gameObject.tag == "Wall")
-        {
-            //竖面与横面反弹角度不同
-            if (collision.name == "airWallX")
-            {
-                forward = new Vector2(forward.x, -forward.y);
-            }
-            else
-            {
-                forward = new Vector2(-forward.x, forward.y);
-            }
-        }
+        gameObject.SetActive(false);
     }
 }

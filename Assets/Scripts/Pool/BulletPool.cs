@@ -8,7 +8,7 @@ public class BulletPool : Pool<Bullet>
 
     private void Awake()
     {
-        InitPool(30);
+        InitPool();
     }
 
     protected override Bullet OnCreateObj()

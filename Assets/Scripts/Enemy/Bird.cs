@@ -15,7 +15,7 @@ public class Bird : EnemyControl
 
     protected override void Update()
     {
-        playerDirection = player.transform.position - transform.position;
+        base.Update();
         //¹¥»÷
         if (attackTime > 3)
         {

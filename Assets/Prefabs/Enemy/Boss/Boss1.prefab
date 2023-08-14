@@ -125,11 +125,10 @@ MonoBehaviour:
   level: 0
   moveSpeed: 2
   attack: 1
-  maxHealth: 1000
+  maxHealth: 15
   currenthealth: 0
   forward: {x: 0, y: 0}
   healthBar: {fileID: 6800858416590057588}
-  bullet: {fileID: 0}
 --- !u!50 &5072506546327312292
 Rigidbody2D:
   serializedVersion: 4

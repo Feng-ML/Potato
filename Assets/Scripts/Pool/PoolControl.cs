@@ -10,9 +10,11 @@ public class PoolControl : MonoBehaviour
     public static PoolControl Instance { get => instance; set => instance = value; }
 
     public EnemyControl[] enemyList;                             //敌人列表
+    [HideInInspector]
     public List<EnemyPool> enemyPool = new List<EnemyPool>();    //敌人对象池列表
 
     public Bullet[] bulletList;                                  //子弹列表
+    [HideInInspector]
     public List<BulletPool> bulletPool = new List<BulletPool>();        //子弹对象池列表
 
     private void Awake()
