@@ -3193,7 +3193,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1258321087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3208,7 +3208,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bornAnimation: {fileID: 6724265362868131660, guid: 6ef27c0af21e3294788ca9d0648a187b, type: 3}
   bornNum: 5
-  gameTime: 60
   gameTimeText: {fileID: 1287117656}
   waveText: {fileID: 274511217}
 --- !u!4 &1258321088
