@@ -7,6 +7,7 @@ public class Slime : EnemyControl
 {
     protected override void Die()
     {
+        releaseAction.Invoke();
         if (level >= 1)
         {
             //µôÂä
@@ -18,7 +19,6 @@ public class Slime : EnemyControl
             bornChild(transform.position + new Vector3(1f, 0f, 0f));
             bornChild(transform.position + new Vector3(-1f, 0f, 0f));
         }
-        releaseAction.Invoke();
     }
 
     private void bornChild(Vector3 v3)

@@ -426,8 +426,8 @@ MonoBehaviour:
   - {fileID: 5942939088117360354, guid: 4711b74c0ad2c584eb8a9458778fb9ae, type: 3}
   enemyPool: []
   bulletList:
-  - {fileID: 8052045944708328303, guid: 892f9294003f0754d9eabab940e760fc, type: 3}
-  - {fileID: -3393995242984327406, guid: 4023e7359843ea2408fbc65e7c784376, type: 3}
+  - {fileID: 4215958668451303008, guid: 892f9294003f0754d9eabab940e760fc, type: 3}
+  - {fileID: 6890176344531772447, guid: 4023e7359843ea2408fbc65e7c784376, type: 3}
   - {fileID: 4978333580938804239, guid: 54a8e585366a48549bc583b2a9bf5576, type: 3}
   bulletPool: []
 --- !u!4 &129788859
@@ -3206,8 +3206,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9174db859b48944293dd29314bfbade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStatus: {fileID: 11400000, guid: 0a809ae404ce47843b63d25bf47b9f41, type: 2}
   bornAnimation: {fileID: 6724265362868131660, guid: 6ef27c0af21e3294788ca9d0648a187b, type: 3}
   bornNum: 5
+  gameTime: 60
   gameTimeText: {fileID: 1287117656}
   waveText: {fileID: 274511217}
 --- !u!4 &1258321088
@@ -12267,6 +12269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss1
       objectReference: {fileID: 0}
+    - target: {fileID: 731556003224429039, guid: 7e9e716b097403d4fbe9af8e2e790683, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1584715658076744565, guid: 7e9e716b097403d4fbe9af8e2e790683, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -12313,11 +12319,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1838609244808356699, guid: 7e9e716b097403d4fbe9af8e2e790683, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.81
       objectReference: {fileID: 0}
     - target: {fileID: 1838609244808356699, guid: 7e9e716b097403d4fbe9af8e2e790683, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2361795939436298018, guid: 7e9e716b097403d4fbe9af8e2e790683, type: 3}
       propertyPath: cam

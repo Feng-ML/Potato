@@ -11,7 +11,7 @@ public class EnemyControl : MonoBehaviour
     public int attack = 1;                        //攻击力
     public float maxHealth;                       //最大生命值
     public float currenthealth;                   //当前生命值
-    private float stayTime;                        //攻击触发频率
+    private float crashTime;                      //碰撞伤害触发频率
     protected bool isHurt;
     protected bool isDeath;
 
@@ -37,7 +37,7 @@ public class EnemyControl : MonoBehaviour
     {
         playerDirection = player.transform.position - transform.position;
 
-        if (isDeath)
+        if (isDeath || isHurt)
         {
             rb.velocity = Vector2.zero;
         }
@@ -51,6 +51,8 @@ public class EnemyControl : MonoBehaviour
     protected virtual void OnEnable()
     {
         currenthealth = maxHealth;
+        isDeath = false;
+        isHurt = false;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -60,14 +62,14 @@ public class EnemyControl : MonoBehaviour
 
     protected virtual void OnTriggerStay2D(Collider2D collision)
     {
-        if (stayTime > 1)
+        if (crashTime > 1)
         {
             Crash(collision);
-            stayTime = 0;
+            crashTime = 0;
         }
         else
         {
-            stayTime += Time.deltaTime;
+            crashTime += Time.deltaTime;
         }
     }
 
@@ -75,7 +77,7 @@ public class EnemyControl : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            stayTime = 0;
+            crashTime = 0;
         }
     }
 

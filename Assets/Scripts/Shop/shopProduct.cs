@@ -11,12 +11,13 @@ public class shopProduct : MonoBehaviour
     private VisualElement shopUI;
     public ShopProductList productList;     //所有宝物
     public PlayerStatus playerStatus;
+    public GameStatus gameStatus;           //游戏状态
     public Bag playerBag;
 
     private List<Item> currentProductList = new List<Item>();     //当前商品列表
     private int surplusProductNum;      //剩余商品数
-    private int refreshNum;     //刷新商店次数
-    private int refreshPriceNum;     //刷新价格
+    private int refreshNum;             //刷新商店次数
+    private int refreshPriceNum;        //刷新价格
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class shopProduct : MonoBehaviour
         // 出发
         shopUI.Q<Button>("fightButton").clicked += () =>
         {
+            gameStatus.wave++;
             SceneManager.LoadScene("Fight");
         };
     }

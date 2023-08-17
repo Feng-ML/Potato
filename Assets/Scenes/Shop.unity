@@ -461,6 +461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   productList: {fileID: 11400000, guid: 60d16dee9046e9d42873a80603c871b5, type: 2}
   playerStatus: {fileID: 11400000, guid: 42a2b3de3a27da340af226201e15f196, type: 2}
+  gameStatus: {fileID: 11400000, guid: 0a809ae404ce47843b63d25bf47b9f41, type: 2}
   playerBag: {fileID: 11400000, guid: fee333de76a755c4080e531e25629a02, type: 2}
 --- !u!1 &452225726
 GameObject:
