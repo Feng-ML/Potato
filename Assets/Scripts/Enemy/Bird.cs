@@ -39,7 +39,7 @@ public class Bird : EnemyControl
     {
         var bullet = PoolControl.Instance.bulletPool[1].Get();
         bullet.transform.position = transform.position;
-        bullet.forward = playerDirection.normalized;
+        bullet.transform.right = playerDirection;
     }
 
     protected override void OnEnable()

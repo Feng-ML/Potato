@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8129897959543377796}
   - component: {fileID: 537184492918595961}
   m_Layer: 11
-  m_Name: Diamond
+  m_Name: Gold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,3 +133,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e600942060194a478fc4e62fd261d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStatus: {fileID: 11400000, guid: 42a2b3de3a27da340af226201e15f196, type: 2}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoldPool : Pool<Diamond>
+public class GoldPool : Pool<Gold>
 {
     //µ¥Àý
     private static GoldPool instance;

@@ -6,9 +6,13 @@ public class Weapon : MonoBehaviour
 {
     private List<BulletPool> bulletPoolList;    //子弹池列表
     public Bag playerBag;
+    public PlayerStatus playerStatus;  
     private Animator weaponAnimator;
 
     public float attackRange = 6;               //攻击范围
+    private float realAttackRange;              //实际攻击范围
+    public float attackTime = 1;                //攻击间隔
+    private float realAttackTime;               //实际攻击间隔
 
     private bool hasEnemy;
     public LayerMask enemyLayer;
@@ -22,16 +26,18 @@ public class Weapon : MonoBehaviour
         rotaY = transform.localEulerAngles.y;
         weaponAnimator = GetComponent<Animator>();
         bulletPoolList = PoolControl.Instance.bulletPool;
+        realAttackRange = attackRange * (1 + playerStatus.attackRange / 100);           //攻击范围计算
+        realAttackTime = 1 / ((100 + playerStatus.attackSpeed) / (attackTime * 100));   //攻击间隔计算
     }
 
     private void Update()
     {
         if (hasEnemy)
         {
-            if (timer >= 0.3f)
+            if (timer >= realAttackTime)
             {
                 Fire();
-                timer = 0;
+                timer -= realAttackTime;
             }
             else
             {
@@ -44,14 +50,14 @@ public class Weapon : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(transform.position, realAttackRange);
     }
 
     //指向最近敌人
     private void LookAtNearEnemy()
     {
         // 获取范围内的所有enemy
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayer);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, realAttackRange, enemyLayer);
 
         float shortDirection = Mathf.Infinity;
         GameObject nearEnemy = null;

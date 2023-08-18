@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBag: {fileID: 11400000, guid: fee333de76a755c4080e531e25629a02, type: 2}
+  playerStatus: {fileID: 11400000, guid: 42a2b3de3a27da340af226201e15f196, type: 2}
   attackRange: 6
-  penetration: 1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128

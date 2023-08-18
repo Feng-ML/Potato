@@ -130,7 +130,7 @@ public class EnemyControl : MonoBehaviour
     }
 
     // ‹…À
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage, bool isCritical = false)
     {
         if (currenthealth <= damage)
         {
@@ -142,7 +142,8 @@ public class EnemyControl : MonoBehaviour
             currenthealth -= damage;
         }
 
-        TextPool.Instance.GetText(transform.position, damage, Color.white);
+        var color = isCritical ? Color.yellow : Color.white;
+        TextPool.Instance.GetText(transform.position, damage, color);
     }
 
     //ª˜ÕÀ

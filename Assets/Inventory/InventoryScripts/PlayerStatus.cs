@@ -17,19 +17,19 @@ public class PlayerStatus : ScriptableObject
     public int currentExp;              //当前经验值
 
     [Header("攻击")]
-    public int attack;                  //伤害加成%
+    public float attack;                //伤害加成%
     public float attackSpeed;           //攻击速度%
-    public int criticalRate;            //暴击率%
-    public int criticalDamage = 50;     //暴击伤害%
-    public int attackRange;             //攻击范围%
+    public float criticalRate;          //暴击率%
+    public float criticalDamage = 50;   //暴击伤害%
+    public float attackRange;           //攻击范围%
 
     [Header("防御")]
-    public int armor;                   //护甲
-    public int dodgeRate;               //闪避几率%
+    public float armor;                 //护甲
+    public float dodgeRate;             //闪避几率%
 
     [Header("其他")]
     public float speed;                 //移动速度%
-    public int pickUpRange;             //拾取范围%
+    public float pickUpRange;           //拾取范围%
     public int gold;                    //金币
 
 

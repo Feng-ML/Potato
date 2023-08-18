@@ -1,27 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class Diamond : MonoBehaviour
+public class Gold : MonoBehaviour
 {
     private GameObject player;
-    private PlayerManager playerStatus;
+    private PlayerManager playerManager;
+    public PlayerStatus playerStatus;
     private Vector3 playerDirection;
     private bool isGoing;
     private float speed = 5;
+    private float pickUpRange;      //Ê°È¡·¶Î§
 
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        playerStatus = PlayerManager.Instance;
+        playerManager = PlayerManager.Instance;
+    }
+
+    private void OnEnable()
+    {
+        pickUpRange = 2 * (100 + playerStatus.pickUpRange) / 100;
     }
 
     void Update()
     {
         playerDirection = player.transform.position - transform.position;
 
-        if (playerDirection.magnitude < 2f)
+        if (playerDirection.magnitude <= pickUpRange)
         {
             isGoing = true;
         }
@@ -43,8 +49,8 @@ public class Diamond : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
-            playerStatus.AddGold(1);
-            playerStatus.AddExp(20);
+            playerManager.AddGold(1);
+            playerManager.AddExp(20);
             GoldPool.Instance.Release(this);
         }
     }
