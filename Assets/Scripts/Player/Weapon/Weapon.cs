@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +5,7 @@ public class Weapon : MonoBehaviour
 {
     private List<BulletPool> bulletPoolList;    //×Óµ¯³ØÁÐ±í
     public Bag playerBag;
-    public PlayerStatus playerStatus;  
+    public PlayerStatus playerStatus;
     private Animator weaponAnimator;
 
     public float attackRange = 6;               //¹¥»÷·¶Î§
@@ -26,12 +25,16 @@ public class Weapon : MonoBehaviour
         rotaY = transform.localEulerAngles.y;
         weaponAnimator = GetComponent<Animator>();
         bulletPoolList = PoolControl.Instance.bulletPool;
-        realAttackRange = attackRange * (1 + playerStatus.attackRange / 100);           //¹¥»÷·¶Î§¼ÆËã
-        realAttackTime = 1 / ((100 + playerStatus.attackSpeed) / (attackTime * 100));   //¹¥»÷¼ä¸ô¼ÆËã
+        realAttackRange = playerStatus.GetAttackRange(attackRange);  //¹¥»÷·¶Î§¼ÆËã
+        realAttackTime = playerStatus.GetAttackTime(attackTime);     //¹¥»÷¼ä¸ô¼ÆËã
     }
 
     private void Update()
     {
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    Fire();
+        //}
         if (hasEnemy)
         {
             if (timer >= realAttackTime)

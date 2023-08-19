@@ -1,10 +1,9 @@
-using System;
+using QFramework;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using QFramework;
 
 public class MapManager : MonoBehaviour
 {
@@ -33,7 +32,7 @@ public class MapManager : MonoBehaviour
                     float x = UnityEngine.Random.Range(-16, 16);
                     float y = UnityEngine.Random.Range(-7, 7);
                     var enemyIndex = UnityEngine.Random.Range(0, 3);
-                    StartCoroutine(Born(enemyIndex, new Vector2(x, y)));
+                    StartCoroutine(Born(0, new Vector2(x, y)));
                 }
                 bornTimer.Value = 0;
             }

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -13,9 +10,9 @@ public class Pool<T> : MonoBehaviour where T : Component
     public int inActiveCount => pool.CountInactive;
     public int totalCount => pool.CountAll;
 
-    protected void InitPool(int defaultSize = 100, int maxSize = 500)
+    protected void InitPool(int defaultSize = 100, int maxSize = 500, bool onCheck = true)
     {
-        pool = new ObjectPool<T>(OnCreateObj, OnGetObj, OnReleaseObj, OnDestroyObj, true, defaultSize, maxSize);
+        pool = new ObjectPool<T>(OnCreateObj, OnGetObj, OnReleaseObj, OnDestroyObj, onCheck, defaultSize, maxSize);
     }
 
     protected virtual T OnCreateObj() => Instantiate(prefab, transform);

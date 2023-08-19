@@ -20,7 +20,7 @@ public class Gold : MonoBehaviour
 
     private void OnEnable()
     {
-        pickUpRange = 2 * (100 + playerStatus.pickUpRange) / 100;
+        pickUpRange = playerStatus.GetPickUpRange(2);
     }
 
     void Update()

@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class EnemyControl : MonoBehaviour
@@ -29,8 +27,15 @@ public class EnemyControl : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         animator = GetComponent<Animator>();
-        currenthealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
+        currenthealth = maxHealth;
+    }
+
+    protected virtual void OnEnable()
+    {
+        currenthealth = maxHealth;
+        isDeath = false;
+        isHurt = false;
     }
 
     protected virtual void Update()
@@ -46,13 +51,6 @@ public class EnemyControl : MonoBehaviour
             forward = playerDirection.normalized;
             Move();
         }
-    }
-
-    protected virtual void OnEnable()
-    {
-        currenthealth = maxHealth;
-        isDeath = false;
-        isHurt = false;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -132,6 +130,7 @@ public class EnemyControl : MonoBehaviour
     // ‹…À
     public virtual void TakeDamage(int damage, bool isCritical = false)
     {
+        if (isDeath) return;
         if (currenthealth <= damage)
         {
             currenthealth = 0;
@@ -163,10 +162,10 @@ public class EnemyControl : MonoBehaviour
         isHurt = false;
     }
 
-
     // À¿Õˆ
     protected virtual void Die()
     {
+        isDeath = true;
         releaseAction?.Invoke();
         //µÙ¬‰
         var gold = GoldPool.Instance.Get();

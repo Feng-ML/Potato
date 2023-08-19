@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBullet : Bullet
@@ -22,21 +20,16 @@ public class PlayerBullet : Bullet
             {
                 curPenetration--;
                 var enemy = collision.gameObject.GetComponent<EnemyControl>();
-                var damage = (int)(attack * (1 + playerStatus.attack / 100));      //ÉËº¦¼ÆËã
 
                 // ±©»÷
-                var isCritical = false;
-                var critical = playerStatus.criticalRate / 100;
-                if (Random.value < critical)
-                {
-                    damage = (int)(damage * (100 + playerStatus.criticalDamage) / 100);
-                    isCritical = true;
-                }
+                bool isCritical = false;
+                var damage = playerStatus.GetDamageNum(attack, ref isCritical);
 
                 enemy.TakeDamage(damage, isCritical);
                 enemy.ApplyKnockback(transform, repelPower);
+
+                if (curPenetration <= 0) releaseAction.Invoke();
             }
-            if (curPenetration <= 0) releaseAction.Invoke();
         }
         else
         {

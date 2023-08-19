@@ -58,4 +58,52 @@ public class PlayerStatus : ScriptableObject
             setArrt[item.Attr.ToString()].Invoke();
         }
     }
+
+    //…À∫¶º∆À„
+    public int GetDamageNum(int damage, ref bool isCritical)
+    {
+        var DamageNum = damage * (100 + attack) / 100;              //∆’Õ®…À∫¶
+        // ±©ª˜
+        isCritical = false;
+        var critical = criticalRate / 100;
+        if (UnityEngine.Random.value < critical)
+        {
+            DamageNum = (DamageNum * (100 + criticalDamage) / 100);     //±©ª˜…À∫¶º∆À„
+            isCritical = true;
+        }
+        return (int)DamageNum;
+    }
+
+    //π•ª˜∑∂Œßº∆À„
+    public float GetAttackRange(float range)
+    {
+        return range * (100 + attackRange) / 100;
+    }
+
+    //π•ª˜º‰∏Ùº∆À„
+    public float GetAttackTime(float time)
+    {
+        return 1 / ((100 + attackSpeed) / (time * 100));
+    }
+
+    // «∑Ò…¡±‹
+    public bool GetIsDodge()
+    {
+        var dodge = dodgeRate / 100;
+        dodge = dodge > 0.6f ? 0.6f : dodge;
+
+        return UnityEngine.Random.value < dodge;
+    }
+
+    //“∆ÀŸº∆À„
+    public float GetSpeed(float norSpeed)
+    {
+        return (100 + speed) * norSpeed / 100;
+    }
+
+    // ∞»°∑∂Œß
+    public float GetPickUpRange(float norRange)
+    {
+        return norRange * (100 + pickUpRange) / 100;
+    }
 }

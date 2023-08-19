@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -9,11 +8,11 @@ public class PlayerManager : MonoBehaviour
     public PlayerStatus playerStatus;       //玩家属性
     public Bag playerBag;
 
-    public HealthBar healthBar;   //血条
-    public ExpBar expBar;       //经验条
-    public TMP_Text goldText;   //金币文本
+    public HealthBar healthBar;             //血条
+    public ExpBar expBar;                   //经验条
+    public TMP_Text goldText;               //金币文本
 
-    public List<Vector2> weaponPsList;  //武器位置
+    public List<Vector2> weaponPsList;      //武器位置
 
     //单例
     private static PlayerManager instance;
@@ -50,18 +49,25 @@ public class PlayerManager : MonoBehaviour
     //受伤
     public void TakeDamage(int damage)
     {
-        if (playerStatus.health < damage)
+        //闪避
+        if (playerStatus.GetIsDodge())
         {
-            playerStatus.health = 0;
-            Die();
+            TextPool.Instance.GetText(transform.position, "闪避", Color.white);
         }
         else
         {
-            playerStatus.health -= damage;
+            if (playerStatus.health < damage)
+            {
+                playerStatus.health = 0;
+                Die();
+            }
+            else
+            {
+                playerStatus.health -= damage;
+            }
+            healthBar.SetHealth(playerStatus.health);
+            TextPool.Instance.GetText(transform.position, damage, new Color(146, 0, 0));
         }
-        healthBar.SetHealth(playerStatus.health);
-
-        TextPool.Instance.GetText(transform.position, damage, new Color(146, 0, 0));
     }
 
     // 玩家死亡
@@ -90,33 +96,6 @@ public class PlayerManager : MonoBehaviour
             expBar.SetMaxExp(playerStatus.maxExp);
         }
         expBar.SetExp(playerStatus.currentExp);
-    }
-
-
-    // 修改属性
-    public void AttrsChange(List<AttrObj> attrList)
-    {
-        foreach (var item in attrList)
-        {
-            var value = item.value;
-
-            Dictionary<string, Action> setArrt = new Dictionary<string, Action>()
-            {
-                { Enums.character.maxHealth.ToString(), ()=> playerStatus.maxHealth += value  },
-                { Enums.character.healthRecover.ToString(), ()=> playerStatus.healthRecover += value  },
-                { Enums.character.attack.ToString(), ()=> playerStatus.attack += value  },
-                { Enums.character.attackSpeed.ToString(), ()=> playerStatus.attackSpeed += value  },
-                { Enums.character.criticalRate.ToString(), ()=> playerStatus.criticalRate += value  },
-                { Enums.character.criticalDamage.ToString(), ()=> playerStatus.criticalDamage += value  },
-                { Enums.character.attackRange.ToString(), ()=> playerStatus.attackRange += value  },
-                { Enums.character.armor.ToString(), ()=> playerStatus.armor += value  },
-                { Enums.character.dodgeRate.ToString(), ()=> playerStatus.dodgeRate += value  },
-                { Enums.character.speed.ToString(), ()=> playerStatus.speed += value  },
-                { Enums.character.pickUpRange.ToString(), ()=> playerStatus.pickUpRange += value  },
-            };
-
-            setArrt[item.Attr.ToString()].Invoke();
-        }
     }
 
     private void OnDrawGizmosSelected()

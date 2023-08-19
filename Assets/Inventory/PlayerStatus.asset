@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: PlayerStatus
   m_EditorClassIdentifier: 
   maxHealth: 126
-  health: 112
+  health: 105
   healthRecover: 4
   level: 15
   maxExp: 380
-  currentExp: 40
+  currentExp: 300
   attack: 21
   attackSpeed: 50
   criticalRate: 50
   criticalDamage: 50
   attackRange: 50
   armor: 5
-  dodgeRate: 0
+  dodgeRate: 100
   speed: 15
   pickUpRange: 100
-  gold: 20143
+  gold: 20156

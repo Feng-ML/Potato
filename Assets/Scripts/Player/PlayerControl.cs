@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
@@ -37,7 +34,7 @@ public class PlayerControl : MonoBehaviour
                 transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
                 go = new Vector3(-h, v, 0);
             }
-            var speed = (1 + playerStatus.speed / 100) * 4;
+            var speed = playerStatus.GetSpeed(4);
             transform.Translate(go * speed * Time.fixedDeltaTime);
         }
         else

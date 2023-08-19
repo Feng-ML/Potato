@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletPool : Pool<Bullet>
@@ -17,5 +14,12 @@ public class BulletPool : Pool<Bullet>
         ins.SetDeactiveAction(delegate { Release(ins); });
 
         return ins;
+    }
+
+    protected override void OnReleaseObj(Bullet obj)
+    {
+        base.OnReleaseObj(obj);
+        //重置位置，防止获取时触发碰撞
+        obj.transform.position = new Vector2(-40, 0);
     }
 }

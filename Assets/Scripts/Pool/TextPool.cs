@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -27,13 +25,30 @@ public class TextPool : Pool<HurtText>
     public HurtText GetText(Vector3 pos, int num, Color color)
     {
         var obj = base.Get();
-        //随机位置
-        var x = UnityEngine.Random.Range(-0.5f, 0.5f);
-        var y = UnityEngine.Random.Range(-0.5f, 0.5f);
-        obj.transform.position = pos + new Vector3(x, y, 0);
+        obj.transform.position = GetRandomPos(pos);
         var textComponent = obj.GetComponent<TextMeshPro>();
         textComponent.text = num.ToString();
         textComponent.color = color;
+        textComponent.fontSize = 5f;
         return obj;
+    }
+
+    public HurtText GetText(Vector3 pos, String str, Color color)
+    {
+        var obj = base.Get();
+        obj.transform.position = GetRandomPos(pos);
+        var textComponent = obj.GetComponent<TextMeshPro>();
+        textComponent.text = str;
+        textComponent.color = color;
+        textComponent.fontSize = 1.9f;
+        return obj;
+    }
+
+    //随机位置
+    private Vector3 GetRandomPos(Vector3 pos)
+    {
+        var x = UnityEngine.Random.Range(-0.5f, 0.5f);
+        var y = UnityEngine.Random.Range(-0.5f, 0.5f);
+        return pos + new Vector3(x, y, 0);
     }
 }
