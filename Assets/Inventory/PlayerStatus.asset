@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3577e557e300bba4ebfd17486205847f, type: 3}
   m_Name: PlayerStatus
   m_EditorClassIdentifier: 
-  maxHealth: 126
-  health: 105
+  maxHealth: 130
+  health: 73
   healthRecover: 4
-  level: 15
-  maxExp: 380
-  currentExp: 300
+  level: 19
+  maxExp: 460
+  currentExp: 260
   attack: 21
   attackSpeed: 50
   criticalRate: 50
   criticalDamage: 50
   attackRange: 50
-  armor: 5
+  armor: 50
   dodgeRate: 100
   speed: 15
   pickUpRange: 100
-  gold: 20156
+  gold: 20236

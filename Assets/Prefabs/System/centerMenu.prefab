@@ -190,8 +190,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u8BBE\u7F6E"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0b1954d6b4d355b4e84478d09c745647, type: 2}
-  m_sharedMaterial: {fileID: 7040934742321020466, guid: 0b1954d6b4d355b4e84478d09c745647, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6b0eac88421ac8a4e84610ede0b0975c, type: 2}
+  m_sharedMaterial: {fileID: 7404215525495153173, guid: 6b0eac88421ac8a4e84610ede0b0975c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 3398488734967004135}
   - component: {fileID: 7932943436630888994}
   m_Layer: 5
-  m_Name: center
+  m_Name: centerMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -376,6 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76178ec5b7dc09a47a13cc68ea691c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStatus: {fileID: 11400000, guid: 0a809ae404ce47843b63d25bf47b9f41, type: 2}
 --- !u!1 &6717646999809180189
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,8 +445,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u9000\u51FA"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0b1954d6b4d355b4e84478d09c745647, type: 2}
-  m_sharedMaterial: {fileID: 7040934742321020466, guid: 0b1954d6b4d355b4e84478d09c745647, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6b0eac88421ac8a4e84610ede0b0975c, type: 2}
+  m_sharedMaterial: {fileID: 7404215525495153173, guid: 6b0eac88421ac8a4e84610ede0b0975c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -632,7 +633,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5322860687111795907}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7932943436630888994}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: BackToTitle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7865600663070491138
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,8 +848,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u8FD4\u56DE\u6807\u9898"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0b1954d6b4d355b4e84478d09c745647, type: 2}
-  m_sharedMaterial: {fileID: 7040934742321020466, guid: 0b1954d6b4d355b4e84478d09c745647, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6b0eac88421ac8a4e84610ede0b0975c, type: 2}
+  m_sharedMaterial: {fileID: 7404215525495153173, guid: 6b0eac88421ac8a4e84610ede0b0975c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -16,6 +16,7 @@ public class MapManager : MonoBehaviour
 
     public TMP_Text gameTimeText;
     public TMP_Text waveText;
+    public GameObject gameOverUI;
 
     void Start()
     {
@@ -46,7 +47,14 @@ public class MapManager : MonoBehaviour
 
         if (gameTime <= 0)
         {
-            SceneManager.LoadScene("shop");
+            if (gameStatus.wave >= 5)
+            {
+                gameOverUI.GetComponent<GameOver>().Active("victory!");
+            }
+            else
+            {
+                SceneManager.LoadScene("shop");
+            }
         }
         else
         {

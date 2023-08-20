@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     public GameStatus gameStatus;
+    public PlayerStatus playerStatus;
 
     public void QuitGame()
     {
@@ -15,6 +16,13 @@ public class Menu : MonoBehaviour
     public void PlayGame()
     {
         gameStatus.wave = 1;
+        playerStatus.Init();
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Fight");
+    }
+
+    public void BackToTitle()
+    {
+        SceneManager.LoadScene("Begin");
     }
 }

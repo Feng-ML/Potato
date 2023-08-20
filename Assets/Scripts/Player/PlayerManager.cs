@@ -6,13 +6,11 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public PlayerStatus playerStatus;       //玩家属性
-    public Bag playerBag;
 
     public HealthBar healthBar;             //血条
     public ExpBar expBar;                   //经验条
     public TMP_Text goldText;               //金币文本
-
-    public List<Vector2> weaponPsList;      //武器位置
+    public GameObject gameOverUI;
 
     //单例
     private static PlayerManager instance;
@@ -26,23 +24,19 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         playerStatus.health = playerStatus.maxHealth;
+        UpdateUI();
 
-        healthBar.SetMaxHealth(playerStatus.maxHealth);
-        healthBar.SetHealth(playerStatus.maxHealth);
-        expBar.SetLevel(playerStatus.level);
-        expBar.SetMaxExp(playerStatus.maxExp);
-        expBar.SetExp(playerStatus.currentExp);
-        goldText.SetText(playerStatus.gold.ToString());
-
-        LoadPlayerWeapon();
+        InvokeRepeating("HealthRecover", 0f, 1f);
     }
 
-    //加载武器
-    private void LoadPlayerWeapon()
+    //生命恢复
+    private void HealthRecover()
     {
-        for (int i = 0; i < playerBag.weaponList.Count; i++)
+        var recoverNum = playerStatus.GetHealthRecover();
+        if (recoverNum > 0)
         {
-            Instantiate(playerBag.weaponList[i].weaponPrefab, weaponPsList[i], Quaternion.identity, transform);
+            TextPool.Instance.GetText(transform.position, recoverNum, Color.green);
+            healthBar.SetHealth(playerStatus.health);
         }
     }
 
@@ -56,17 +50,18 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            if (playerStatus.health < damage)
+            var realDamage = playerStatus.GetDamageReduce(damage);
+            if (playerStatus.health < realDamage)
             {
                 playerStatus.health = 0;
                 Die();
             }
             else
             {
-                playerStatus.health -= damage;
+                playerStatus.health -= realDamage;
             }
             healthBar.SetHealth(playerStatus.health);
-            TextPool.Instance.GetText(transform.position, damage, new Color(146, 0, 0));
+            TextPool.Instance.GetText(transform.position, -realDamage, new Color(146, 0, 0));
         }
     }
 
@@ -74,6 +69,7 @@ public class PlayerManager : MonoBehaviour
     private void Die()
     {
         Debug.Log("Die");
+        gameOverUI.GetComponent<GameOver>().Active();
     }
 
     public void AddGold(int num)
@@ -84,25 +80,17 @@ public class PlayerManager : MonoBehaviour
 
     public void AddExp(int num)
     {
-        playerStatus.currentExp += num;
-        //升级
-        if (playerStatus.currentExp >= playerStatus.maxExp)
-        {
-            playerStatus.currentExp -= playerStatus.maxExp;
-            playerStatus.level++;
-            expBar.SetLevel(playerStatus.level);
-            healthBar.SetMaxHealth(++playerStatus.maxHealth);
-            playerStatus.maxExp += 20;
-            expBar.SetMaxExp(playerStatus.maxExp);
-        }
-        expBar.SetExp(playerStatus.currentExp);
+        playerStatus.AddExp(num);
+        UpdateUI();
     }
 
-    private void OnDrawGizmosSelected()
+    private void UpdateUI()
     {
-        weaponPsList.ForEach(item =>
-        {
-            Gizmos.DrawSphere(item, 0.1f);
-        });
+        healthBar.SetMaxHealth(playerStatus.maxHealth);
+        healthBar.SetHealth(playerStatus.health);
+        expBar.SetLevel(playerStatus.level);
+        expBar.SetMaxExp(playerStatus.maxExp);
+        expBar.SetExp(playerStatus.currentExp);
+        goldText.SetText(playerStatus.gold.ToString());
     }
 }

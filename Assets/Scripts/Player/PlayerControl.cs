@@ -1,13 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
     public PlayerStatus playerStatus;       //ÕÊº“ Ù–‘
     private Animator animator;
+    public Bag playerBag;
+    public List<Vector2> weaponPsList;      //Œ‰∆˜Œª÷√
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        LoadPlayerWeapon();
     }
 
     private void FixedUpdate()
@@ -41,5 +45,23 @@ public class PlayerControl : MonoBehaviour
         {
             animator.SetBool("isMoving", false);
         }
+    }
+
+    //º”‘ÿŒ‰∆˜
+    private void LoadPlayerWeapon()
+    {
+        for (int i = 0; i < playerBag.weaponList.Count; i++)
+        {
+            Instantiate(playerBag.weaponList[i].weaponPrefab, weaponPsList[i], Quaternion.identity, transform);
+        }
+    }
+
+    //ª≠Œ‰∆˜Œª÷√
+    private void OnDrawGizmosSelected()
+    {
+        weaponPsList.ForEach(item =>
+        {
+            Gizmos.DrawSphere(item, 0.1f);
+        });
     }
 }

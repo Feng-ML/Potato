@@ -33,7 +33,27 @@ public class PlayerStatus : ScriptableObject
     public int gold;                    //金币
 
 
-    // 修改属性
+    public void Init()
+    {
+        maxHealth = 50;
+        healthRecover = 0;
+        level = 1;
+        maxExp = 100;
+        currentExp = 0;
+        attack = 0;
+        attackSpeed = 0;
+        criticalRate = 0;
+        criticalDamage = 50;
+        attackRange = 0;
+        armor = 0;
+        dodgeRate = 0;
+        speed = 0;
+        pickUpRange = 0;
+        gold = 0;
+    }
+
+    #region 属性修改
+    // 宝物修改属性
     public void AttrsChange(List<AttrObj> attrList)
     {
         foreach (var item in attrList)
@@ -56,6 +76,39 @@ public class PlayerStatus : ScriptableObject
             };
 
             setArrt[item.Attr.ToString()].Invoke();
+        }
+    }
+
+    //添加经验
+    public void AddExp(int num)
+    {
+        currentExp += num;
+        //升级
+        if (currentExp >= maxExp)
+        {
+            currentExp -= maxExp;
+            level++;
+            maxExp += 20;
+            maxHealth++;
+            health++;
+        }
+    }
+    #endregion
+
+    #region 计算相关
+    //生命恢复计算
+    public int GetHealthRecover()
+    {
+        var range = maxHealth - health;
+        if (healthRecover < range)
+        {
+            health += healthRecover;
+            return healthRecover;
+        }
+        else
+        {
+            health += range;
+            return range;
         }
     }
 
@@ -106,4 +159,14 @@ public class PlayerStatus : ScriptableObject
     {
         return norRange * (100 + pickUpRange) / 100;
     }
+
+    //护甲减伤
+    public int GetDamageReduce(int damage)
+    {
+        var reduce = armor / (50 + armor);
+
+        return (int)(damage * (1 - reduce));
+    }
+    #endregion
+
 }

@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 336565384, guid: caa35030374e48f4197bebaabed28a52, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -123,6 +123,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStatus: {fileID: 11400000, guid: 42a2b3de3a27da340af226201e15f196, type: 2}
+  playerBag: {fileID: 11400000, guid: fee333de76a755c4080e531e25629a02, type: 2}
+  weaponPsList:
+  - {x: 0.5, y: -0.27}
+  - {x: -0.35, y: -0.27}
 --- !u!114 &4123618681101269401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,13 +140,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStatus: {fileID: 11400000, guid: 42a2b3de3a27da340af226201e15f196, type: 2}
-  playerBag: {fileID: 11400000, guid: fee333de76a755c4080e531e25629a02, type: 2}
   healthBar: {fileID: 0}
   expBar: {fileID: 0}
   goldText: {fileID: 0}
-  weaponPsList:
-  - {x: 0.5, y: -0.27}
-  - {x: -0.35, y: -0.27}
 --- !u!70 &6546586080614374600
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

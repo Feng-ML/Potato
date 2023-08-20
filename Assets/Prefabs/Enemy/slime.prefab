@@ -185,8 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   moveSpeed: 2
-  attack: 1
+  attack: 5
   maxHealth: 10
   currenthealth: 0
-  stayTime: 0
   forward: {x: 0, y: 0}

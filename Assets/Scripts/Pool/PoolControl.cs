@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class PoolControl : MonoBehaviour
 {
@@ -9,19 +10,24 @@ public class PoolControl : MonoBehaviour
     private static PoolControl instance;
     public static PoolControl Instance { get => instance; set => instance = value; }
 
-    public EnemyControl[] enemyList;                             //敌人列表
+    public EnemyControl[] enemyList;  //敌人列表
     [HideInInspector]
-    public List<EnemyPool> enemyPool = new List<EnemyPool>();    //敌人对象池列表
+    public List<EnemyPool> enemyPool = new List<EnemyPool>();  //敌人对象池列表
 
-    public Bullet[] bulletList;                                  //子弹列表
+    public Bullet[] bulletList;  //子弹列表
     [HideInInspector]
-    public List<BulletPool> bulletPool = new List<BulletPool>();        //子弹对象池列表
+    public List<BulletPool> bulletPool = new List<BulletPool>();  //子弹对象池列表
+
+    public Explosion[] explosionList;  //爆炸列表
+    [HideInInspector]
+    public List<ExplosionPool> explosionPool = new List<ExplosionPool>();  //爆炸对象池列表
 
     private void Awake()
     {
         Instance = this;
         SetEnemyPool();
         SetBulletPool();
+        SetExplosionPool();
     }
 
     private void SetEnemyPool()
@@ -29,7 +35,7 @@ public class PoolControl : MonoBehaviour
         foreach (var item in enemyList)
         {
             var poolHolder = new GameObject($"pool: {item.name}");
-            poolHolder.transform.parent = transform;
+            poolHolder.transform.parent = transform.Find("pool: enemy");
             poolHolder.transform.position = transform.position;
             poolHolder.SetActive(false);
 
@@ -45,7 +51,7 @@ public class PoolControl : MonoBehaviour
         foreach (var item in bulletList)
         {
             var poolHolder = new GameObject($"pool: {item.name}");
-            poolHolder.transform.parent = transform;
+            poolHolder.transform.parent = transform.Find("pool: bullet");
             poolHolder.transform.position = transform.position;
             poolHolder.SetActive(false);
 
@@ -56,5 +62,19 @@ public class PoolControl : MonoBehaviour
         }
     }
 
+    private void SetExplosionPool()
+    {
+        foreach (var item in explosionList)
+        {
+            var poolHolder = new GameObject($"pool: {item.name}");
+            poolHolder.transform.parent = transform.Find("pool: explosion");
+            poolHolder.transform.position = transform.position;
+            poolHolder.SetActive(false);
 
+            var pool = poolHolder.AddComponent<ExplosionPool>();
+            pool.SetPrefab(item);
+            poolHolder.SetActive(true);
+            explosionPool.Add(pool);
+        }
+    }
 }

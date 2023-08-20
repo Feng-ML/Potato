@@ -40,7 +40,7 @@ public class TextPool : Pool<HurtText>
         var textComponent = obj.GetComponent<TextMeshPro>();
         textComponent.text = str;
         textComponent.color = color;
-        textComponent.fontSize = 1.9f;
+        textComponent.fontSize = 2f;
         return obj;
     }
 

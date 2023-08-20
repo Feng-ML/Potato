@@ -28,12 +28,23 @@ public class PlayerBullet : Bullet
                 enemy.TakeDamage(damage, isCritical);
                 enemy.ApplyKnockback(transform, repelPower);
 
-                if (curPenetration <= 0) releaseAction.Invoke();
+                if (curPenetration <= 0)
+                {
+                    explosion();
+                    releaseAction.Invoke();
+                }
             }
         }
         else
         {
+            explosion();
             releaseAction.Invoke();
         }
+    }
+
+    private void explosion()
+    {
+        var epsIns = PoolControl.Instance.explosionPool[0].Get();
+        epsIns.transform.position = transform.position;
     }
 }
