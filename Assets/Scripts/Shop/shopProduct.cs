@@ -14,6 +14,9 @@ public class shopProduct : MonoBehaviour
     public GameStatus gameStatus;           //游戏状态
     public Bag playerBag;
 
+    public AudioClip buyAudio;
+    public AudioClip deniedAudio;
+
     private List<Item> currentProductList = new List<Item>();     //当前商品列表
     private int surplusProductNum;      //剩余商品数
     private int refreshNum;             //刷新商店次数
@@ -49,7 +52,11 @@ public class shopProduct : MonoBehaviour
     // 刷新商店
     private void RefreshShop()
     {
-        if (!Pay(refreshPriceNum)) return;
+        if (!Pay(refreshPriceNum))
+        {
+            AudioSource.PlayClipAtPoint(deniedAudio, transform.position);
+            return;
+        };
 
         currentProductList.Clear();
         // 获得4个不同的随机数
@@ -127,9 +134,20 @@ public class shopProduct : MonoBehaviour
     private void BuyProduct(int productIndex)
     {
         var item = currentProductList[productIndex];
-        if (item.isWeapon && CanBuyWeapon(item) < 0) return;
-        if (!Pay(item.cost)) return;
+        //是否有枪械位置
+        if (item.isWeapon && CanBuyWeapon(item) < 0)
+        {
+            AudioSource.PlayClipAtPoint(deniedAudio, transform.position);
+            return;
+        }
+        //够不够钱
+        if (!Pay(item.cost))
+        {
+            AudioSource.PlayClipAtPoint(deniedAudio, transform.position);
+            return;
+        }
 
+        AudioSource.PlayClipAtPoint(buyAudio, transform.position);
         if (item.isWeapon)
         {
             //武器

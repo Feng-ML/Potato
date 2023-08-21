@@ -7,6 +7,7 @@ public class Gold : MonoBehaviour
     private GameObject player;
     private PlayerManager playerManager;
     public PlayerStatus playerStatus;
+    public AudioClip gainAudio;             // ∞»°“Ù–ß
     private Vector3 playerDirection;
     private bool isGoing;
     private float speed = 5;
@@ -49,7 +50,8 @@ public class Gold : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
-            playerManager.AddGold(1);
+            AudioSource.PlayClipAtPoint(gainAudio, transform.position);
+            playerManager.AddGold(5);
             playerManager.AddExp(20);
             GoldPool.Instance.Release(this);
         }

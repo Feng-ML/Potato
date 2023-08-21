@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1584715658076744565
 Transform:
   m_ObjectHideFlags: 0
@@ -35,7 +35,7 @@ Transform:
   m_Children:
   - {fileID: 3437151628159740851}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8999109430985146905
 SpriteRenderer:
@@ -124,8 +124,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   moveSpeed: 2
-  attack: 1
-  maxHealth: 15
+  attack: 5
+  maxHealth: 1500
   currenthealth: 0
   forward: {x: 0, y: 0}
   healthBar: {fileID: 6800858416590057588}
@@ -385,7 +385,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.81, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.0019000024}
   m_SizeDelta: {x: 0, y: -0.0658}
   m_Pivot: {x: 0.5, y: 0.5}

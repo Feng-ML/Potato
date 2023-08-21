@@ -7,6 +7,7 @@ public class Weapon : MonoBehaviour
     public Bag playerBag;
     public PlayerStatus playerStatus;
     private Animator weaponAnimator;
+    public AudioClip fireAudio;
 
     public float attackRange = 6;               //¹¥»÷·¶Î§
     private float realAttackRange;              //Êµ¼Ê¹¥»÷·¶Î§
@@ -106,6 +107,7 @@ public class Weapon : MonoBehaviour
     {
         Transform Muzzle = transform.Find("Muzzle");    //Ç¹¿Ú
         weaponAnimator.SetTrigger("fire");
+        AudioSource.PlayClipAtPoint(fireAudio, Muzzle.position, .7f);
 
         var bullentIns = bulletPoolList[0].Get();
         bullentIns.transform.position = Muzzle.position;

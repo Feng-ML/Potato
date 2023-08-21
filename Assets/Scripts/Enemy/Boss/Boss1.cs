@@ -13,6 +13,7 @@ public class Boos1 : EnemyControl
     {
         base.Awake();
         //forward = GetRandomV2();
+        isSuperArmor = true;
 
         healthSlider = healthBar.GetComponent<Slider>();
         healthSlider.maxValue = maxHealth;

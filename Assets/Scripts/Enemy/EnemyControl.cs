@@ -12,6 +12,7 @@ public class EnemyControl : MonoBehaviour
     private float crashTime;                      //碰撞伤害触发频率
     protected bool isHurt;
     protected bool isDeath;
+    protected bool isSuperArmor;                  //霸体
 
     //[HideInInspector]
     public Vector2 forward;                       //前进方向
@@ -42,7 +43,7 @@ public class EnemyControl : MonoBehaviour
     {
         playerDirection = player.transform.position - transform.position;
 
-        if (isDeath || isHurt)
+        if (isDeath || (isHurt && !isSuperArmor))
         {
             rb.velocity = Vector2.zero;
         }

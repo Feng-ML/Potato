@@ -122,7 +122,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBag: {fileID: 11400000, guid: fee333de76a755c4080e531e25629a02, type: 2}
   playerStatus: {fileID: 11400000, guid: 42a2b3de3a27da340af226201e15f196, type: 2}
+  fireAudio: {fileID: 8300000, guid: 6875925a550361f4c82e8354d609a6bb, type: 3}
   attackRange: 6
+  attackTime: 1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128

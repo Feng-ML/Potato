@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBullet2 : Bullet
+public class EnemyBullet2 : EnemyBullet
 {
     private GameObject player;
     private Vector2 playerDirection;              //与玩家的向量
@@ -34,10 +34,5 @@ public class EnemyBullet2 : Bullet
     {
         yield return new WaitForSeconds(4);
         if (gameObject.activeSelf) releaseAction.Invoke();
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireSphere(transform.position, 3f);
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public PlayerStatus playerStatus;       //玩家属性
+    public AudioClip hurtAudio;
 
     public HealthBar healthBar;             //血条
     public ExpBar expBar;                   //经验条
@@ -51,6 +52,8 @@ public class PlayerManager : MonoBehaviour
         else
         {
             var realDamage = playerStatus.GetDamageReduce(damage);
+            AudioSource.PlayClipAtPoint(hurtAudio, transform.position);
+
             if (playerStatus.health < realDamage)
             {
                 playerStatus.health = 0;

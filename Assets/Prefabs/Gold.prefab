@@ -134,3 +134,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStatus: {fileID: 11400000, guid: 42a2b3de3a27da340af226201e15f196, type: 2}
+  gainAudio: {fileID: 8300000, guid: 18c46358f7a9db841b92e68c636a9826, type: 3}

@@ -21,6 +21,7 @@ MonoBehaviour:
   countList: 0200000003000000030000000200000001000000
   weaponList:
   - {fileID: 11400000, guid: af61bd8897b58534fa2dfd7d518fffbd, type: 2}
-  weaponQualityList: 00000000
+  - {fileID: 11400000, guid: af61bd8897b58534fa2dfd7d518fffbd, type: 2}
+  weaponQualityList: 0000000000000000
   relicsList:
   - {fileID: 11400000, guid: 7e18eee340dc84e4493153ef6579f1b7, type: 2}

@@ -6,8 +6,13 @@ public class GameManager : MonoBehaviour
 {
     public GameObject menu;
     private bool isPaused;
+    private AudioSource BGM;
 
-    // Update is called once per frame
+    private void Awake()
+    {
+        BGM = gameObject.GetComponent<AudioSource>();
+    }
+
     void Update()
     {
         // 检测是否按下ESC键
@@ -22,12 +27,14 @@ public class GameManager : MonoBehaviour
     {
         if (isPaused)
         {
+            BGM?.Play();
             Time.timeScale = 1f; // 将游戏时间缩放设置为1，即恢复正常
             isPaused = false;
             menu.SetActive(false);
         }
         else
         {
+            BGM?.Pause();
             Time.timeScale = 0f; // 将游戏时间缩放设置为0，即暂停
             isPaused = true;
             menu.SetActive(true);
