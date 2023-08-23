@@ -18,11 +18,13 @@ public class Menu : MonoBehaviour
         gameStatus.wave = 1;
         playerStatus.Init();
         Time.timeScale = 1f;
+        gameStatus.status = GameStatus.gameStatusEnum.playing;
         SceneManager.LoadScene("Fight");
     }
 
     public void BackToTitle()
     {
+        gameStatus.status = GameStatus.gameStatusEnum.start;
         SceneManager.LoadScene("Begin");
     }
 }

@@ -46,7 +46,7 @@ public class MapManager : MonoBehaviour
             if (gameStatus.wave >= 5)
             {
                 BGM.Stop();
-                gameOverUI.GetComponent<GameOver>().Active("victory!");
+                gameOverUI.GetComponent<GameOver>().Active(true);
             }
             else
             {

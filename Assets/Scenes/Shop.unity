@@ -480,6 +480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 1953915507}
+  gameStatus: {fileID: 11400000, guid: 0a809ae404ce47843b63d25bf47b9f41, type: 2}
 --- !u!81 &340522802
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1336,8 +1337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76178ec5b7dc09a47a13cc68ea691c93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameStatus: {fileID: 0}
-  playerStatus: {fileID: 0}
+  gameStatus: {fileID: 11400000, guid: 0a809ae404ce47843b63d25bf47b9f41, type: 2}
+  playerStatus: {fileID: 11400000, guid: 42a2b3de3a27da340af226201e15f196, type: 2}
 --- !u!114 &1953915511
 MonoBehaviour:
   m_ObjectHideFlags: 0

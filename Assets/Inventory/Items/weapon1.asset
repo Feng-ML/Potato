@@ -15,8 +15,8 @@ MonoBehaviour:
   id: w1
   itemName: AK-47
   itemImg: {fileID: 21300000, guid: 6735b30ce729bdc4b9d775368cbecd62, type: 3}
-  itemInfo: "\u653B\u51FB\u529B  10\n\u653B\u51FB\u901F\u5EA6  1s\n\u653B\u51FB\u8303\u56F4 
-    100\n\u66B4\u51FB\u7387  0%\n\u8D2F\u901A 1"
+  itemInfo: "\u653B\u51FB\u529B  10\n\n\u653B\u51FB\u901F\u5EA6  1s\n\n\u653B\u51FB\u8303\u56F4 
+    100\n\n\u66B4\u51FB\u7387  0%\n\n\u8D2F\u901A 1"
   cost: 30
   quality: 0
   effectList: []

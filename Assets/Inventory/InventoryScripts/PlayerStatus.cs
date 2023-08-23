@@ -43,7 +43,7 @@ public class PlayerStatus : ScriptableObject
         attack = 0;
         attackSpeed = 0;
         criticalRate = 0;
-        criticalDamage = 50;
+        criticalDamage = 0;
         attackRange = 0;
         armor = 0;
         dodgeRate = 0;
@@ -62,17 +62,17 @@ public class PlayerStatus : ScriptableObject
 
             Dictionary<string, Action> setArrt = new Dictionary<string, Action>()
             {
-                { Enums.character.maxHealth.ToString(), ()=> maxHealth += value  },
-                { Enums.character.healthRecover.ToString(), ()=> healthRecover += value  },
-                { Enums.character.attack.ToString(), ()=> attack += value  },
-                { Enums.character.attackSpeed.ToString(), ()=> attackSpeed += value  },
-                { Enums.character.criticalRate.ToString(), ()=> criticalRate += value  },
-                { Enums.character.criticalDamage.ToString(), ()=> criticalDamage += value  },
-                { Enums.character.attackRange.ToString(), ()=> attackRange += value  },
-                { Enums.character.armor.ToString(), ()=> armor += value  },
-                { Enums.character.dodgeRate.ToString(), ()=> dodgeRate += value  },
-                { Enums.character.speed.ToString(), ()=> speed += value  },
-                { Enums.character.pickUpRange.ToString(), ()=> pickUpRange += value  },
+                { MyEnums.character.maxHealth.ToString(), ()=> maxHealth += value  },
+                { MyEnums.character.healthRecover.ToString(), ()=> healthRecover += value  },
+                { MyEnums.character.attack.ToString(), ()=> attack += value  },
+                { MyEnums.character.attackSpeed.ToString(), ()=> attackSpeed += value  },
+                { MyEnums.character.criticalRate.ToString(), ()=> criticalRate += value  },
+                { MyEnums.character.criticalDamage.ToString(), ()=> criticalDamage += value  },
+                { MyEnums.character.attackRange.ToString(), ()=> attackRange += value  },
+                { MyEnums.character.armor.ToString(), ()=> armor += value  },
+                { MyEnums.character.dodgeRate.ToString(), ()=> dodgeRate += value  },
+                { MyEnums.character.speed.ToString(), ()=> speed += value  },
+                { MyEnums.character.pickUpRange.ToString(), ()=> pickUpRange += value  },
             };
 
             setArrt[item.Attr.ToString()].Invoke();
@@ -121,7 +121,7 @@ public class PlayerStatus : ScriptableObject
         var critical = criticalRate / 100;
         if (UnityEngine.Random.value < critical)
         {
-            DamageNum = (DamageNum * (100 + criticalDamage) / 100);     //±©»÷ÉËº¦¼ÆËã
+            DamageNum = (DamageNum * (150 + criticalDamage) / 100);     //±©»÷ÉËº¦¼ÆËã
             isCritical = true;
         }
         return (int)DamageNum;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject menu;
+    public GameStatus gameStatus;
     private bool isPaused;
     private AudioSource BGM;
 
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // ¼ì²âÊÇ·ñ°´ÏÂESC¼ü
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && gameStatus.status == GameStatus.gameStatusEnum.playing)
         {
             TogglePause();
         }

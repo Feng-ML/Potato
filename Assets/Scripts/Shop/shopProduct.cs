@@ -5,6 +5,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class shopProduct : MonoBehaviour
 {
@@ -116,18 +117,26 @@ public class shopProduct : MonoBehaviour
     // 玩家状态赋值
     private void SetPlayerStatus()
     {
-        shopUI.Q<Label>("maxHealthValue").text = playerStatus.maxHealth.ToString();
-        shopUI.Q<Label>("healthRecoverValue").text = playerStatus.healthRecover.ToString();
-        shopUI.Q<Label>("attackValue").text = playerStatus.attack.ToString();
-        shopUI.Q<Label>("attackSpeedValue").text = playerStatus.attackSpeed.ToString();
-        shopUI.Q<Label>("criticalRateValue").text = playerStatus.criticalRate.ToString();
-        shopUI.Q<Label>("criticalDamageValue").text = playerStatus.criticalDamage.ToString();
-        shopUI.Q<Label>("attackRangeValue").text = playerStatus.attackRange.ToString();
-        shopUI.Q<Label>("armorValue").text = playerStatus.armor.ToString();
-        shopUI.Q<Label>("dodgeRateValue").text = playerStatus.dodgeRate.ToString();
-        shopUI.Q<Label>("speedValue").text = playerStatus.speed.ToString();
-        shopUI.Q<Label>("pickUpRangeValue").text = playerStatus.pickUpRange.ToString();
-        shopUI.Q<Label>("gold").text = playerStatus.gold.ToString();
+        SetTextAndColor("maxHealthValue", playerStatus.maxHealth);
+        SetTextAndColor("healthRecoverValue", playerStatus.healthRecover);
+        SetTextAndColor("attackValue", playerStatus.attack);
+        SetTextAndColor("attackSpeedValue", playerStatus.attackSpeed);
+        SetTextAndColor("criticalRateValue", playerStatus.criticalRate);
+        SetTextAndColor("criticalDamageValue", playerStatus.criticalDamage);
+        SetTextAndColor("attackRangeValue", playerStatus.attackRange);
+        SetTextAndColor("armorValue", playerStatus.armor);
+        SetTextAndColor("dodgeRateValue", playerStatus.dodgeRate);
+        SetTextAndColor("speedValue", playerStatus.speed);
+        SetTextAndColor("pickUpRangeValue", playerStatus.pickUpRange);
+        SetTextAndColor("gold", playerStatus.gold);
+    }
+
+    private void SetTextAndColor(string statusName, float num)
+    {
+        shopUI.Q<Label>(statusName).text = num.ToString();
+        var color = num > 0 ? Color.green : Color.red;
+        if (num == 0) color = Color.white;
+        shopUI.Q<Label>(statusName).style.color = color;
     }
 
     //购买商品
@@ -204,7 +213,7 @@ public class shopProduct : MonoBehaviour
         {
             var quality = playerBag.weaponQualityList[i];
 
-            if (quality < Enums.QualityLevel.mythic)
+            if (quality < MyEnums.QualityLevel.mythic)
             {
                 if (playerBag.weaponList[i].id == item.id && quality == item.quality)
                 {
@@ -260,11 +269,27 @@ public class shopProduct : MonoBehaviour
     {
         for (int i = 0; i < playerBag.weaponList.Count; i++)
         {
+            var weaponItem = playerBag.weaponList[i];
             var weaponBoxUI = shopUI.Query("weapon").AtIndex(i);
             var weaponUI = shopUI.Query("weaponImg").AtIndex(i);
-            var background = new StyleBackground(playerBag.weaponList[i].itemImg);
+            var background = new StyleBackground(weaponItem.itemImg);
             weaponUI.style.backgroundImage = background;
             weaponBoxUI.style.backgroundColor = MyDictionary.qualityColor[playerBag.weaponQualityList[i]];
+
+            weaponBoxUI.RegisterCallback<MouseUpEvent>((evt) =>
+            {
+                var dialog = shopUI.Q("weaponDialog");
+                dialog.visible = true;
+                dialog.style.left = evt.mousePosition.x;
+                dialog.style.top = evt.mousePosition.y - dialog.contentRect.height - 20;
+
+                dialog.Q("productImg").style.backgroundImage = background;
+                dialog.Q<Label>("productName").text = weaponItem.itemName;
+                dialog.Q<Label>("productInfo").text = weaponItem.itemInfo;
+                dialog.Q<Label>("productCost").text = weaponItem.cost.ToString();
+            });
         }
     }
+
+    //private void weapon
 }

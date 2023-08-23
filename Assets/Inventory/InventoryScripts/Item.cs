@@ -11,7 +11,7 @@ public class Item : ScriptableObject
     [TextArea]
     public string itemInfo;             //描述
     public int cost;                    //价格
-    public Enums.QualityLevel quality;  //品质
+    public MyEnums.QualityLevel quality;  //品质
     public List<AttrObj> effectList;    //宝物效果
 
     public bool isWeapon;                //是否为武器
@@ -21,6 +21,6 @@ public class Item : ScriptableObject
 [System.Serializable]
 public class AttrObj
 {
-    public Enums.character Attr;
+    public MyEnums.character Attr;
     public int value;
 }

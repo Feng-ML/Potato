@@ -10,8 +10,8 @@
     font-size: 25px;
     padding-left: 40px;
     padding-right: 40px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
     margin-left: 0;
     margin-right: 0;
     margin-top: 0;

@@ -1,10 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/USS/Shop.uss?fileID=7433441132597879392&amp;guid=ae526e9b32cd09140996e8c4e7f9fad8&amp;type=3#Shop" />
-    <ui:VisualElement name="page" style="flex-grow: 1; background-color: rgb(42, 42, 42); -unity-font: url(&apos;project://database/Assets/Font/MSYHBD.TTC?fileID=12800000&amp;guid=44c08dac668d4f44d8ea6d7a19d20981&amp;type=3#MSYHBD&apos;); -unity-font-definition: initial;">
+    <ui:VisualElement name="page" style="flex-grow: 1; background-color: rgb(42, 42, 42); -unity-font: url(&apos;project://database/Assets/Font/ipix_12px.ttf?fileID=12800000&amp;guid=bdcb2822563d8fe49b6d9900b9e89258&amp;type=3#ipix_12px&apos;); -unity-font-definition: initial; -unity-font-style: bold;">
         <ui:VisualElement name="pageTop" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-shrink: 0; flex-direction: row; flex-basis: 70%; padding-left: 30px; padding-right: 30px; padding-top: 30px; padding-bottom: 30px; font-size: 25px; color: rgb(255, 255, 255);">
-            <ui:VisualElement name="shopProduct" style="flex-grow: 0; background-color: rgba(255, 255, 255, 0); flex-basis: 75%; flex-shrink: 0;">
+            <ui:VisualElement name="shopProduct" style="flex-grow: 0; background-color: rgba(255, 255, 255, 0); flex-basis: 75%; flex-shrink: 1;">
                 <ui:VisualElement name="productList" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: auto; flex-direction: row; justify-content: space-between;">
-                    <ui:VisualElement name="productItem" class="product-item" style="background-color: rgba(0, 0, 0, 0.36); visibility: visible;">
+                    <ui:VisualElement name="productItem" class="product-item" style="background-color: rgba(75, 48, 48, 0.92);">
                         <ui:VisualElement name="productItemTop" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-direction: row; flex-shrink: 0;">
                             <ui:VisualElement style="flex-grow: 0; background-color: rgba(99, 99, 99, 0.63); width: 130px; height: 130px; flex-shrink: 0; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
                                 <ui:VisualElement name="productImg" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/Items/candy_02b.png?fileID=21300000&amp;guid=2fa6b7afcc3f4b8429f4b59f8c85cc95&amp;type=3#candy_02b&apos;); flex-shrink: 0; width: 100%; height: 100%;" />
@@ -87,7 +87,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="playerStatus" style="background-color: rgba(0, 0, 0, 0.26); height: auto; width: auto; margin-left: 30px; -unity-background-image-tint-color: rgb(255, 255, 255); -unity-slice-scale: 1px; position: relative; right: 0; flex-basis: 25%; flex-grow: 0; flex-shrink: 0;">
+            <ui:VisualElement name="playerStatus" style="background-color: rgba(0, 0, 0, 0.26); height: auto; width: auto; margin-left: 30px; -unity-background-image-tint-color: rgb(255, 255, 255); -unity-slice-scale: 1px; position: relative; right: 0; flex-basis: 25%; flex-grow: 1; flex-shrink: 1;">
                 <ui:Label tabindex="-1" text="属性" display-tooltip-when-elided="true" style="padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; align-items: auto; justify-content: flex-start; -unity-text-align: upper-center; font-size: 30px; color: rgb(255, 255, 255); -unity-font-style: bold; -unity-font: url(&apos;project://database/Assets/Font/MSYHBD.TTC?fileID=12800000&amp;guid=44c08dac668d4f44d8ea6d7a19d20981&amp;type=3#MSYHBD&apos;); -unity-font-definition: initial;" />
                 <ui:VisualElement class="player-status-item" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-shrink: 0;">
                     <ui:Label tabindex="-1" text="最大生命值" display-tooltip-when-elided="true" name="maxHealthLabel" focusable="false" style="flex-shrink: 1; flex-grow: 1; flex-direction: row; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; width: 50%;" />
@@ -136,7 +136,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="pageBottom" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row;">
-            <ui:Label tabindex="-1" text="背包" display-tooltip-when-elided="true" style="font-size: 25px; color: rgb(255, 255, 255); -unity-font-style: bold; position: absolute; top: -80px; left: 30px;" />
+            <ui:Label tabindex="-1" text="背包" display-tooltip-when-elided="true" style="font-size: 25px; color: rgb(255, 255, 255); position: absolute; top: -80px; left: 30px;" />
             <ui:ScrollView style="width: 50%; flex-direction: row; margin-right: 90px;">
                 <ui:VisualElement name="bag" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; flex-wrap: wrap;" />
             </ui:ScrollView>
@@ -154,6 +154,37 @@
             <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
                 <ui:Button text="出发" display-tooltip-when-elided="true" name="fightButton" style="padding-bottom: 10px; border-top-left-radius: 12px; border-bottom-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; position: absolute; bottom: 90px; right: 30px; font-size: 25px; color: rgb(255, 255, 255); -unity-font-style: bold; width: 300px; background-color: rgba(188, 188, 188, 0.35);" />
             </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="weaponDialog" class="product-item" style="background-color: rgba(75, 48, 48, 0.92); position: absolute; -unity-font-style: bold; -unity-font-definition: initial; -unity-font: url(&apos;project://database/Assets/Font/ipix_12px.ttf?fileID=12800000&amp;guid=bdcb2822563d8fe49b6d9900b9e89258&amp;type=3#ipix_12px&apos;); width: 500px; visibility: hidden;">
+        <ui:VisualElement name="productItemTop" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-direction: row; flex-shrink: 0;">
+            <ui:VisualElement style="flex-grow: 0; background-color: rgba(99, 99, 99, 0.63); width: 130px; height: 130px; flex-shrink: 0; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+                <ui:VisualElement name="productImg" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/Items/candy_02b.png?fileID=21300000&amp;guid=2fa6b7afcc3f4b8429f4b59f8c85cc95&amp;type=3#candy_02b&apos;); flex-shrink: 0; width: 100%; height: 100%;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-shrink: 0; padding-left: 20px;">
+                <ui:Label tabindex="-1" text="名称" display-tooltip-when-elided="true" name="productName" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); padding-top: 20px; min-height: 400px;">
+            <ui:Label tabindex="-1" text="详细信息详细信息详细信息详细信息详细信息详细信息" display-tooltip-when-elided="true" name="productInfo" class="productInfo text" />
+        </ui:VisualElement>
+        <ui:Button display-tooltip-when-elided="true" name="buyButton" style="flex-direction: row; justify-content: center; background-color: rgba(156, 156, 156, 0.35); border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px;">
+            <ui:Label tabindex="-1" text="升级" display-tooltip-when-elided="true" />
+            <ui:Label tabindex="-1" text="-100" display-tooltip-when-elided="true" name="productCost" style="flex-grow: 0;" />
+            <ui:VisualElement style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/UI/coin_05d.png?fileID=21300000&amp;guid=7b71dca6358086242b3ece103bf027dc&amp;type=3#coin_05d&apos;); width: 50px; height: 50px; flex-shrink: 0;" />
+        </ui:Button>
+    </ui:VisualElement>
+    <ui:VisualElement name="itemDialog" class="product-item" style="background-color: rgba(75, 48, 48, 0.92); position: absolute; -unity-font-style: bold; -unity-font-definition: initial; -unity-font: url(&apos;project://database/Assets/Font/ipix_12px.ttf?fileID=12800000&amp;guid=bdcb2822563d8fe49b6d9900b9e89258&amp;type=3#ipix_12px&apos;); width: 500px; visibility: hidden;">
+        <ui:VisualElement name="productItemTop" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-direction: row; flex-shrink: 0;">
+            <ui:VisualElement style="flex-grow: 0; background-color: rgba(99, 99, 99, 0.63); width: 130px; height: 130px; flex-shrink: 0; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; border-top-left-radius: 10px; border-bottom-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+                <ui:VisualElement name="productImg" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/Items/candy_02b.png?fileID=21300000&amp;guid=2fa6b7afcc3f4b8429f4b59f8c85cc95&amp;type=3#candy_02b&apos;); flex-shrink: 0; width: 100%; height: 100%;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-shrink: 0; padding-left: 20px;">
+                <ui:Label tabindex="-1" text="名称" display-tooltip-when-elided="true" name="productName" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); padding-top: 20px; min-height: 400px;">
+            <ui:Label tabindex="-1" text="详细信息详细信息详细信息详细信息详细信息详细信息" display-tooltip-when-elided="true" name="productInfo" class="productInfo text" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
