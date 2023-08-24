@@ -5,7 +5,6 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using static UnityEditor.Progress;
 
 public class shopProduct : MonoBehaviour
 {
@@ -31,6 +30,11 @@ public class shopProduct : MonoBehaviour
         LoadPlayerBag();
         LoadPlayerWeapon();
 
+        AddEvent();
+    }
+
+    private void AddEvent()
+    {
         // 刷新商店点击事件
         shopUI.Q<Button>("refreshButton").clicked += RefreshShop;
 
@@ -41,12 +45,25 @@ public class shopProduct : MonoBehaviour
             item.Q<Button>().clicked += () => BuyProduct(index);
         });
 
-        // 出发
+        // 出发按钮
         shopUI.Q<Button>("fightButton").clicked += () =>
         {
             gameStatus.wave++;
             SceneManager.LoadScene("Fight");
         };
+
+        // 按钮Hover样式
+        shopUI.Query(className: "button").ForEach(item =>
+        {
+            item.RegisterCallback<MouseEnterEvent>(ev =>
+            {
+                item.style.opacity = 0.7f;
+            });
+            item.RegisterCallback<MouseOutEvent>(ev =>
+            {
+                item.style.opacity = 1f;
+            });
+        });
     }
 
 
@@ -243,14 +260,16 @@ public class shopProduct : MonoBehaviour
     {
         var playerBagUI = shopUI.Q("bag");
         playerBagUI.Clear();
+        var dialog = shopUI.Q("itemDialog");
 
         // 倒序展示
         for (int i = playerBag.itemsList.Count - 1; i >= 0; i--)
         {
             var itemTemplate = Resources.Load<VisualTreeAsset>("bagItem").Instantiate();
-            var background = new StyleBackground(playerBag.itemsList[i].itemImg);
+            var item = playerBag.itemsList[i];
+            var background = new StyleBackground(item.itemImg);
             itemTemplate.Q("item").style.backgroundImage = background;
-            itemTemplate.Q("itemBox").style.backgroundColor = MyDictionary.qualityColor[playerBag.itemsList[i].quality];
+            itemTemplate.Q("itemBox").style.backgroundColor = MyDictionary.qualityColor[item.quality];
             if (playerBag.countList[i] > 1)
             {
                 itemTemplate.Q<Label>().text = playerBag.countList[i].ToString();
@@ -260,6 +279,27 @@ public class shopProduct : MonoBehaviour
                 itemTemplate.Q<Label>().text = "";
             }
             playerBagUI.Add(itemTemplate);
+
+            //物品弹窗
+            itemTemplate.RegisterCallback<MouseEnterEvent>(evt =>
+            {
+                dialog.visible = true;
+                dialog.style.left = evt.mousePosition.x;
+                dialog.style.top = evt.mousePosition.y - dialog.contentRect.height - 20;
+
+                dialog.Q("productImg").style.backgroundImage = background;
+                dialog.Q<Label>("productName").text = item.itemName;
+                dialog.Q<Label>("productInfo").text = item.itemInfo;
+            }, TrickleDown.TrickleDown);
+
+
+            //隐藏物品弹窗
+            itemTemplate.RegisterCallback<MouseOutEvent>(evt =>
+            {
+                dialog.visible = false;
+            }, TrickleDown.TrickleDown);
+
+            DialogEvent(dialog);
         }
 
     }
@@ -267,6 +307,8 @@ public class shopProduct : MonoBehaviour
     // 加载武器列表
     private void LoadPlayerWeapon()
     {
+        var dialog = shopUI.Q("weaponDialog");
+
         for (int i = 0; i < playerBag.weaponList.Count; i++)
         {
             var weaponItem = playerBag.weaponList[i];
@@ -276,9 +318,9 @@ public class shopProduct : MonoBehaviour
             weaponUI.style.backgroundImage = background;
             weaponBoxUI.style.backgroundColor = MyDictionary.qualityColor[playerBag.weaponQualityList[i]];
 
-            weaponBoxUI.RegisterCallback<MouseUpEvent>((evt) =>
+            //武器弹窗
+            weaponBoxUI.RegisterCallback<MouseEnterEvent>((evt) =>
             {
-                var dialog = shopUI.Q("weaponDialog");
                 dialog.visible = true;
                 dialog.style.left = evt.mousePosition.x;
                 dialog.style.top = evt.mousePosition.y - dialog.contentRect.height - 20;
@@ -287,9 +329,29 @@ public class shopProduct : MonoBehaviour
                 dialog.Q<Label>("productName").text = weaponItem.itemName;
                 dialog.Q<Label>("productInfo").text = weaponItem.itemInfo;
                 dialog.Q<Label>("productCost").text = weaponItem.cost.ToString();
-            });
+            }, TrickleDown.TrickleDown);
+
+            //隐藏弹窗
+            weaponBoxUI.RegisterCallback<MouseOutEvent>(evt =>
+            {
+                dialog.visible = false;
+            }, TrickleDown.TrickleDown);
+
+            DialogEvent(dialog);
         }
     }
 
-    //private void weapon
+    //弹窗显示隐藏体验优化
+    private void DialogEvent(VisualElement dialog)
+    {
+        dialog.RegisterCallback<MouseOverEvent>(evt =>
+        {
+            dialog.visible = true;
+        }, TrickleDown.TrickleDown);
+
+        dialog.RegisterCallback<MouseOutEvent>(evt =>
+        {
+            dialog.visible = false;
+        }, TrickleDown.TrickleDown);
+    }
 }
