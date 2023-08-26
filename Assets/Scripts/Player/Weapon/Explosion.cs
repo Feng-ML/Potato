@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public AudioClip explosionAudio;
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        if (explosionAudio)
+        {
+            AudioSource.PlayClipAtPoint(explosionAudio, transform.position, 1f);
+        }
     }
 }

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092a6579b27784547b7f0ab806468b20, type: 3}
+  m_Name: weapon2
+  m_EditorClassIdentifier: 
+  id: w2
+  itemName: RPG
+  itemImg: {fileID: -126073979, guid: 748beb834cfbb294aa8c758734ee2700, type: 3}
+  itemInfo: "\u653B\u51FB\u529B  5\n\n\u653B\u51FB\u901F\u5EA6  2s\n\n\u653B\u51FB\u8303\u56F4 
+    150\n\n\u66B4\u51FB\u7387  0%\n\n\u8D2F\u901A 0"
+  cost: 40
+  quality: 0
+  effectList: []
+  isWeapon: 1
+  weaponPrefab: {fileID: 4648371776358744430, guid: 4e326eff3ed69e4429545c6a5231dc0b, type: 3}

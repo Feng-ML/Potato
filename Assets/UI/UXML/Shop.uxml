@@ -1,4 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="weaponItem" src="project://database/Assets/UI/Resources/weaponItem.uxml?fileID=9197481963319205126&amp;guid=fe7f49157da99724d8821310565c9b76&amp;type=3#weaponItem" />
     <Style src="project://database/Assets/UI/USS/Shop.uss?fileID=7433441132597879392&amp;guid=ae526e9b32cd09140996e8c4e7f9fad8&amp;type=3#Shop" />
     <ui:VisualElement name="page" style="flex-grow: 1; background-color: rgb(42, 42, 42); -unity-font: url(&apos;project://database/Assets/Font/ipix_12px.ttf?fileID=12800000&amp;guid=bdcb2822563d8fe49b6d9900b9e89258&amp;type=3#ipix_12px&apos;); -unity-font-definition: initial; -unity-font-style: bold;">
         <ui:VisualElement name="pageTop" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-shrink: 0; flex-direction: row; flex-basis: 70%; padding-left: 30px; padding-right: 30px; padding-top: 30px; padding-bottom: 30px; font-size: 25px; color: rgb(255, 255, 255);">
@@ -143,12 +144,7 @@
             <ui:VisualElement style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-basis: 420px; flex-shrink: 0;">
                 <ui:Label tabindex="-1" text="武器" display-tooltip-when-elided="true" class="text" style="margin-left: 10px; margin-top: 20px; margin-bottom: 20px;" />
                 <ui:VisualElement name="weaponList" style="flex-direction: row; flex-wrap: wrap;">
-                    <ui:VisualElement name="weapon" class="item" style="background-color: rgba(0, 0, 0, 0.42);">
-                        <ui:VisualElement name="weaponImg" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/weapon/Weapons%202-Sheet.png?fileID=-2067830191&amp;guid=63f3235ea3498c44687244f79ff824c6&amp;type=3#Weapons 2-Sheet_0&apos;);" />
-                    </ui:VisualElement>
-                    <ui:VisualElement name="weapon" class="item">
-                        <ui:VisualElement name="weaponImg" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
-                    </ui:VisualElement>
+                    <ui:Instance template="weaponItem" name="weaponItem" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
@@ -168,9 +164,17 @@
         <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); padding-top: 20px; min-height: 400px;">
             <ui:Label tabindex="-1" text="详细信息详细信息详细信息详细信息详细信息详细信息" display-tooltip-when-elided="true" name="productInfo" class="productInfo text" />
         </ui:VisualElement>
-        <ui:Button display-tooltip-when-elided="true" name="buyButton" class="button" style="flex-direction: row; justify-content: center; background-color: rgba(156, 156, 156, 0.35); border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px;">
+        <ui:Button display-tooltip-when-elided="true" name="mergeButton" class="button" style="flex-direction: row; justify-content: center; background-color: rgba(156, 156, 156, 0.35); border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; margin-top: 20px;">
+            <ui:Label tabindex="-1" text="合成" display-tooltip-when-elided="true" />
+        </ui:Button>
+        <ui:Button display-tooltip-when-elided="true" name="upButton" class="button" style="flex-direction: row; justify-content: center; background-color: rgba(156, 156, 156, 0.35); border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; margin-top: 20px;">
             <ui:Label tabindex="-1" text="升级" display-tooltip-when-elided="true" />
             <ui:Label tabindex="-1" text="-100" display-tooltip-when-elided="true" name="productCost" style="flex-grow: 0;" />
+            <ui:VisualElement style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/UI/coin_05d.png?fileID=21300000&amp;guid=7b71dca6358086242b3ece103bf027dc&amp;type=3#coin_05d&apos;); width: 50px; height: 50px; flex-shrink: 0;" />
+        </ui:Button>
+        <ui:Button display-tooltip-when-elided="true" name="sellButton" class="button" style="flex-direction: row; justify-content: center; background-color: rgba(156, 156, 156, 0.35); border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; margin-top: 20px;">
+            <ui:Label tabindex="-1" text="卖出" display-tooltip-when-elided="true" />
+            <ui:Label tabindex="-1" text="+30" display-tooltip-when-elided="true" name="sellNum" style="flex-grow: 0; color: rgb(0, 255, 2);" />
             <ui:VisualElement style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/UI/coin_05d.png?fileID=21300000&amp;guid=7b71dca6358086242b3ece103bf027dc&amp;type=3#coin_05d&apos;); width: 50px; height: 50px; flex-shrink: 0;" />
         </ui:Button>
     </ui:VisualElement>

@@ -18,6 +18,10 @@ public class PoolControl : MonoBehaviour
     [HideInInspector]
     public List<BulletPool> bulletPool = new List<BulletPool>();  //子弹对象池列表
 
+    public Bullet[] enemyBulletList;  //怪物子弹列表
+    [HideInInspector]
+    public List<BulletPool> enemyBulletPool = new List<BulletPool>();  //怪物子弹对象池列表
+
     public Explosion[] explosionList;  //爆炸列表
     [HideInInspector]
     public List<ExplosionPool> explosionPool = new List<ExplosionPool>();  //爆炸对象池列表
@@ -27,6 +31,7 @@ public class PoolControl : MonoBehaviour
         Instance = this;
         SetEnemyPool();
         SetBulletPool();
+        SetEnemyBulletPool();
         SetExplosionPool();
     }
 
@@ -59,6 +64,22 @@ public class PoolControl : MonoBehaviour
             pool.SetPrefab(item);
             poolHolder.SetActive(true);
             bulletPool.Add(pool);
+        }
+    }
+
+    private void SetEnemyBulletPool()
+    {
+        foreach (var item in enemyBulletList)
+        {
+            var poolHolder = new GameObject($"pool: {item.name}");
+            poolHolder.transform.parent = transform.Find("pool: bullet");
+            poolHolder.transform.position = transform.position;
+            poolHolder.SetActive(false);
+
+            var pool = poolHolder.AddComponent<BulletPool>();
+            pool.SetPrefab(item);
+            poolHolder.SetActive(true);
+            enemyBulletPool.Add(pool);
         }
     }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    private List<BulletPool> bulletPoolList;    //子弹池列表
+    protected List<BulletPool> bulletPoolList;    //子弹池列表
     public Bag playerBag;
     public PlayerStatus playerStatus;
     private Animator weaponAnimator;
@@ -13,9 +13,9 @@ public class Weapon : MonoBehaviour
     private float realAttackRange;              //实际攻击范围
     public float attackTime = 1;                //攻击间隔
     private float realAttackTime;               //实际攻击间隔
+    public int bulletIndex;                     //子弹种类 
 
     private bool hasEnemy;
-    public LayerMask enemyLayer;
     private float timer;
     private float flipY;
     private float rotaY;
@@ -61,7 +61,7 @@ public class Weapon : MonoBehaviour
     private void LookAtNearEnemy()
     {
         // 获取范围内的所有enemy
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, realAttackRange, enemyLayer);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, realAttackRange, LayerMask.GetMask("Enemy"));
 
         float shortDirection = Mathf.Infinity;
         GameObject nearEnemy = null;
@@ -103,19 +103,19 @@ public class Weapon : MonoBehaviour
     }
 
     //开火
-    private void Fire()
+    protected virtual void Fire()
     {
         Transform Muzzle = transform.Find("Muzzle");    //枪口
         weaponAnimator.SetTrigger("fire");
         AudioSource.PlayClipAtPoint(fireAudio, Muzzle.position, .7f);
 
-        var bullentIns = bulletPoolList[0].Get();
+        var bullentIns = bulletPoolList[bulletIndex].Get();
         bullentIns.transform.position = Muzzle.position;
         bullentIns.transform.rotation = transform.rotation;
 
         playerBag.relicsList.ForEach(item =>
         {
-            item.relicPrefab.GetComponent<Relic>().OnAttack(transform.rotation, Muzzle.position, 0);
+            item.relicPrefab.GetComponent<Relic>().OnAttack(transform.rotation, Muzzle.position, bulletIndex);
         });
     }
 }

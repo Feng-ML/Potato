@@ -37,7 +37,7 @@ public class Bird : EnemyControl
 
     private void Attack()
     {
-        var bullet = PoolControl.Instance.bulletPool[1].Get();
+        var bullet = PoolControl.Instance.enemyBulletPool[0].Get();
         bullet.transform.position = transform.position;
         bullet.transform.right = playerDirection;
     }

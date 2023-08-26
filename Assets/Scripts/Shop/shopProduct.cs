@@ -1,10 +1,13 @@
+using QFramework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class shopProduct : MonoBehaviour
 {
@@ -17,20 +20,29 @@ public class shopProduct : MonoBehaviour
     public AudioClip buyAudio;
     public AudioClip deniedAudio;
 
+    public int weaponSlot = 6;              //武器槽位
+
+    private BindableProperty<int> gold;
     private List<Item> currentProductList = new List<Item>();     //当前商品列表
     private int surplusProductNum;      //剩余商品数
     private int refreshNum;             //刷新商店次数
     private int refreshPriceNum;        //刷新价格
+    private int selectWeaponIndex;      //当前选择武器下标
 
     void Start()
     {
         shopUI = GetComponent<UIDocument>().rootVisualElement;
+        gold = new BindableProperty<int>(playerStatus.gold);
         RefreshShop();
         SetPlayerStatus();
         LoadPlayerBag();
         LoadPlayerWeapon();
 
         AddEvent();
+        AddWeaponEvent();
+
+        //监听金币改变
+        gold.RegisterWithInitValue(goldChange).UnRegisterWhenGameObjectDestroyed(gameObject);
     }
 
     private void AddEvent()
@@ -49,28 +61,74 @@ public class shopProduct : MonoBehaviour
         shopUI.Q<Button>("fightButton").clicked += () =>
         {
             gameStatus.wave++;
+            playerStatus.gold = gold.Value;
             SceneManager.LoadScene("Fight");
         };
 
         // 按钮Hover样式
         shopUI.Query(className: "button").ForEach(item =>
         {
-            item.RegisterCallback<MouseEnterEvent>(ev =>
+            item.RegisterCallback<MouseOverEvent>(ev =>
             {
                 item.style.opacity = 0.7f;
-            });
+            }, TrickleDown.TrickleDown);
             item.RegisterCallback<MouseOutEvent>(ev =>
             {
                 item.style.opacity = 1f;
-            });
+            }, TrickleDown.TrickleDown);
         });
+    }
+
+    private void AddWeaponEvent()
+    {
+        //合并武器
+        shopUI.Q<Button>("mergeButton").clicked += () =>
+        {
+            int sameIndex = -1;
+            for (int i = 0; i < playerBag.weaponList.Count; i++)
+            {
+                //相同武器 相同品质
+                if (i != selectWeaponIndex
+                && playerBag.weaponList[i] == playerBag.weaponList[selectWeaponIndex]
+                && playerBag.weaponQualityList[i] == playerBag.weaponQualityList[selectWeaponIndex])
+                {
+                    sameIndex = i;
+                    break;
+                }
+            }
+
+            if (sameIndex > -1)
+            {
+                shopUI.Q("weaponDialog").visible = false;
+                playerBag.weaponQualityList[selectWeaponIndex]++;
+                playerBag.weaponList.RemoveAt(sameIndex);
+                playerBag.weaponQualityList.RemoveAt(sameIndex);
+                LoadPlayerWeapon();
+            }
+            else
+            {
+                AudioSource.PlayClipAtPoint(deniedAudio, transform.position);
+            }
+        };
+
+        //卖出武器
+        shopUI.Q<Button>("sellButton").clicked += () =>
+        {
+            shopUI.Q("weaponDialog").visible = false;
+            gold.Value += playerBag.weaponList[selectWeaponIndex].cost / 3;
+            playerBag.weaponList.RemoveAt(selectWeaponIndex);
+            playerBag.weaponQualityList.RemoveAt(selectWeaponIndex);
+            AudioSource.PlayClipAtPoint(buyAudio, transform.position);
+            LoadPlayerWeapon();
+        };
     }
 
 
     // 刷新商店
     private void RefreshShop()
     {
-        if (!Pay(refreshPriceNum))
+        var price = refreshPriceNum;
+        if (gold < price)
         {
             AudioSource.PlayClipAtPoint(deniedAudio, transform.position);
             return;
@@ -97,12 +155,12 @@ public class shopProduct : MonoBehaviour
             item.Q<Label>("productCost").style.color = Color.white;
         });
 
-        // 价格计算赋值
+        //刷新价格计算
         refreshNum++;
         refreshPriceNum = refreshNum * 5;
 
         SetProduct();
-        SetPlayerStatus();
+        gold.Value -= price;
     }
 
     // 渲染商品 刷新按钮
@@ -117,18 +175,9 @@ public class shopProduct : MonoBehaviour
             item.Q<Label>("productInfo").text = currentProductList[i].itemInfo;
             item.Q<Label>("productCost").text = currentProductList[i].cost.ToString();
             item.style.backgroundColor = MyDictionary.qualityColor[currentProductList[i].quality];
-
-            if (playerStatus.gold < currentProductList[i].cost)
-            {
-                item.Q<Label>("productCost").style.color = Color.red;
-            }
         }
 
         shopUI.Q<Label>("refreshCost").text = "刷新 -" + refreshPriceNum;
-        if (playerStatus.gold < refreshPriceNum)
-        {
-            shopUI.Q<Label>("refreshCost").style.color = Color.red;
-        }
     }
 
     // 玩家状态赋值
@@ -145,7 +194,6 @@ public class shopProduct : MonoBehaviour
         SetTextAndColor("dodgeRateValue", playerStatus.dodgeRate);
         SetTextAndColor("speedValue", playerStatus.speed);
         SetTextAndColor("pickUpRangeValue", playerStatus.pickUpRange);
-        SetTextAndColor("gold", playerStatus.gold);
     }
 
     private void SetTextAndColor(string statusName, float num)
@@ -166,8 +214,8 @@ public class shopProduct : MonoBehaviour
             AudioSource.PlayClipAtPoint(deniedAudio, transform.position);
             return;
         }
-        //够不够钱
-        if (!Pay(item.cost))
+        //不够钱
+        if (gold < item.cost)
         {
             AudioSource.PlayClipAtPoint(deniedAudio, transform.position);
             return;
@@ -177,7 +225,7 @@ public class shopProduct : MonoBehaviour
         if (item.isWeapon)
         {
             //武器
-            if (playerBag.weaponList.Count < 2)
+            if (playerBag.weaponList.Count < weaponSlot)
             {
                 playerBag.weaponList.Add(item);
                 playerBag.weaponQualityList.Add(item.quality);
@@ -216,6 +264,7 @@ public class shopProduct : MonoBehaviour
         }
         SetProduct();
         SetPlayerStatus();
+        gold.Value -= item.cost;
     }
 
     //能否购买武器
@@ -241,18 +290,6 @@ public class shopProduct : MonoBehaviour
         }
 
         return sameWeaponIndex;
-    }
-
-    // 付款
-    private bool Pay(int price)
-    {
-        if (playerStatus.gold >= price)
-        {
-            playerStatus.gold -= price;
-            shopUI.Q<Label>("gold").text = playerStatus.gold.ToString();
-            return true;
-        }
-        return false;
     }
 
     // 加载背包物品
@@ -309,35 +346,50 @@ public class shopProduct : MonoBehaviour
     {
         var dialog = shopUI.Q("weaponDialog");
 
-        for (int i = 0; i < playerBag.weaponList.Count; i++)
+        var weaponBagUI = shopUI.Q("weaponList");
+        weaponBagUI.Clear();
+        for (int i = 0; i < weaponSlot; i++)
         {
-            var weaponItem = playerBag.weaponList[i];
-            var weaponBoxUI = shopUI.Query("weapon").AtIndex(i);
-            var weaponUI = shopUI.Query("weaponImg").AtIndex(i);
-            var background = new StyleBackground(weaponItem.itemImg);
-            weaponUI.style.backgroundImage = background;
-            weaponBoxUI.style.backgroundColor = MyDictionary.qualityColor[playerBag.weaponQualityList[i]];
+            var itemTemplate = Resources.Load<VisualTreeAsset>("weaponItem").Instantiate();
+            weaponBagUI.Add(itemTemplate);
 
-            //武器弹窗
-            weaponBoxUI.RegisterCallback<MouseEnterEvent>((evt) =>
+            if (i < playerBag.weaponList.Count)
             {
-                dialog.visible = true;
-                dialog.style.left = evt.mousePosition.x;
-                dialog.style.top = evt.mousePosition.y - dialog.contentRect.height - 20;
+                var weaponItem = playerBag.weaponList[i];
+                var weaponIndex = i;
+                var weaponBoxUI = shopUI.Query("weapon").AtIndex(i);
+                var weaponUI = shopUI.Query("weaponImg").AtIndex(i);
+                var background = new StyleBackground(weaponItem.itemImg);
+                weaponUI.style.backgroundImage = background;
+                weaponBoxUI.style.backgroundColor = MyDictionary.qualityColor[playerBag.weaponQualityList[i]];
 
-                dialog.Q("productImg").style.backgroundImage = background;
-                dialog.Q<Label>("productName").text = weaponItem.itemName;
-                dialog.Q<Label>("productInfo").text = weaponItem.itemInfo;
-                dialog.Q<Label>("productCost").text = weaponItem.cost.ToString();
-            }, TrickleDown.TrickleDown);
+                //武器弹窗
+                weaponBoxUI.RegisterCallback<MouseEnterEvent>((evt) =>
+                {
+                    selectWeaponIndex = weaponIndex;
+                    dialog.visible = true;
+                    dialog.style.left = evt.mousePosition.x;
+                    dialog.style.top = evt.mousePosition.y - dialog.contentRect.height - 20;
 
-            //隐藏弹窗
-            weaponBoxUI.RegisterCallback<MouseOutEvent>(evt =>
-            {
-                dialog.visible = false;
-            }, TrickleDown.TrickleDown);
+                    dialog.Q("productImg").style.backgroundImage = background;
+                    dialog.Q<Label>("productName").text = weaponItem.itemName;
+                    dialog.Q<Label>("productInfo").text = weaponItem.itemInfo;
+                    dialog.Q<Label>("productCost").text = weaponItem.cost.ToString();
+                    dialog.Q<Label>("sellNum").text = (weaponItem.cost / 3).ToString();
+                    if (playerStatus.gold < weaponItem.cost)
+                    {
+                        dialog.Q<Label>("productCost").style.color = Color.red;
+                    }
+                }, TrickleDown.TrickleDown);
 
-            DialogEvent(dialog);
+                //隐藏弹窗
+                weaponBoxUI.RegisterCallback<MouseOutEvent>(evt =>
+                {
+                    dialog.visible = false;
+                }, TrickleDown.TrickleDown);
+
+                DialogEvent(dialog);
+            }
         }
     }
 
@@ -353,5 +405,21 @@ public class shopProduct : MonoBehaviour
         {
             dialog.visible = false;
         }, TrickleDown.TrickleDown);
+    }
+
+    private void goldChange(int newVal)
+    {
+        shopUI.Q<Label>("gold").text = newVal.ToString();
+
+        //商品价格颜色
+        shopUI.Q("productList").Query<Label>("productCost").ForEach(item =>
+        {
+            var textColor = int.Parse(item.text) > newVal ? Color.red : Color.white;
+            item.style.color = textColor;
+        });
+
+        //刷新按钮颜色
+        var refreshColor = refreshPriceNum > newVal ? Color.red : Color.white;
+        shopUI.Q<Label>("refreshCost").style.color = refreshColor;
     }
 }

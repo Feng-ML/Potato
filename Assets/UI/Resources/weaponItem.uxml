@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="weapon" class="item" style="background-color: rgba(0, 0, 0, 0.42);">
+        <ui:VisualElement name="weaponImg" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: none;" />
+    </ui:VisualElement>
+</ui:UXML>

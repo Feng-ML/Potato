@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7483187288189065848}
   - component: {fileID: 4588768065021846664}
   - component: {fileID: 2551021180185721672}
-  - component: {fileID: 449186673176230511}
+  - component: {fileID: 3725781458989196342}
   m_Layer: 10
-  m_Name: Weapon1
+  m_Name: Weapon2
   m_TagString: weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,15 +26,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4648371776358744430}
-  m_LocalRotation: {x: 0, y: 0, z: 0.054862995, w: 0.9984939}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1091149429029016343}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.29}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4588768065021846664
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 11
-  m_Sprite: {fileID: -1218606166, guid: 63f3235ea3498c44687244f79ff824c6, type: 3}
+  m_Sprite: {fileID: -126073979, guid: 748beb834cfbb294aa8c758734ee2700, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,7 +97,7 @@ Animator:
   m_GameObject: {fileID: 4648371776358744430}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1afff6748a59c6a4c8e71965506c8015, type: 2}
+  m_Controller: {fileID: 9100000, guid: 71bbefbb6a74dfc49bc42db835849bc3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -108,7 +108,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &449186673176230511
+--- !u!114 &3725781458989196342
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,10 +122,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBag: {fileID: 11400000, guid: fee333de76a755c4080e531e25629a02, type: 2}
   playerStatus: {fileID: 11400000, guid: 42a2b3de3a27da340af226201e15f196, type: 2}
-  fireAudio: {fileID: 8300000, guid: 6875925a550361f4c82e8354d609a6bb, type: 3}
-  attackRange: 6
-  attackTime: 1
-  bulletIndex: 0
+  fireAudio: {fileID: 8300000, guid: ca60e39f91d247e48a4fc050d962a576, type: 3}
+  attackRange: 12
+  attackTime: 2
+  bulletIndex: 1
 --- !u!1 &6968667851687030059
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6968667851687030059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1089, y: -0.006, z: 0}
+  m_LocalPosition: {x: 0.1068, y: -0.0081, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

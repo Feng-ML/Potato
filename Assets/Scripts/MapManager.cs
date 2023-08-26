@@ -65,7 +65,7 @@ public class MapManager : MonoBehaviour
                 float x = UnityEngine.Random.Range(-16, 16);
                 float y = UnityEngine.Random.Range(-7, 7);
                 var enemyIndex = UnityEngine.Random.Range(0, 3);
-                StartCoroutine(Born(0, new Vector2(x, y)));
+                StartCoroutine(Born(enemyIndex, new Vector2(x, y)));
             }
             bornTime = 0;
         }

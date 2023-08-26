@@ -41,7 +41,7 @@ public class Boos1 : EnemyControl
     private void Attack()
     {
         animator.SetTrigger("attack");
-        var bullet = PoolControl.Instance.bulletPool[2].Get();
+        var bullet = PoolControl.Instance.enemyBulletPool[1].Get();
         bullet.transform.position = transform.position;
         bullet.forward = forward;
     }

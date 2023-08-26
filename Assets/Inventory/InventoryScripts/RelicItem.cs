@@ -7,7 +7,6 @@ public class RelicItem : ScriptableObject
 {
     public string id;
     public string relicName;
-    public Sprite relicImg;
     [TextArea]
     public string relicInfo;             //ÃèÊö
     public GameObject relicPrefab;       //ÒÅÎïÔ¤ÖÆÌå

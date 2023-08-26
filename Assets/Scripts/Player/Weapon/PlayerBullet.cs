@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerBullet : Bullet
 {
     public int maxPenetration = 1;     //最大贯通个数
-    private int curPenetration;        //当前剩余贯通个数
+    protected int curPenetration;      //当前剩余贯通个数
     public float repelPower;           //击退程度
     public PlayerStatus playerStatus;
 

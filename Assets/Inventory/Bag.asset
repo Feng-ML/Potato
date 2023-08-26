@@ -18,10 +18,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0cb7086f890f66a46be33db892d7157f, type: 2}
   - {fileID: 11400000, guid: b028e9440f11194429debaa16e39aabc, type: 2}
   - {fileID: 11400000, guid: 2b2be7acb1f13544ea575bff3c162d4d, type: 2}
-  countList: 0200000003000000030000000200000001000000
+  countList: 0900000003000000050000000500000006000000
   weaponList:
+  - {fileID: 11400000, guid: 70d5b9bafc3f08f499e207b3272c3fe4, type: 2}
   - {fileID: 11400000, guid: af61bd8897b58534fa2dfd7d518fffbd, type: 2}
   - {fileID: 11400000, guid: af61bd8897b58534fa2dfd7d518fffbd, type: 2}
-  weaponQualityList: 0000000000000000
+  weaponQualityList: 000000000000000000000000
   relicsList:
   - {fileID: 11400000, guid: 7e18eee340dc84e4493153ef6579f1b7, type: 2}

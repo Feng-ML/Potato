@@ -638,11 +638,15 @@ MonoBehaviour:
   enemyPool: []
   bulletList:
   - {fileID: 4215958668451303008, guid: 892f9294003f0754d9eabab940e760fc, type: 3}
+  - {fileID: -8565649787616804293, guid: f3d50db36fac49e40b9dfab07566174b, type: 3}
+  bulletPool: []
+  enemyBulletList:
   - {fileID: 6890176344531772447, guid: 4023e7359843ea2408fbc65e7c784376, type: 3}
   - {fileID: 4978333580938804239, guid: 54a8e585366a48549bc583b2a9bf5576, type: 3}
-  bulletPool: []
+  enemyBulletPool: []
   explosionList:
   - {fileID: -4551791944224797431, guid: 1f79bffb388348d448434cdf408872f3, type: 3}
+  - {fileID: -4551791944224797431, guid: 9ecb0361d50c76d488cde563752db890, type: 3}
   explosionPool: []
 --- !u!4 &129788859
 Transform:
