@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/USS/Select.uss?fileID=7433441132597879392&amp;guid=96fb28bdf9bdccc4084af2ee9ccb000c&amp;type=3#Select" />
+    <ui:VisualElement style="flex-grow: 1; background-color: rgb(89, 89, 89);">
+        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+        <ui:VisualElement name="selectList" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-wrap: wrap; flex-direction: row; padding-left: 100px; padding-right: 100px; padding-top: 0; padding-bottom: 0; justify-content: center;">
+            <ui:VisualElement name="item" class="item">
+                <ui:VisualElement name="img" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/Player/player1.png?fileID=-1485515938&amp;guid=dac2b634fda112043b39def4e65e7085&amp;type=3#player1_0&apos;); -unity-background-scale-mode: scale-to-fit;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="item" class="item">
+                <ui:VisualElement name="img" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/Player/player1.png?fileID=-1485515938&amp;guid=dac2b634fda112043b39def4e65e7085&amp;type=3#player1_0&apos;); -unity-background-scale-mode: scale-to-fit;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="item" class="item">
+                <ui:VisualElement name="img" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/Player/player1.png?fileID=-1485515938&amp;guid=dac2b634fda112043b39def4e65e7085&amp;type=3#player1_0&apos;); -unity-background-scale-mode: scale-to-fit;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="item" class="item">
+                <ui:VisualElement name="img" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/Player/player1.png?fileID=-1485515938&amp;guid=dac2b634fda112043b39def4e65e7085&amp;type=3#player1_0&apos;); -unity-background-scale-mode: scale-to-fit;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

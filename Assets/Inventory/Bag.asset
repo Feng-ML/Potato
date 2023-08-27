@@ -23,6 +23,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 70d5b9bafc3f08f499e207b3272c3fe4, type: 2}
   - {fileID: 11400000, guid: af61bd8897b58534fa2dfd7d518fffbd, type: 2}
   - {fileID: 11400000, guid: af61bd8897b58534fa2dfd7d518fffbd, type: 2}
-  weaponQualityList: 000000000000000000000000
+  - {fileID: 11400000, guid: 70d5b9bafc3f08f499e207b3272c3fe4, type: 2}
+  - {fileID: 11400000, guid: af61bd8897b58534fa2dfd7d518fffbd, type: 2}
+  - {fileID: 11400000, guid: 70d5b9bafc3f08f499e207b3272c3fe4, type: 2}
+  weaponQualityList: 010000000100000000000000010000000000000000000000
   relicsList:
-  - {fileID: 11400000, guid: 7e18eee340dc84e4493153ef6579f1b7, type: 2}
+  - {fileID: 8951528511363552366, guid: ae44aa3c9ab948645b7a98d27fc965f5, type: 3}

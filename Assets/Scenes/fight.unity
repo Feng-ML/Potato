@@ -13644,6 +13644,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7285379358251568758, guid: 802535ac19f077643a5e20ba7d7bef3c, type: 3}
+      propertyPath: weaponPsList.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285379358251568758, guid: 802535ac19f077643a5e20ba7d7bef3c, type: 3}
+      propertyPath: weaponPsList.Array.data[0].x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285379358251568758, guid: 802535ac19f077643a5e20ba7d7bef3c, type: 3}
+      propertyPath: weaponPsList.Array.data[0].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285379358251568758, guid: 802535ac19f077643a5e20ba7d7bef3c, type: 3}
+      propertyPath: weaponPsList.Array.data[1].x
+      value: -0.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285379358251568758, guid: 802535ac19f077643a5e20ba7d7bef3c, type: 3}
+      propertyPath: weaponPsList.Array.data[1].y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285379358251568758, guid: 802535ac19f077643a5e20ba7d7bef3c, type: 3}
+      propertyPath: weaponPsList.Array.data[2].x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285379358251568758, guid: 802535ac19f077643a5e20ba7d7bef3c, type: 3}
+      propertyPath: weaponPsList.Array.data[2].y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285379358251568758, guid: 802535ac19f077643a5e20ba7d7bef3c, type: 3}
+      propertyPath: weaponPsList.Array.data[3].x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285379358251568758, guid: 802535ac19f077643a5e20ba7d7bef3c, type: 3}
+      propertyPath: weaponPsList.Array.data[3].y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285379358251568758, guid: 802535ac19f077643a5e20ba7d7bef3c, type: 3}
+      propertyPath: weaponPsList.Array.data[4].x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285379358251568758, guid: 802535ac19f077643a5e20ba7d7bef3c, type: 3}
+      propertyPath: weaponPsList.Array.data[4].y
+      value: -0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285379358251568758, guid: 802535ac19f077643a5e20ba7d7bef3c, type: 3}
+      propertyPath: weaponPsList.Array.data[5].x
+      value: 0.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285379358251568758, guid: 802535ac19f077643a5e20ba7d7bef3c, type: 3}
+      propertyPath: weaponPsList.Array.data[5].y
+      value: -0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 8069603545285102068, guid: 802535ac19f077643a5e20ba7d7bef3c, type: 3}
       propertyPath: m_Name
       value: player

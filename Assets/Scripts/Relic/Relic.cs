@@ -5,6 +5,10 @@ using UnityEngine.UIElements;
 
 public class Relic : MonoBehaviour
 {
+    public string relicName;
+    [TextArea]
+    public string relicInfo;             //ÃèÊö
+
     [Range(0, 1f)] public float attackProbability;
     [Range(0, 1f)] public float damageProbability;
 

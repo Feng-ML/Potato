@@ -9,7 +9,7 @@ public class Bag : ScriptableObject
     public List<int> countList;                             //物品数量列表
 
     public List<Item> weaponList;                           //武器列表
-    public List<MyEnums.QualityLevel> weaponQualityList;      //武器品质列表
+    public List<MyEnums.QualityLevel> weaponQualityList;    //武器品质列表
 
-    public List<RelicItem> relicsList;                      //遗物列表
+    public List<Relic> relicsList;                          //遗物列表
 }

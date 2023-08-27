@@ -5,7 +5,7 @@ public class EnemyPool : Pool<EnemyControl>
 {
     private void Awake()
     {
-        InitPool();
+        InitPool(100, 500, false);
     }
 
     protected override EnemyControl OnCreateObj()

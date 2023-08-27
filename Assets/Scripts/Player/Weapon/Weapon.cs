@@ -115,7 +115,7 @@ public class Weapon : MonoBehaviour
 
         playerBag.relicsList.ForEach(item =>
         {
-            item.relicPrefab.GetComponent<Relic>().OnAttack(transform.rotation, Muzzle.position, bulletIndex);
+            item.OnAttack(transform.rotation, Muzzle.position, bulletIndex);
         });
     }
 }
