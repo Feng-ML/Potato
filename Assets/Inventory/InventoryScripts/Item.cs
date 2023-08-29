@@ -9,13 +9,13 @@ public class Item : ScriptableObject
     public string itemName;
     public Sprite itemImg;
     [TextArea]
-    public string itemInfo;             //描述
-    public int cost;                    //价格
+    public string itemInfo;               //描述
+    public int cost;                      //价格
     public MyEnums.QualityLevel quality;  //品质
-    public List<AttrObj> effectList;    //宝物效果
+    public List<AttrObj> effectList;      //宝物效果
 
-    public bool isWeapon;                //是否为武器
-    public GameObject weaponPrefab;     //武器预制体
+    public bool isWeapon;                 //是否为武器
+    public GameObject weaponPrefab;       //武器预制体
 }
 
 [System.Serializable]

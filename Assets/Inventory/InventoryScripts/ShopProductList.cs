@@ -6,4 +6,7 @@ using UnityEngine;
 public class ShopProductList : ScriptableObject
 {
     public List<Item> itemsList;
+    public List<Item> weaponList;
+
+    public List<Charactar> charactarList;         //╫ги╚ап╠М
 }

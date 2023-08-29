@@ -20,3 +20,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0cb7086f890f66a46be33db892d7157f, type: 2}
   - {fileID: 11400000, guid: af61bd8897b58534fa2dfd7d518fffbd, type: 2}
   - {fileID: 11400000, guid: 70d5b9bafc3f08f499e207b3272c3fe4, type: 2}
+  weaponList:
+  - {fileID: 11400000, guid: af61bd8897b58534fa2dfd7d518fffbd, type: 2}
+  - {fileID: 11400000, guid: 70d5b9bafc3f08f499e207b3272c3fe4, type: 2}
+  charactarList:
+  - {fileID: 11400000, guid: be38c4d5c52f7914fa1a92bac8655d97, type: 2}
+  - {fileID: 11400000, guid: e910d3e45022bc04abcbf7b9a1d22daa, type: 2}
+  - {fileID: 11400000, guid: 726b9acfa8cab414ba62016f164e0ac7, type: 2}

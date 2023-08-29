@@ -72,10 +72,10 @@ public class shopProduct : MonoBehaviour
             {
                 item.style.opacity = 0.7f;
             }, TrickleDown.TrickleDown);
-            item.RegisterCallback<MouseOutEvent>(ev =>
+            item.RegisterCallback<MouseLeaveEvent>(ev =>
             {
                 item.style.opacity = 1f;
-            }, TrickleDown.TrickleDown);
+            });
         });
     }
 
@@ -401,10 +401,10 @@ public class shopProduct : MonoBehaviour
             dialog.visible = true;
         }, TrickleDown.TrickleDown);
 
-        dialog.RegisterCallback<MouseOutEvent>(evt =>
+        dialog.RegisterCallback<MouseLeaveEvent>(evt =>
         {
             dialog.visible = false;
-        }, TrickleDown.TrickleDown);
+        });
     }
 
     private void goldChange(int newVal)

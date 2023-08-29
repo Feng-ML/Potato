@@ -3,10 +3,11 @@
     height: 200px;
     margin-left: 20px;
     margin-right: 20px;
-    background-color: rgb(48, 32, 32);
+    background-color: rgba(0, 0, 0, 0.48);
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     flex-shrink: 0;
+    margin-bottom: 20px;
 }
