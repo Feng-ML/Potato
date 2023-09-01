@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         LoadPlayerWeapon();
+        LoadCharactar();
     }
 
     private void FixedUpdate()
@@ -45,6 +46,11 @@ public class PlayerControl : MonoBehaviour
         {
             animator.SetBool("isMoving", false);
         }
+    }
+
+    private void LoadCharactar()
+    {
+        animator.runtimeAnimatorController = playerBag.charactar.charactarAnimator;
     }
 
     //º”‘ÿŒ‰∆˜

@@ -7,6 +7,7 @@ public class Menu : MonoBehaviour
 {
     public GameStatus gameStatus;
     public PlayerStatus playerStatus;
+    public Bag bag;
 
     public void QuitGame()
     {
@@ -15,11 +16,11 @@ public class Menu : MonoBehaviour
 
     public void PlayGame()
     {
-        gameStatus.wave = 1;
+        gameStatus.Begin();
         playerStatus.Init();
+        bag.Init();
         Time.timeScale = 1f;
-        gameStatus.status = GameStatus.gameStatusEnum.playing;
-        SceneManager.LoadScene("Fight");
+        SceneManager.LoadScene("Select");
     }
 
     public void BackToTitle()

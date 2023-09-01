@@ -16,4 +16,10 @@ public class GameStatus : ScriptableObject
         victory,
         end
     }
+
+    public void Begin()
+    {
+        wave = 1;
+        status = gameStatusEnum.playing;
+    }
 }

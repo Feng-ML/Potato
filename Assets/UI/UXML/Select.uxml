@@ -1,12 +1,50 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="playerItem" src="project://database/Assets/UI/Resources/charactarItem.uxml?fileID=9197481963319205126&amp;guid=d59b9b4a31f8a1b4aa2ecb5582675149&amp;type=3#charactarItem" />
     <Style src="project://database/Assets/UI/USS/Select.uss?fileID=7433441132597879392&amp;guid=96fb28bdf9bdccc4084af2ee9ccb000c&amp;type=3#Select" />
+    <Style src="project://database/Assets/UI/USS/global.uss?fileID=7433441132597879392&amp;guid=11a4eecccc9101e47a54236061e42cf6&amp;type=3#global" />
     <ui:VisualElement style="flex-grow: 1; background-color: rgba(89, 89, 89, 0);">
-        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-shrink: 1; height: auto;" />
-        <ui:VisualElement name="charactarList" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-wrap: wrap; flex-direction: row; padding-left: 100px; padding-right: 100px; padding-top: 0; padding-bottom: 0; justify-content: flex-start; align-items: stretch; align-self: auto; flex-shrink: 0; height: 60%;">
-            <ui:Instance template="playerItem" name="charactarItem" />
-            <ui:Instance template="playerItem" name="charactarItem" />
-            <ui:Instance template="playerItem" name="charactarItem" />
+        <ui:VisualElement name="top" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-shrink: 1; height: auto;" />
+        <ui:VisualElement name="bottom" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); height: 60%; flex-shrink: 0; flex-direction: row; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 50px; justify-content: space-around;">
+            <ui:ScrollView class="selectList">
+                <ui:VisualElement name="charactarList" style="flex-direction: row; flex-wrap: wrap;">
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                </ui:VisualElement>
+            </ui:ScrollView>
+            <ui:ScrollView class="selectList">
+                <ui:VisualElement name="weaponList" style="flex-direction: row; flex-wrap: wrap;">
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                    <ui:Instance template="playerItem" name="charactarItem" />
+                </ui:VisualElement>
+            </ui:ScrollView>
+            <ui:VisualElement name="title" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; width: 100%; left: 0; padding-left: 60px; padding-right: 60px; top: -96px; flex-direction: row; justify-content: space-between;">
+                <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+                    <ui:Label tabindex="-1" text="角色" display-tooltip-when-elided="true" style="-unity-font: url(&apos;project://database/Assets/Font/ipix_12px.ttf?fileID=12800000&amp;guid=bdcb2822563d8fe49b6d9900b9e89258&amp;type=3#ipix_12px&apos;); font-size: 40px; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); -unity-text-align: upper-right;">
+                    <ui:Label tabindex="-1" text="武器" display-tooltip-when-elided="true" style="-unity-font: url(&apos;project://database/Assets/Font/ipix_12px.ttf?fileID=12800000&amp;guid=bdcb2822563d8fe49b6d9900b9e89258&amp;type=3#ipix_12px&apos;); font-size: 40px; color: rgb(255, 255, 255); -unity-font-style: bold;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
         </ui:VisualElement>
+        <ui:Button text="出发" display-tooltip-when-elided="true" name="goButton" class="button" style="position: absolute; right: 60px; top: 60px; width: 300px; padding-top: 20px; padding-bottom: 20px;" />
     </ui:VisualElement>
 </ui:UXML>

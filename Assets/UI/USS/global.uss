@@ -1,0 +1,32 @@
+.unity-base-slider__tracker {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+}
+
+.unity-scroller__high-button {
+    visibility: hidden;
+}
+
+.unity-scroller__low-button {
+    visibility: hidden;
+}
+
+.unity-base-slider__dragger {
+    border-radius: 8px;
+}
+
+.button {
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    -unity-font: url('project://database/Assets/Font/ipix_12px.ttf?fileID=12800000&guid=bdcb2822563d8fe49b6d9900b9e89258&type=3#ipix_12px');
+    -unity-font-style: bold;
+    font-size: 25px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: rgba(156, 156, 156, 0.35);
+    color: rgb(255, 255, 255);
+}

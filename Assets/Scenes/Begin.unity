@@ -218,6 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStatus: {fileID: 11400000, guid: 0a809ae404ce47843b63d25bf47b9f41, type: 2}
   playerStatus: {fileID: 11400000, guid: 42a2b3de3a27da340af226201e15f196, type: 2}
+  bag: {fileID: 11400000, guid: fee333de76a755c4080e531e25629a02, type: 2}
 --- !u!114 &33058231
 MonoBehaviour:
   m_ObjectHideFlags: 0
