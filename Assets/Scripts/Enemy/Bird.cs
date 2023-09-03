@@ -5,7 +5,6 @@ using UnityEngine;
 public class Bird : EnemyControl
 {
     private float attackTime;
-    private bool isFlee;            // «∑Ò‘∂¿Î¥•∑¢
 
     protected override void Awake()
     {
@@ -21,17 +20,10 @@ public class Bird : EnemyControl
         {
             Attack();
             attackTime = 0;
-            isFlee = false;
         }
         else
         {
             attackTime += Time.deltaTime;
-        }
-        //‘∂¿Î
-        if (playerDirection.magnitude < 5 && isFlee == false)
-        {
-            isFlee = true;
-            forward = (transform.position - player.transform.position).normalized;
         }
     }
 
@@ -50,8 +42,12 @@ public class Bird : EnemyControl
 
     protected override void Move()
     {
+        //‘∂¿Î
+        if (playerDirection.magnitude < 5)
+        {
+            forward = (transform.position - player.transform.position).normalized;
+        }
         rb.velocity = forward * moveSpeed;
-        //transform.position += (Vector3)forward * moveSpeed * Time.deltaTime;
     }
 
     protected override void OnTriggerStay2D(Collider2D collision)

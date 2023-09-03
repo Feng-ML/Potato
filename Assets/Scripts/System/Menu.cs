@@ -8,6 +8,7 @@ public class Menu : MonoBehaviour
     public GameStatus gameStatus;
     public PlayerStatus playerStatus;
     public Bag bag;
+    public GameObject settingUI;
 
     public void QuitGame()
     {
@@ -27,5 +28,15 @@ public class Menu : MonoBehaviour
     {
         gameStatus.status = GameStatus.gameStatusEnum.start;
         SceneManager.LoadScene("Begin");
+    }
+
+    public void OpenSetting()
+    {
+        settingUI.SetActive(true);
+    }
+
+    public void CancelSetting()
+    {
+        settingUI.SetActive(false);
     }
 }

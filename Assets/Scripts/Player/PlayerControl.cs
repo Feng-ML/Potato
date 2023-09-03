@@ -50,7 +50,8 @@ public class PlayerControl : MonoBehaviour
 
     private void LoadCharactar()
     {
-        animator.runtimeAnimatorController = playerBag.charactar.charactarAnimator;
+        if (playerBag.charactar)
+            animator.runtimeAnimatorController = playerBag.charactar.charactarAnimator;
     }
 
     //º”‘ÿŒ‰∆˜
