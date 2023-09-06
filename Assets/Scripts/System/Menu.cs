@@ -10,6 +10,12 @@ public class Menu : MonoBehaviour
     public Bag bag;
     public GameObject settingUI;
 
+    private void Awake()
+    {
+        // ÊÇ·ñÈ«ÆÁ
+        Screen.fullScreen = Seting.Instance.GetFullScreen();
+    }
+
     public void QuitGame()
     {
         Application.Quit();

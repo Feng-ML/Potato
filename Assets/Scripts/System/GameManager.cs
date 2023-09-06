@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         BGM = gameObject.GetComponent<AudioSource>();
+        if (BGM) BGM.volume = Seting.Instance.GetMusic() / 100f;
     }
 
     void Update()

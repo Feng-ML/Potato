@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3ce6588fb185e64987cfd21ac78a74b, type: 3}
   m_Name: GameStatus
   m_EditorClassIdentifier: 
-  status: 0
+  status: 1
   wave: 1
