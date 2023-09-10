@@ -10,6 +10,9 @@ public class SelectUI : MonoBehaviour
     public GameObject player;
     public Bag bag;
 
+    public AudioClip confirmAudio;
+    private float volume;
+
     private VisualElement rootEl;
     private GameObject weapon;
 
@@ -20,6 +23,7 @@ public class SelectUI : MonoBehaviour
     {
         rootEl = GetComponent<UIDocument>().rootVisualElement;
         weapon = player.transform.Find("Weapon").gameObject;
+        volume = Seting.Instance.GetVolume() / 100f;
     }
 
     private void Start()
@@ -49,6 +53,7 @@ public class SelectUI : MonoBehaviour
             {
                 player.GetComponent<Animator>().runtimeAnimatorController = item.charactarAnimator;
                 charactarIndex = index;
+                AudioSource.PlayClipAtPoint(confirmAudio, transform.position, volume);
             }, TrickleDown.TrickleDown);
 
             SetItemEvent(itemTemplate);
@@ -74,6 +79,7 @@ public class SelectUI : MonoBehaviour
             {
                 weapon.GetComponent<SpriteRenderer>().sprite = item.itemImg;
                 weaponIndex = index;
+                AudioSource.PlayClipAtPoint(confirmAudio, transform.position, volume);
             }, TrickleDown.TrickleDown);
 
             SetItemEvent(itemTemplate);
@@ -95,6 +101,7 @@ public class SelectUI : MonoBehaviour
 
     private void GoToFight()
     {
+        AudioSource.PlayClipAtPoint(confirmAudio, transform.position, volume);
         bag.charactar = productList.charactarList[charactarIndex];
 
         bag.weaponList.Add(productList.weaponList[weaponIndex]);

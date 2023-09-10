@@ -12809,6 +12809,7 @@ GameObject:
   - component: {fileID: 2052500117}
   - component: {fileID: 2052500116}
   - component: {fileID: 2052500120}
+  - component: {fileID: 2052500121}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -12999,6 +13000,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2052500121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052500115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 700770c4b3c2d8545a1c9e4a0c4d9754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2073387063
 GameObject:
   m_ObjectHideFlags: 0
@@ -13504,6 +13517,14 @@ PrefabInstance:
     - target: {fileID: 5645602528269493525, guid: 802535ac19f077643a5e20ba7d7bef3c, type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5645602528269493525, guid: 802535ac19f077643a5e20ba7d7bef3c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5645602528269493525, guid: 802535ac19f077643a5e20ba7d7bef3c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5645602528269493525, guid: 802535ac19f077643a5e20ba7d7bef3c, type: 3}
       propertyPath: m_LocalPosition.x

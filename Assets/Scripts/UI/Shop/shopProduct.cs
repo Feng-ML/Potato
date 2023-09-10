@@ -7,7 +7,6 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using static UnityEditor.Progress;
 
 public class shopProduct : MonoBehaviour
 {
@@ -19,6 +18,7 @@ public class shopProduct : MonoBehaviour
 
     public AudioClip buyAudio;
     public AudioClip deniedAudio;
+    private float volume;
 
     public int weaponSlot = 6;              //武器槽位
 
@@ -33,6 +33,7 @@ public class shopProduct : MonoBehaviour
     {
         shopUI = GetComponent<UIDocument>().rootVisualElement;
         gold = new BindableProperty<int>(playerStatus.gold);
+        volume = Seting.Instance.GetVolume() / 100f;
         RefreshShop();
         SetPlayerStatus();
         LoadPlayerBag();
@@ -107,7 +108,7 @@ public class shopProduct : MonoBehaviour
             }
             else
             {
-                AudioSource.PlayClipAtPoint(deniedAudio, transform.position);
+                AudioSource.PlayClipAtPoint(deniedAudio, transform.position, volume);
             }
         };
 
@@ -118,7 +119,7 @@ public class shopProduct : MonoBehaviour
             gold.Value += playerBag.weaponList[selectWeaponIndex].cost / 3;
             playerBag.weaponList.RemoveAt(selectWeaponIndex);
             playerBag.weaponQualityList.RemoveAt(selectWeaponIndex);
-            AudioSource.PlayClipAtPoint(buyAudio, transform.position);
+            AudioSource.PlayClipAtPoint(buyAudio, transform.position, volume);
             LoadPlayerWeapon();
         };
     }
@@ -130,9 +131,10 @@ public class shopProduct : MonoBehaviour
         var price = refreshPriceNum;
         if (gold < price)
         {
-            AudioSource.PlayClipAtPoint(deniedAudio, transform.position);
+            AudioSource.PlayClipAtPoint(deniedAudio, transform.position, volume);
             return;
         };
+        AudioSource.PlayClipAtPoint(buyAudio, transform.position, volume);
 
         currentProductList.Clear();
         // 获得4个不同的随机数
@@ -211,17 +213,17 @@ public class shopProduct : MonoBehaviour
         //是否有枪械位置
         if (item.isWeapon && CanBuyWeapon(item) < 0)
         {
-            AudioSource.PlayClipAtPoint(deniedAudio, transform.position);
+            AudioSource.PlayClipAtPoint(deniedAudio, transform.position, volume);
             return;
         }
         //不够钱
         if (gold < item.cost)
         {
-            AudioSource.PlayClipAtPoint(deniedAudio, transform.position);
+            AudioSource.PlayClipAtPoint(deniedAudio, transform.position, volume);
             return;
         }
 
-        AudioSource.PlayClipAtPoint(buyAudio, transform.position);
+        AudioSource.PlayClipAtPoint(buyAudio, transform.position, volume);
         if (item.isWeapon)
         {
             //武器

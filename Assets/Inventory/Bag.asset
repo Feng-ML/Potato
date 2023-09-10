@@ -12,20 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef998db6c8fc50f4a8ab5a66ddd445b6, type: 3}
   m_Name: Bag
   m_EditorClassIdentifier: 
+  charactar: {fileID: 11400000, guid: be38c4d5c52f7914fa1a92bac8655d97, type: 2}
   itemsList:
   - {fileID: 11400000, guid: 7394d40864c81d547aa3e350e4710dc2, type: 2}
   - {fileID: 11400000, guid: 6bc11895c7f89bd459afc1c2feff5526, type: 2}
   - {fileID: 11400000, guid: 0cb7086f890f66a46be33db892d7157f, type: 2}
   - {fileID: 11400000, guid: b028e9440f11194429debaa16e39aabc, type: 2}
   - {fileID: 11400000, guid: 2b2be7acb1f13544ea575bff3c162d4d, type: 2}
-  countList: 0900000003000000050000000500000006000000
+  countList: 0b00000003000000060000000600000007000000
   weaponList:
   - {fileID: 11400000, guid: 70d5b9bafc3f08f499e207b3272c3fe4, type: 2}
   - {fileID: 11400000, guid: af61bd8897b58534fa2dfd7d518fffbd, type: 2}
   - {fileID: 11400000, guid: af61bd8897b58534fa2dfd7d518fffbd, type: 2}
   - {fileID: 11400000, guid: 70d5b9bafc3f08f499e207b3272c3fe4, type: 2}
-  - {fileID: 11400000, guid: af61bd8897b58534fa2dfd7d518fffbd, type: 2}
-  - {fileID: 11400000, guid: 70d5b9bafc3f08f499e207b3272c3fe4, type: 2}
-  weaponQualityList: 010000000100000000000000010000000000000000000000
+  weaponQualityList: 01000000010000000000000001000000
   relicsList:
   - {fileID: 8951528511363552366, guid: ae44aa3c9ab948645b7a98d27fc965f5, type: 3}

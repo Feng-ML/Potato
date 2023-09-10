@@ -24,6 +24,10 @@ public class Seting
     private static Seting instance;
     private string setingPath;
 
+    //设置改变事件
+    public delegate void SetingChanged(JsonData setingObj);
+    public static event SetingChanged OnSetingChanged;
+
     private Seting()
     {
         setingObj = GetSetingObj();
@@ -48,6 +52,9 @@ public class Seting
         setingObj = obj;
         var json = JsonMapper.ToJson(obj);
         File.WriteAllText(setingPath, json);
+
+        //发布改变事件
+        OnSetingChanged.Invoke(setingObj);
     }
 
     #region 获取数据

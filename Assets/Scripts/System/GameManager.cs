@@ -1,3 +1,4 @@
+using LitJson;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         BGM = gameObject.GetComponent<AudioSource>();
-        if (BGM) BGM.volume = Seting.Instance.GetMusic() / 100f;
+        BGM.volume = Seting.Instance.GetMusic() / 100f;
+
+        Seting.OnSetingChanged += ChangeSeting;
     }
 
     void Update()
@@ -22,6 +25,11 @@ public class GameManager : MonoBehaviour
         {
             TogglePause();
         }
+    }
+
+    private void OnDestroy()
+    {
+        Seting.OnSetingChanged -= ChangeSeting;
     }
 
     // ÇÐ»»ÓÎÏ·ÔÝÍ£×´Ì¬
@@ -41,5 +49,11 @@ public class GameManager : MonoBehaviour
             isPaused = true;
             menu.SetActive(true);
         }
+    }
+
+    // ÉèÖÃ¸Ä±ä ¶©ÔÄ
+    private void ChangeSeting(JsonData obj)
+    {
+        BGM.volume = Seting.Instance.GetMusic() / 100f;
     }
 }

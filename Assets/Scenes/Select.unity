@@ -386,6 +386,7 @@ MonoBehaviour:
   productList: {fileID: 11400000, guid: 60d16dee9046e9d42873a80603c871b5, type: 2}
   player: {fileID: 926210690}
   bag: {fileID: 11400000, guid: fee333de76a755c4080e531e25629a02, type: 2}
+  confirmAudio: {fileID: 8300000, guid: f725c93f57678f54d92ce5ec33860e07, type: 3}
 --- !u!1 &1570962984
 GameObject:
   m_ObjectHideFlags: 0
