@@ -652,7 +652,6 @@ MonoBehaviour:
   bulletPool: []
   enemyBulletList:
   - {fileID: 6890176344531772447, guid: 4023e7359843ea2408fbc65e7c784376, type: 3}
-  - {fileID: 4978333580938804239, guid: 54a8e585366a48549bc583b2a9bf5576, type: 3}
   enemyBulletPool: []
   explosionList:
   - {fileID: -4551791944224797431, guid: 1f79bffb388348d448434cdf408872f3, type: 3}
@@ -13317,6 +13316,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss1
       objectReference: {fileID: 0}
+    - target: {fileID: 731556003224429039, guid: 7e9e716b097403d4fbe9af8e2e790683, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1584715658076744565, guid: 7e9e716b097403d4fbe9af8e2e790683, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -13361,10 +13364,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1838609244808356699, guid: 7e9e716b097403d4fbe9af8e2e790683, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838609244808356699, guid: 7e9e716b097403d4fbe9af8e2e790683, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2361795939436298018, guid: 7e9e716b097403d4fbe9af8e2e790683, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 519420032}
+    - target: {fileID: 7256277938650988430, guid: 7e9e716b097403d4fbe9af8e2e790683, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 7990238689549806016, guid: 54a8e585366a48549bc583b2a9bf5576, type: 3}
+    - target: {fileID: 7256277938650988430, guid: 7e9e716b097403d4fbe9af8e2e790683, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 4978333580938804239, guid: 54a8e585366a48549bc583b2a9bf5576, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

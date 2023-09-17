@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBullet2 : EnemyBullet
+//延迟追踪子弹
+public class EnemyBullet_Track : EnemyBullet
 {
     private GameObject player;
     private Vector2 playerDirection;              //与玩家的向量
@@ -11,6 +12,9 @@ public class EnemyBullet2 : EnemyBullet
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        StartCoroutine(HideBullet());
+
+        SetDeactiveAction(() => Destroy(gameObject));
     }
 
     protected override void Update()
@@ -25,14 +29,9 @@ public class EnemyBullet2 : EnemyBullet
         rb.velocity = forward * speed;
     }
 
-    private void OnEnable()
-    {
-        StartCoroutine(HideBullet());
-    }
-
     private IEnumerator HideBullet()
     {
         yield return new WaitForSeconds(4);
-        if (gameObject.activeSelf) releaseAction.Invoke();
+        Destroy(gameObject);
     }
 }

@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class Boos1 : EnemyControl
 {
-    private float attackTime;
     public Transform healthBar;     //血条
+    public Bullet bulletPrefab;
+    private float attackTime;
     private Slider healthSlider;    //当前血量显示
 
     protected override void Awake()
@@ -41,8 +42,7 @@ public class Boos1 : EnemyControl
     private void Attack()
     {
         animator.SetTrigger("attack");
-        var bullet = PoolControl.Instance.enemyBulletPool[1].Get();
-        bullet.transform.position = transform.position;
+        Bullet bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         bullet.forward = forward;
     }
 

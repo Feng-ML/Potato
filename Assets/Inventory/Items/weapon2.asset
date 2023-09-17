@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: w2
   itemName: RPG
-  itemImg: {fileID: -126073979, guid: 748beb834cfbb294aa8c758734ee2700, type: 3}
+  itemImg: {fileID: 1703266177, guid: ded6020e0467e17448da557f7531fb54, type: 3}
   itemInfo: "\u653B\u51FB\u529B  5\n\n\u653B\u51FB\u901F\u5EA6  2s\n\n\u653B\u51FB\u8303\u56F4 
     150\n\n\u66B4\u51FB\u7387  0%\n\n\u8D2F\u901A 0"
   cost: 40
