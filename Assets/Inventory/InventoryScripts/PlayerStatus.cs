@@ -7,12 +7,12 @@ using UnityEngine;
 public class PlayerStatus : ScriptableObject
 {
     [Header("血量")]
-    public int maxHealth = 100;         //最大生命值
+    public int maxHealth;               //最大生命值
     public int health;                  //当前生命值
     public int healthRecover;           //生命恢复量
 
     [Header("经验")]
-    public uint level = 1;              //等级
+    public uint level;                  //等级
     public int maxExp;                  //经验值上限
     public int currentExp;              //当前经验值
 
@@ -20,7 +20,7 @@ public class PlayerStatus : ScriptableObject
     public float attack;                //伤害加成%
     public float attackSpeed;           //攻击速度%
     public float criticalRate;          //暴击率%
-    public float criticalDamage = 50;   //暴击伤害%
+    public float criticalDamage;        //暴击伤害%
     public float attackRange;           //攻击范围%
 
     [Header("防御")]
@@ -53,30 +53,34 @@ public class PlayerStatus : ScriptableObject
     }
 
     #region 属性修改
-    // 宝物修改属性
+    //多个属性修改
     public void AttrsChange(List<AttrObj> attrList)
     {
         foreach (var item in attrList)
         {
             var value = item.value;
-
-            Dictionary<string, Action> setArrt = new Dictionary<string, Action>()
-            {
-                { MyEnums.character.maxHealth.ToString(), ()=> maxHealth += value  },
-                { MyEnums.character.healthRecover.ToString(), ()=> healthRecover += value  },
-                { MyEnums.character.attack.ToString(), ()=> attack += value  },
-                { MyEnums.character.attackSpeed.ToString(), ()=> attackSpeed += value  },
-                { MyEnums.character.criticalRate.ToString(), ()=> criticalRate += value  },
-                { MyEnums.character.criticalDamage.ToString(), ()=> criticalDamage += value  },
-                { MyEnums.character.attackRange.ToString(), ()=> attackRange += value  },
-                { MyEnums.character.armor.ToString(), ()=> armor += value  },
-                { MyEnums.character.dodgeRate.ToString(), ()=> dodgeRate += value  },
-                { MyEnums.character.speed.ToString(), ()=> speed += value  },
-                { MyEnums.character.pickUpRange.ToString(), ()=> pickUpRange += value  },
-            };
-
-            setArrt[item.Attr.ToString()].Invoke();
+            AttrsChange(item.Attr.ToString(), value);
         }
+    }
+
+    //单个属性修改
+    public void AttrsChange(string attr, int value)
+    {
+        Dictionary<string, Action> setArrt = new Dictionary<string, Action>()
+        {
+            { MyEnums.character.maxHealth.ToString(), ()=> maxHealth += value  },
+            { MyEnums.character.healthRecover.ToString(), ()=> healthRecover += value  },
+            { MyEnums.character.attack.ToString(), ()=> attack += value  },
+            { MyEnums.character.attackSpeed.ToString(), ()=> attackSpeed += value  },
+            { MyEnums.character.criticalRate.ToString(), ()=> criticalRate += value  },
+            { MyEnums.character.criticalDamage.ToString(), ()=> criticalDamage += value  },
+            { MyEnums.character.attackRange.ToString(), ()=> attackRange += value  },
+            { MyEnums.character.armor.ToString(), ()=> armor += value  },
+            { MyEnums.character.dodgeRate.ToString(), ()=> dodgeRate += value  },
+            { MyEnums.character.speed.ToString(), ()=> speed += value  },
+            { MyEnums.character.pickUpRange.ToString(), ()=> pickUpRange += value  },
+        };
+        setArrt[attr].Invoke();
     }
 
     //添加经验

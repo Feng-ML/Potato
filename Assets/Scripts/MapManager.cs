@@ -15,7 +15,7 @@ public class MapManager : MonoBehaviour
     public float gameTime = 30;             //游戏时间
     public float bornTimer = 3;             //生成敌人间隔
     private float bornTime;
-    public GameObject[] bossList;
+    public GameObject[] bossList;           //Boss
 
     public TMP_Text gameTimeText;
     public TMP_Text waveText;
@@ -56,6 +56,7 @@ public class MapManager : MonoBehaviour
         else
         {
             gameTimeText.text = ((int)gameTime).ToString();
+            gameTimeText.color = gameTime <= 10 ? Color.red : Color.white;
         }
 
         if (bornTime > bornTimer)
@@ -93,7 +94,7 @@ public class MapManager : MonoBehaviour
     {
         if (gameStatus.wave == 3)
         {
-            bossList[0].SetActive(true);
+            Instantiate(bossList[0], new Vector2(8, -4), Quaternion.identity);
         }
     }
 }

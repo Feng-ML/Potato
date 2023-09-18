@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class shopProduct : MonoBehaviour
+public class ShopUI : MonoBehaviour
 {
     private VisualElement shopUI;
     public ShopProductList productList;     //所有宝物
@@ -29,7 +29,7 @@ public class shopProduct : MonoBehaviour
     private int refreshPriceNum;        //刷新价格
     private int selectWeaponIndex;      //当前选择武器下标
 
-    void Start()
+    private void Start()
     {
         shopUI = GetComponent<UIDocument>().rootVisualElement;
         gold = new BindableProperty<int>(playerStatus.gold);

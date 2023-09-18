@@ -11,7 +11,7 @@ public class Relic : MonoBehaviour
 
     [Range(0, 1f)] public float attackProbability;
     [Range(0, 1f)] public float damageProbability;
-
+    public PlayerStatus playerStatus;
 
     public void OnAttack(Quaternion rotation, Vector2 pos, int bulletIndex)
     {

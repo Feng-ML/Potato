@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GameStatus
   m_EditorClassIdentifier: 
   status: 1
-  wave: 1
+  wave: 3

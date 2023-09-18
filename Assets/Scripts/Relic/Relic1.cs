@@ -17,4 +17,9 @@ public class Relic1 : Relic
         bullentIns1.transform.rotation = positiveOffset;
         bullentIns2.transform.rotation = negativeOffset;
     }
+
+    public override void GetRelic()
+    {
+        playerStatus.AttrsChange(MyEnums.character.attack.ToString(), -50);
+    }
 }
