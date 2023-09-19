@@ -31,23 +31,12 @@ public class Relic : MonoBehaviour
         }
     }
 
-    public void OnGetRelic(PlayerManager player)
+    public void OnGetRelic()
     {
         GetRelic();
     }
 
-    public virtual void Attack(Quaternion rotation, Vector2 pos, int bulletIndex)
-    {
-        Debug.Log("攻击特效");
-    }
-
-    public virtual void Damage()
-    {
-        Debug.Log("受伤特效");
-    }
-
-    public virtual void GetRelic()
-    {
-        Debug.Log("获得特效");
-    }
+    public virtual void Attack(Quaternion rotation, Vector2 pos, int bulletIndex) { }
+    public virtual void Damage() { }
+    public virtual void GetRelic() { }
 }

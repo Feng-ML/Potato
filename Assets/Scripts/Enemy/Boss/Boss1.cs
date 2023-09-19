@@ -19,6 +19,7 @@ public class Boos1 : EnemyControl
         healthSlider = healthBar.GetComponent<Slider>();
         healthSlider.maxValue = maxHealth;
         healthSlider.value = maxHealth;
+
     }
 
     protected override void Update()
@@ -63,5 +64,10 @@ public class Boos1 : EnemyControl
     private void DieAnimationOver()
     {
         gameObject.SetActive(false);
+
+        //遗物选择界面
+        Time.timeScale = 0;
+        var RelicPage = GameObject.Find("Canvas").transform.Find("Relic_Page").gameObject;
+        RelicPage.SetActive(true);
     }
 }

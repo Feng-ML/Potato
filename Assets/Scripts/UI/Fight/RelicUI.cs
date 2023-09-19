@@ -7,7 +7,10 @@ using UnityEngine.UI;
 
 public class RelicUI : MonoBehaviour
 {
-    public Relic[] relicList;      //遗物列表
+    public Bag bag;
+    public Relic[] relicList;          //总遗物列表
+
+    private List<Relic> relicSelectList = new List<Relic>();    //待选择遗物列表
 
     private void OnEnable()
     {
@@ -20,12 +23,24 @@ public class RelicUI : MonoBehaviour
         }
         var numList = randomNumbers.ToArray();
 
+        relicSelectList.Clear();
         var RelicUIList = transform.GetComponentsInChildren<Transform>().Where(t => t.name == "RelicItem").ToArray();
         for (int i = 0; i < 3; i++)
         {
-            RelicUIList[i].Find("RelicImg").GetComponent<Image>().sprite = relicList[numList[i]].GetComponent<SpriteRenderer>().sprite;
-            RelicUIList[i].Find("RelicName").GetComponent<TMP_Text>().text = relicList[numList[i]].relicName;
-            RelicUIList[i].Find("RelicInfo").GetComponent<TMP_Text>().text = relicList[numList[i]].relicInfo;
+            Relic relicItem = relicList[numList[i]];
+            relicSelectList.Add(relicItem);
+            RelicUIList[i].Find("RelicImg").GetComponent<Image>().sprite = relicItem.GetComponent<SpriteRenderer>().sprite;
+            RelicUIList[i].Find("RelicName").GetComponent<TMP_Text>().text = relicItem.relicName;
+            RelicUIList[i].Find("RelicInfo").GetComponent<TMP_Text>().text = relicItem.relicInfo;
         }
+    }
+
+    public void RelicSelect(int index)
+    {
+        gameObject.SetActive(false);
+        Relic relicItem = relicSelectList[index];
+        bag.relicsList.Add(relicItem);
+        relicItem.OnGetRelic();
+        Time.timeScale = 1;
     }
 }
