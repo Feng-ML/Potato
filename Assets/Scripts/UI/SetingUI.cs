@@ -27,6 +27,7 @@ public class SetingUI : MonoBehaviour
         gameObject.SetActive(false);
 
         // 切换到全屏模式
-        Screen.fullScreen = fullScreenToggle.isOn;
+        //Screen.fullScreen = fullScreenToggle.isOn;
+        Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, fullScreenToggle.isOn);
     }
 }

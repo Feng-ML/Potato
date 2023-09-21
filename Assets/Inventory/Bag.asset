@@ -13,16 +13,8 @@ MonoBehaviour:
   m_Name: Bag
   m_EditorClassIdentifier: 
   charactar: {fileID: 11400000, guid: be38c4d5c52f7914fa1a92bac8655d97, type: 2}
-  itemsList:
-  - {fileID: 11400000, guid: 7394d40864c81d547aa3e350e4710dc2, type: 2}
-  - {fileID: 11400000, guid: 6bc11895c7f89bd459afc1c2feff5526, type: 2}
-  - {fileID: 11400000, guid: 0cb7086f890f66a46be33db892d7157f, type: 2}
-  - {fileID: 11400000, guid: b028e9440f11194429debaa16e39aabc, type: 2}
-  - {fileID: 11400000, guid: 2b2be7acb1f13544ea575bff3c162d4d, type: 2}
-  countList: 0b00000003000000060000000600000007000000
-  weaponList:
-  - {fileID: 11400000, guid: 70d5b9bafc3f08f499e207b3272c3fe4, type: 2}
-  weaponQualityList: 01000000
-  relicsList:
-  - {fileID: 1042213380361816620, guid: 72b9818efdfb04846afddf67c5468ef1, type: 3}
-  - {fileID: 1042213380361816620, guid: 72b9818efdfb04846afddf67c5468ef1, type: 3}
+  itemsList: []
+  countList: 
+  weaponList: []
+  weaponQualityList: 
+  relicsList: []

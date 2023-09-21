@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameStatus : ScriptableObject
 {
     public gameStatusEnum status;
-    public uint wave;       //第几波
+    public int wave;       //第几波
 
     public enum gameStatusEnum
     {

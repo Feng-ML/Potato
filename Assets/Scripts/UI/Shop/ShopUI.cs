@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,8 +20,6 @@ public class ShopUI : MonoBehaviour
     public AudioClip buyAudio;
     public AudioClip deniedAudio;
     private float volume;
-
-    public int weaponSlot = 6;              //武器槽位
 
     private BindableProperty<int> gold;
     private List<Item> currentProductList = new List<Item>();     //当前商品列表
@@ -169,8 +168,8 @@ public class ShopUI : MonoBehaviour
         foreach (int number in randomNumbers)
         {
             currentProductList.Add(productList.itemsList[number]);
-            surplusProductNum++;
         }
+        surplusProductNum = 4;
 
         shopUI.Query("productItem").ForEach(item =>
         {
@@ -248,7 +247,7 @@ public class ShopUI : MonoBehaviour
         if (item.isWeapon)
         {
             //武器
-            if (playerBag.weaponList.Count < weaponSlot)
+            if (playerBag.weaponList.Count < playerStatus.weaponSlot)
             {
                 playerBag.weaponList.Add(item);
                 playerBag.weaponQualityList.Add(item.quality);
@@ -293,9 +292,9 @@ public class ShopUI : MonoBehaviour
     //能否购买武器
     private int CanBuyWeapon(Item item)
     {
-        if (playerBag.weaponList.Count < 2)
+        if (playerBag.weaponList.Count < playerStatus.weaponSlot)
         {
-            return 1;
+            return playerBag.weaponList.Count;
         }
         int sameWeaponIndex = -1;
         for (int i = 0; i < playerBag.weaponList.Count; i++)
@@ -370,7 +369,7 @@ public class ShopUI : MonoBehaviour
         var dialog = shopUI.Q("weaponDialog");
         var weaponBagUI = shopUI.Q("weaponList");
         weaponBagUI.Clear();
-        for (int i = 0; i < weaponSlot; i++)
+        for (int i = 0; i < playerStatus.weaponSlot; i++)
         {
             var itemTemplate = Resources.Load<VisualTreeAsset>("weaponItem").Instantiate();
             weaponBagUI.Add(itemTemplate);

@@ -162,6 +162,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forward: {x: 0, y: 0}
-  speed: 10
+  speed: 6
   attack: 5
-  repelPower: 0

@@ -125,7 +125,7 @@ MonoBehaviour:
   level: 0
   moveSpeed: 2
   attack: 5
-  maxHealth: 15
+  maxHealth: 50
   currenthealth: 0
   forward: {x: 0, y: 0}
   healthBar: {fileID: 6800858416590057588}

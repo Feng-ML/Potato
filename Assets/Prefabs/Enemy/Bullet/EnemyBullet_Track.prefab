@@ -101,10 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forward: {x: 0, y: 0}
-  speed: 7
+  speed: 6
   attack: 10
-  penetration: 1
-  repelPower: 0
 --- !u!50 &2044075582574408057
 Rigidbody2D:
   serializedVersion: 4

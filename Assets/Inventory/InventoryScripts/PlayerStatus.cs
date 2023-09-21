@@ -32,6 +32,7 @@ public class PlayerStatus : ScriptableObject
     public float pickUpRange;           //拾取范围%
     public int gold;                    //金币
     public bool isAttackWithPoison;     //攻击是否带毒
+    public int weaponSlot;              //武器槽位
 
 
     public void Init()
@@ -51,6 +52,7 @@ public class PlayerStatus : ScriptableObject
         speed = 0;
         pickUpRange = 0;
         gold = 0;
+        weaponSlot = 6;
     }
 
     #region 属性修改

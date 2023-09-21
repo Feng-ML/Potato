@@ -4623,8 +4623,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameStatus: {fileID: 11400000, guid: 0a809ae404ce47843b63d25bf47b9f41, type: 2}
   bornAnimation: {fileID: 6724265362868131660, guid: 6ef27c0af21e3294788ca9d0648a187b, type: 3}
-  bornNum: 5
-  gameTime: 60
+  bornNum: 2
+  gameTime: 40
   bornTimer: 3
   bossList:
   - {fileID: 731556003224429039, guid: 7e9e716b097403d4fbe9af8e2e790683, type: 3}

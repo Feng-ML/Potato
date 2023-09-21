@@ -45,6 +45,6 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Button text="出发" display-tooltip-when-elided="true" name="goButton" class="button" style="position: absolute; right: 60px; top: 60px; width: 300px; padding-top: 20px; padding-bottom: 20px;" />
+        <ui:Button text="出发" display-tooltip-when-elided="true" name="goButton" class="button" style="position: absolute; right: 60px; top: 60px; width: 300px; padding-top: 20px; padding-bottom: 20px; -unity-font-style: bold; -unity-font-definition: initial;" />
     </ui:VisualElement>
 </ui:UXML>

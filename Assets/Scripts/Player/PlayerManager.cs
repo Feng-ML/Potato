@@ -54,7 +54,7 @@ public class PlayerManager : MonoBehaviour
             var realDamage = playerStatus.GetDamageReduce(damage);
             AudioSource.PlayClipAtPoint(hurtAudio, transform.position);
 
-            if (playerStatus.health < realDamage)
+            if (playerStatus.health <= realDamage)
             {
                 playerStatus.health = 0;
                 Die();

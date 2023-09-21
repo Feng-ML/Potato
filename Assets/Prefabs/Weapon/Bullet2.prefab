@@ -163,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forward: {x: 0, y: 0}
   speed: 10
-  attack: 2
+  attack: 3
   maxPenetration: 1
   repelPower: 10
   playerStatus: {fileID: 11400000, guid: 42a2b3de3a27da340af226201e15f196, type: 2}

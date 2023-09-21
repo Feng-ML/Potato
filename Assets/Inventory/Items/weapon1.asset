@@ -17,7 +17,7 @@ MonoBehaviour:
   itemImg: {fileID: -2067830191, guid: 63f3235ea3498c44687244f79ff824c6, type: 3}
   itemInfo: "\u653B\u51FB\u529B  10\n\n\u653B\u51FB\u901F\u5EA6  1s\n\n\u653B\u51FB\u8303\u56F4 
     100\n\n\u66B4\u51FB\u7387  0%\n\n\u8D2F\u901A 1"
-  cost: 30
+  cost: 15
   quality: 1
   effectList: []
   isWeapon: 1

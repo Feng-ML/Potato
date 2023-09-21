@@ -92,7 +92,7 @@ public class MapManager : MonoBehaviour
     //Boss出现时机
     private void BossBorn()
     {
-        if (gameStatus.wave == 3)
+        if (gameStatus.wave == 2)
         {
             Instantiate(bossList[0], new Vector2(8, -4), Quaternion.identity);
         }
