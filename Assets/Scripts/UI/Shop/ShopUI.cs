@@ -82,6 +82,7 @@ public class ShopUI : MonoBehaviour
 
     private void AddWeaponEvent()
     {
+        var weaponDialog = shopUI.Q("weaponDialog");
         //合并武器
         shopUI.Q<Button>("mergeButton").clicked += () =>
         {
@@ -100,7 +101,7 @@ public class ShopUI : MonoBehaviour
 
             if (sameIndex > -1)
             {
-                shopUI.Q("weaponDialog").visible = false;
+                weaponDialog.visible = false;
                 playerBag.weaponQualityList[selectWeaponIndex]++;
                 playerBag.weaponList.RemoveAt(sameIndex);
                 playerBag.weaponQualityList.RemoveAt(sameIndex);
@@ -108,19 +109,39 @@ public class ShopUI : MonoBehaviour
             }
             else
             {
-                AudioSource.PlayClipAtPoint(deniedAudio, transform.position, volume);
+                AudioPlay(false);
             }
         };
 
         //卖出武器
         shopUI.Q<Button>("sellButton").clicked += () =>
         {
-            shopUI.Q("weaponDialog").visible = false;
-            gold.Value += playerBag.weaponList[selectWeaponIndex].cost / 3;
+            weaponDialog.visible = false;
+            var sellNum = int.Parse(weaponDialog.Q<Label>("sellNum").text);
+            gold.Value += sellNum;
             playerBag.weaponList.RemoveAt(selectWeaponIndex);
             playerBag.weaponQualityList.RemoveAt(selectWeaponIndex);
-            AudioSource.PlayClipAtPoint(buyAudio, transform.position, volume);
+            AudioPlay();
             LoadPlayerWeapon();
+        };
+
+        //升级武器
+        shopUI.Q<Button>("upButton").clicked += () =>
+        {
+            var upCost = int.Parse(weaponDialog.Q<Label>("productCost").text);
+
+            if (gold >= upCost)
+            {
+                weaponDialog.visible = false;
+                gold.Value -= upCost;
+                playerBag.weaponQualityList[selectWeaponIndex]++;
+                AudioPlay();
+                LoadPlayerWeapon();
+            }
+            else
+            {
+                AudioPlay(false);
+            }
         };
     }
 
@@ -131,10 +152,10 @@ public class ShopUI : MonoBehaviour
         var price = refreshPriceNum;
         if (gold < price)
         {
-            AudioSource.PlayClipAtPoint(deniedAudio, transform.position, volume);
+            AudioPlay(false);
             return;
         };
-        AudioSource.PlayClipAtPoint(buyAudio, transform.position, volume);
+        AudioPlay();
 
         currentProductList.Clear();
         // 获得4个不同的随机数
@@ -213,17 +234,17 @@ public class ShopUI : MonoBehaviour
         //是否有枪械位置
         if (item.isWeapon && CanBuyWeapon(item) < 0)
         {
-            AudioSource.PlayClipAtPoint(deniedAudio, transform.position, volume);
+            AudioPlay(false);
             return;
         }
         //不够钱
         if (gold < item.cost)
         {
-            AudioSource.PlayClipAtPoint(deniedAudio, transform.position, volume);
+            AudioPlay(false);
             return;
         }
 
-        AudioSource.PlayClipAtPoint(buyAudio, transform.position, volume);
+        AudioPlay();
         if (item.isWeapon)
         {
             //武器
@@ -347,7 +368,6 @@ public class ShopUI : MonoBehaviour
     private void LoadPlayerWeapon()
     {
         var dialog = shopUI.Q("weaponDialog");
-
         var weaponBagUI = shopUI.Q("weaponList");
         weaponBagUI.Clear();
         for (int i = 0; i < weaponSlot; i++)
@@ -358,12 +378,13 @@ public class ShopUI : MonoBehaviour
             if (i < playerBag.weaponList.Count)
             {
                 var weaponItem = playerBag.weaponList[i];
+                var weaponQuality = playerBag.weaponQualityList[i];
                 var weaponIndex = i;
                 var weaponBoxUI = shopUI.Query("weapon").AtIndex(i);
                 var weaponUI = shopUI.Query("weaponImg").AtIndex(i);
                 var background = new StyleBackground(weaponItem.itemImg);
                 weaponUI.style.backgroundImage = background;
-                weaponBoxUI.style.backgroundColor = MyDictionary.qualityColor[playerBag.weaponQualityList[i]];
+                weaponBoxUI.style.backgroundColor = MyDictionary.qualityColor[weaponQuality];
 
                 //武器弹窗
                 weaponBoxUI.RegisterCallback<MouseEnterEvent>((evt) =>
@@ -373,14 +394,26 @@ public class ShopUI : MonoBehaviour
                     dialog.style.left = evt.mousePosition.x;
                     dialog.style.top = evt.mousePosition.y - dialog.contentRect.height - 20;
 
+                    dialog.Q("imgBox").style.backgroundColor = MyDictionary.qualityColor[weaponQuality];
                     dialog.Q("productImg").style.backgroundImage = background;
                     dialog.Q<Label>("productName").text = weaponItem.itemName;
                     dialog.Q<Label>("productInfo").text = weaponItem.itemInfo;
-                    dialog.Q<Label>("productCost").text = weaponItem.cost.ToString();
-                    dialog.Q<Label>("sellNum").text = (weaponItem.cost / 3).ToString();
-                    if (playerStatus.gold < weaponItem.cost)
+                    var upCost = weaponItem.cost * (int)weaponQuality;
+                    dialog.Q<Label>("sellNum").text = (upCost / 3).ToString();
+                    if (weaponQuality < MyEnums.QualityLevel.mythic)
                     {
-                        dialog.Q<Label>("productCost").style.color = Color.red;
+                        dialog.Q<Button>("upButton").style.display = DisplayStyle.Flex;
+                        dialog.Q<Button>("mergeButton").style.display = DisplayStyle.Flex;
+                        dialog.Q<Label>("productCost").text = upCost.ToString();
+                        if (gold < upCost)
+                        {
+                            dialog.Q<Label>("productCost").style.color = Color.red;
+                        }
+                    }
+                    else
+                    {
+                        dialog.Q<Button>("upButton").style.display = DisplayStyle.None;
+                        dialog.Q<Button>("mergeButton").style.display = DisplayStyle.None;
                     }
                 }, TrickleDown.TrickleDown);
 
@@ -424,4 +457,19 @@ public class ShopUI : MonoBehaviour
         var refreshColor = refreshPriceNum > newVal ? Color.red : Color.white;
         shopUI.Q<Label>("refreshCost").style.color = refreshColor;
     }
+
+    #region 工具
+    //音效播放
+    private void AudioPlay(bool buyOrNot = true)
+    {
+        if (buyOrNot)
+        {
+            AudioSource.PlayClipAtPoint(buyAudio, transform.position, volume);
+        }
+        else
+        {
+            AudioSource.PlayClipAtPoint(deniedAudio, transform.position, volume);
+        }
+    }
+    #endregion
 }

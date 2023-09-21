@@ -47,9 +47,9 @@ public class Boos1 : EnemyControl
         bullet.forward = forward;
     }
 
-    public override void TakeDamage(int damage, bool isCritical = false)
+    public override void TakeDamage(int damage, bool isCritical = false, Color textColor = default(Color))
     {
-        base.TakeDamage(damage, isCritical);
+        base.TakeDamage(damage, isCritical, textColor);
         healthSlider.value = currenthealth;
     }
 

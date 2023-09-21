@@ -10,9 +10,13 @@ public class EnemyControl : MonoBehaviour
     public float maxHealth;                       //最大生命值
     public float currenthealth;                   //当前生命值
     private float crashTime;                      //碰撞伤害触发频率
+
     protected bool isHurt;
     protected bool isDeath;
     protected bool isSuperArmor;                  //霸体
+    protected bool isPoisoning;                   //中毒
+    private int poisonValue;                      //中毒伤害
+    private float poisonTime;                     //中毒伤害触发频率
 
     //[HideInInspector]
     public Vector2 forward;                       //前进方向
@@ -22,7 +26,7 @@ public class EnemyControl : MonoBehaviour
     protected Rigidbody2D rb;
     protected Animator animator;
     protected GameObject player;
-    protected Vector3 playerDirection;              //敌人与玩家的向量
+    protected Vector3 playerDirection;            //敌人与玩家的向量
 
     protected virtual void Awake()
     {
@@ -37,6 +41,7 @@ public class EnemyControl : MonoBehaviour
         currenthealth = maxHealth;
         isDeath = false;
         isHurt = false;
+        isPoisoning = false;
     }
 
     protected virtual void Update()
@@ -51,6 +56,19 @@ public class EnemyControl : MonoBehaviour
         {
             forward = playerDirection.normalized;
             Move();
+        }
+
+        if (isPoisoning)
+        {
+            if (poisonTime > 1)
+            {
+                TakeDamage(poisonValue, false, new Color32(0, 91, 13, 255));
+                poisonTime = 0;
+            }
+            else
+            {
+                poisonTime += Time.deltaTime;
+            }
         }
     }
 
@@ -129,7 +147,7 @@ public class EnemyControl : MonoBehaviour
     }
 
     //受伤
-    public virtual void TakeDamage(int damage, bool isCritical = false)
+    public virtual void TakeDamage(int damage, bool isCritical = false, Color textColor = default(Color))
     {
         if (isDeath) return;
         if (currenthealth <= damage)
@@ -142,8 +160,23 @@ public class EnemyControl : MonoBehaviour
             currenthealth -= damage;
         }
 
-        var color = isCritical ? Color.yellow : Color.white;
+        Color color;
+        if (textColor != default(Color))
+        {
+            color = textColor;
+        }
+        else
+        {
+            color = isCritical ? Color.yellow : Color.white;
+        }
         TextPool.Instance.GetText(transform.position, damage, color);
+    }
+
+    //中毒
+    public void Poison(int damage)
+    {
+        isPoisoning = true;
+        poisonValue = damage;
     }
 
     //击退
@@ -173,6 +206,7 @@ public class EnemyControl : MonoBehaviour
         gold.transform.position = transform.position;
     }
 
+    #region 工具
     public void SetDeactiveAction(Action releaseObj)
     {
         releaseAction = releaseObj;
@@ -194,4 +228,5 @@ public class EnemyControl : MonoBehaviour
         }
         return new Vector2(x, y);
     }
+    #endregion
 }

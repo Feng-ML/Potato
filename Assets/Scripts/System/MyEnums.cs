@@ -23,7 +23,7 @@ public class MyEnums
     // Æ·ÖÊ
     public enum QualityLevel
     {
-        common,
+        common = 1,
         rare,
         epic,
         legendary,

@@ -18,7 +18,7 @@ MonoBehaviour:
   itemInfo: "\u653B\u51FB\u529B  10\n\n\u653B\u51FB\u901F\u5EA6  1s\n\n\u653B\u51FB\u8303\u56F4 
     100\n\n\u66B4\u51FB\u7387  0%\n\n\u8D2F\u901A 1"
   cost: 30
-  quality: 0
+  quality: 1
   effectList: []
   isWeapon: 1
   weaponPrefab: {fileID: 4648371776358744430, guid: c32e4f1961074ca4093f5185b67666f8, type: 3}

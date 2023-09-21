@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 4
   itemName: "\u624B\u5957"
-  itemImg: {fileID: 21300000, guid: 3d1d2bba40019564596fe480175fb91f, type: 3}
+  itemImg: {fileID: 637819912, guid: 72623df766f908642932cdbcbd6a89f1, type: 3}
   itemInfo: "\u4F24\u5BB3+8"
   cost: 15
   quality: 4
-  isEquip: 0
   effectList:
   - Attr: 2
     value: 8
+  isWeapon: 0
+  weaponPrefab: {fileID: 0}

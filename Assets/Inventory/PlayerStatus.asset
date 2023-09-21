@@ -27,4 +27,5 @@ MonoBehaviour:
   dodgeRate: 0
   speed: 0
   pickUpRange: 0
-  gold: 65
+  gold: 66666
+  isAttackWithPoison: 0

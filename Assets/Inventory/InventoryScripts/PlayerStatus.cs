@@ -31,6 +31,7 @@ public class PlayerStatus : ScriptableObject
     public float speed;                 //移动速度%
     public float pickUpRange;           //拾取范围%
     public int gold;                    //金币
+    public bool isAttackWithPoison;     //攻击是否带毒
 
 
     public void Init()

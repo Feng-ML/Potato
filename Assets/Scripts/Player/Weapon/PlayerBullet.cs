@@ -28,6 +28,8 @@ public class PlayerBullet : Bullet
                 enemy.TakeDamage(damage, isCritical);
                 enemy.ApplyKnockback(transform, repelPower);
 
+                if (playerStatus.isAttackWithPoison) enemy.Poison(attack);
+
                 if (curPenetration <= 0)
                 {
                     explosion();

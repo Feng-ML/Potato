@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   itemName: "\u8349\u978B"
-  itemImg: {fileID: 21300000, guid: 9eaedefd60cecda488e401e41a528a61, type: 3}
+  itemImg: {fileID: 1227055377, guid: 72623df766f908642932cdbcbd6a89f1, type: 3}
   itemInfo: "\u79FB\u901F+10\n\n\u62A4\u7532+5"
   cost: 5
-  quality: 0
+  quality: 1
   effectList:
   - Attr: 3
     value: 10

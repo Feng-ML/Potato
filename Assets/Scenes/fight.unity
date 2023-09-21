@@ -4214,7 +4214,7 @@ MonoBehaviour:
   relicList:
   - {fileID: 8951528511363552366, guid: ae44aa3c9ab948645b7a98d27fc965f5, type: 3}
   - {fileID: 1042213380361816620, guid: 72b9818efdfb04846afddf67c5468ef1, type: 3}
-  - {fileID: 8951528511363552366, guid: ae44aa3c9ab948645b7a98d27fc965f5, type: 3}
+  - {fileID: 5641217156196253407, guid: 1a0cc08d67f8a4c46a29c559e972f0a6, type: 3}
 --- !u!1 &946104490
 GameObject:
   m_ObjectHideFlags: 0
